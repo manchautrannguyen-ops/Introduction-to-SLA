@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 1: Introduction — Second Language Acquisition</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #faf6ef;
+    --cream: #f2ead8;
+    --accent: #2d6a4f;
+    --accent-light: #52b788;
+    --accent-warm: #b5451b;
+    --gold: #c9922a;
+    --border: #d4c4a0;
+    --shadow: rgba(26,18,8,0.12);
+    --correct: #2d6a4f;
+    --wrong: #b5451b;
+    --neutral: #7c6d56;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,0.015) 40px,rgba(255,255,255,0.015) 80px);
+  }
+  .header-tag { font-size: 0.73rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 0.75rem; }
+  header h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.7rem, 4.5vw, 2.8rem); font-weight: 700; line-height: 1.15; margin-bottom: 0.5rem; }
+  header h1 em { font-style: italic; color: var(--gold); }
+  header .sub { font-size: 0.88rem; color: rgba(250,246,239,0.5); max-width: 500px; margin: 0.75rem auto 0; }
+
+  /* TABS */
+  .tab-bar {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .tab-btn {
+    flex: 1; padding: 0.9rem 0.5rem;
+    border: none; background: transparent;
+    font-family: 'Source Serif 4', serif; font-size: 0.82rem;
+    letter-spacing: 0.07em; color: var(--neutral);
+    cursor: pointer; border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+  .tab-btn:hover:not(.active) { color: var(--ink); }
+
+  /* PANELS */
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ══ READING PANEL ══ */
+  .reading-wrap { max-width: 700px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .chapter-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--neutral); margin-bottom: 0.35rem; }
+  .chapter-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; border-bottom: 2px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1.6rem; }
+  .reading-wrap p { margin-bottom: 1.25rem; text-align: justify; hyphens: auto; }
+  .reading-wrap ul { margin: 0.4rem 0 1.3rem 1.6rem; line-height: 2; }
+  .reading-wrap ul li { margin-bottom: 0.1rem; }
+  .subhead { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin: 2rem 0 0.75rem; }
+  .sidenote {
+    float: right; width: 185px;
+    margin: 0 0 1.25rem 1.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--cream);
+    border-left: 3px solid var(--accent);
+    font-size: 0.81rem; line-height: 1.55; color: #3a3020;
+    border-radius: 0 4px 4px 0; clear: right;
+  }
+  .sidenote strong { display: block; font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem; }
+  .book-ref { font-size: 0.84rem; color: var(--neutral); border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 2rem; }
+  @media (max-width: 540px) { .sidenote { float: none; width: 100%; margin: 0 0 1rem 0; } }
+
+  /* ══ EXERCISES PANEL ══ */
+  .progress-wrap {
+    background: white; border-bottom: 1px solid var(--border);
+    padding: 0.65rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .progress-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--neutral); white-space: nowrap; }
+  .progress-bar { flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg,var(--accent),var(--accent-light)); border-radius: 3px; transition: width 0.5s ease; width: 0%; }
+  .score-badge { font-family: 'Playfair Display', serif; font-size: 0.88rem; color: var(--accent); white-space: nowrap; min-width: 58px; text-align: right; }
+
+  main { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+  .section-header { display: flex; align-items: center; gap: 1rem; margin: 3rem 0 1.1rem; }
+  .section-icon { width: 35px; height: 35px; background: var(--ink); color: var(--paper); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.92rem; flex-shrink: 0; }
+  .section-header h2 { font-family: 'Playfair Display', serif; font-size: 1.18rem; font-weight: 700; }
+  .section-header h2 span { display: block; font-family: 'Source Serif 4', serif; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--neutral); margin-bottom: 0.08rem; }
+  .section-intro { color: var(--neutral); font-size: 0.87rem; margin-bottom: 1.2rem; }
+
+  /* Exercise card */
+  .exercise-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.45rem 1.55rem; margin-bottom: 1.05rem; box-shadow: 0 1px 4px var(--shadow); }
+  .exercise-card.answered { box-shadow: none; }
+  .q-num { font-size: 0.69rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--neutral); margin-bottom: 0.38rem; }
+  .q-text { font-size: 0.96rem; color: var(--ink); margin-bottom: 0.95rem; line-height: 1.6; }
+  .q-text strong { color: var(--accent-warm); }
+
+  /* True/False */
+  .tf-row { display: flex; gap: 0.6rem; }
+  .tf-btn { flex: 1; padding: 0.58rem 1rem; border: 1.5px solid var(--border); border-radius: 5px; background: var(--paper); font-family: 'Playfair Display', serif; font-size: 0.95rem; cursor: pointer; color: var(--ink); transition: border-color 0.15s, background 0.15s; }
+  .tf-btn:hover:not(:disabled) { border-color: var(--accent); background: #eef7f2; }
+  .tf-btn.correct { border-color: var(--correct); background: #eef7f2; color: var(--correct); font-weight: 700; }
+  .tf-btn.wrong { border-color: var(--wrong); background: #fdf0ec; color: var(--wrong); }
+  .tf-btn:disabled { cursor: default; }
+
+  /* Multiple choice */
+  .choices { display: flex; flex-direction: column; gap: 0.48rem; }
+  .choice-btn { display: flex; align-items: flex-start; gap: 0.65rem; padding: 0.62rem 0.9rem; border: 1.5px solid var(--border); border-radius: 5px; background: var(--paper); cursor: pointer; text-align: left; font-family: 'Source Serif 4', serif; font-size: 0.9rem; line-height: 1.5; color: var(--ink); transition: border-color 0.15s, background 0.15s; }
+  .choice-btn:hover:not(:disabled) { border-color: var(--accent); background: #eef7f2; }
+  .choice-letter { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; background: var(--cream); border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; color: var(--neutral); margin-top: 0.05rem; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+  .choice-btn.correct { border-color: var(--correct); background: #eef7f2; }
+  .choice-btn.correct .choice-letter { background: var(--correct); border-color: var(--correct); color: white; }
+  .choice-btn.wrong { border-color: var(--wrong); background: #fdf0ec; }
+  .choice-btn.wrong .choice-letter { background: var(--wrong); border-color: var(--wrong); color: white; }
+  .choice-btn:disabled { cursor: default; }
+
+  /* Gap fill */
+  .gap-sent { font-size: 0.96rem; line-height: 2.3; color: var(--ink); margin-bottom: 0.8rem; }
+  .gap-input { border: none; border-bottom: 2px solid var(--accent); background: transparent; font-family: 'Source Serif 4', serif; font-size: 0.96rem; color: var(--ink); padding: 0 0.2rem 0.04rem; width: 148px; outline: none; text-align: center; transition: border-color 0.2s; cursor: pointer; }
+  .gap-input:focus { border-color: var(--gold); }
+  .gap-input.g-correct { border-color: var(--correct); color: var(--correct); font-weight: 600; }
+  .gap-input.g-wrong { border-color: var(--wrong); color: var(--wrong); }
+  .word-bank { display: flex; flex-wrap: wrap; gap: 0.42rem; margin-bottom: 1.05rem; }
+  .word-chip { padding: 0.2rem 0.68rem; background: var(--cream); border: 1.5px solid var(--border); border-radius: 20px; font-size: 0.82rem; cursor: pointer; font-family: 'Source Serif 4', serif; color: var(--ink); transition: background 0.15s, border-color 0.15s, outline 0.1s; user-select: none; }
+  .word-chip:hover { background: #eef7f2; border-color: var(--accent); }
+  .word-chip.used { opacity: 0.3; pointer-events: none; text-decoration: line-through; }
+  .word-chip.chip-sel { outline: 2px solid var(--gold); background: #fdf8ec; }
+
+  /* Matching */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.52rem 1.1rem; align-items: start; }
+  .match-col-head { font-size: 0.67rem; letter-spacing: 0.17em; text-transform: uppercase; color: var(--neutral); padding: 0.18rem 0; border-bottom: 1px solid var(--border); margin-bottom: 0.22rem; }
+  .match-item { padding: 0.48rem 0.75rem; border: 1.5px solid var(--border); border-radius: 5px; background: var(--paper); font-size: 0.85rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; line-height: 1.4; min-height: 40px; display: flex; align-items: center; }
+  .match-item.sel { border-color: var(--gold); background: #fdf8ec; }
+  .match-item.ok { border-color: var(--correct); background: #eef7f2; cursor: default; }
+  .match-item.bad { border-color: var(--wrong); background: #fdf0ec; }
+  @media (max-width: 560px) { .match-grid { grid-template-columns: 1fr; } }
+
+  /* Feedback */
+  .feedback { margin-top: 0.8rem; padding: 0.58rem 0.88rem; border-radius: 5px; font-size: 0.86rem; line-height: 1.5; display: none; }
+  .feedback.show { display: block; }
+  .fb-ok { background: #eef7f2; border-left: 3px solid var(--correct); color: #1a4a30; }
+  .fb-err { background: #fdf0ec; border-left: 3px solid var(--wrong); color: #7a2510; }
+
+  /* Check button */
+  .btn-check { margin-top: 0.85rem; padding: 0.52rem 1.35rem; background: var(--ink); color: var(--paper); border: none; border-radius: 4px; font-family: 'Source Serif 4', serif; font-size: 0.85rem; letter-spacing: 0.07em; cursor: pointer; transition: background 0.15s; }
+  .btn-check:hover { background: var(--accent); }
+  .btn-check:disabled { background: var(--neutral); cursor: default; }
+
+  hr.rule { border: none; border-top: 1px solid var(--border); margin: 2.2rem 0; }
+
+  /* Final */
+  #final-score { display: none; text-align: center; padding: 2.8rem 2rem; background: var(--ink); color: var(--paper); border-radius: 10px; margin-top: 3rem; }
+  #final-score h2 { font-family: 'Playfair Display', serif; font-size: 1.85rem; color: var(--gold); margin-bottom: 0.4rem; }
+  #final-score .sub2 { color: rgba(250,246,239,0.65); margin-bottom: 0.9rem; }
+  .big-n { font-family: 'Playfair Display', serif; font-size: 4.2rem; color: white; line-height: 1; margin: 0.8rem 0; }
+  .big-n span { font-size: 1.7rem; color: var(--gold); }
+  #final-msg { color: rgba(250,246,239,0.7); margin-bottom: 0.5rem; }
+  #restart-btn { padding: 0.65rem 1.7rem; background: var(--accent); color: white; border: none; border-radius: 4px; font-family: 'Source Serif 4', serif; font-size: 0.95rem; cursor: pointer; margin-top: 0.7rem; }
+  #restart-btn:hover { background: var(--accent-light); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">Hummel (2014) · Interactive Study Guide</div>
+  <h1>Chapter 1: <em>Introduction</em></h1>
+  <p class="sub">Introducing Second Language Acquisition: Perspectives and Practices. John Wiley &amp; Sons, Inc.</p>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('reading',this)">📖 &nbsp;Reading</button>
+  <button class="tab-btn" onclick="showTab('exercises',this)">✏️ &nbsp;Exercises</button>
+</div>
+
+<!-- ═══════════════════════════════════
+     READING PANEL
+═══════════════════════════════════ -->
+<div id="panel-reading" class="panel active">
+<div class="reading-wrap">
+
+  <div class="chapter-label">Chapter 1</div>
+  <div class="chapter-title">Introduction</div>
+
+  <p>Welcome to this introduction to second language acquisition. What is second language acquisition (SLA)? In brief, this term refers to beginning the learning of another language after a first language (L1) has been acquired.</p>
+
+  <div class="sidenote"><strong>Key Term</strong>Second language acquisition (SLA): learning of another language after the L1 has been acquired.</div>
+
+  <p>Note that opinions vary about what might be considered the earliest age from which second language learning would be differentiated from simultaneous language acquisition or bilingual first language acquisition (two languages learned at the same time). In general, however, second language acquisition describes learning another language after the early years of childhood. (Note that the importance of age in acquiring another language will be discussed in Chapter 7, and issues related to bilingual acquisition and bilingualism will be discussed in Chapter 9.)</p>
+
+  <p>Second language acquisition is a phenomenon found among people from all parts of the world and all walks of life. The well-known biblical story about the Tower of Babel is one of the earliest references to the importance and urgency of knowing another language. According to the biblical account, in order to prevent people from cooperating in their goal of building a tower in the town of Babel that would reach heaven, God commanded "Go to, let us go down, and there confound their language, that they may not understand one another's speech." The tactic was successful and different language groups abandoned their project and moved to separate areas of the world.</p>
+
+  <p>Of course it is not necessary to believe the biblical story of Babel to understand the importance of being able to communicate with one's neighbor or with an individual on the other side of the globe. The desire to learn another language might stem from a personal choice to broaden one's horizons or from a more complex set of life circumstances, such as an urgent need to find a job in a new country. In addition, the growing ubiquity of international travel, along with electronic means of communicating across time zones, has increased opportunities to interact with speakers of other languages and, for many, may trigger the desire to undertake the learning of another language.</p>
+
+  <p>Second language acquisition is a phenomenon that millions of individuals worldwide are engaged in, and it is also a distinct field of study. The principal aim of this book is to provide an overview of the main concepts, issues, and debates in the field of second language acquisition, referring to past and current research to illustrate these issues. There has been a huge increase in empirical research in the past few decades on a wide variety of dimensions related to SLA. Discussions throughout the book will refer to this research by highlighting specific studies to clarify important concepts and themes.</p>
+
+  <p>Research into second language acquisition is a truly multidisciplinary endeavor. Some of the major disciplines that contribute to SLA include theoretical linguistics, education, psychology, and sociology. In the past several decades, the field of second language acquisition has increasingly come to be recognized as a discipline of its own, supported by an abundant research literature. Universities now regularly offer courses in "second language acquisition" whereas in earlier years the subject was only briefly reviewed in the context of a basic introductory linguistics or second language pedagogy course, if at all. Today, disciplines as varied as theoretical linguistics, speech pathology, and educational psychology refer to aspects of the SLA research literature in their own fields, and in some instances data from SLA are used in testing theoretical models or describing concepts in other disciplines.</p>
+
+  <div class="sidenote"><strong>Distinction</strong>Second language (L2): target language is dominant in the learner's environment.<br><br>Foreign language (FL): learner lives in the L1 environment; contact with target language speakers is not widely available.</div>
+
+  <p>Note that an additional distinction between "second" language acquisition and "foreign" language acquisition is an important one in some contexts. In such cases, "second language acquisition" applies to circumstances in which the language learned (the target language) is generally the dominant language used in the learner's environment (such as an immigrant's learning English in the United States), while "foreign language acquisition" indicates that the learner lives in the L1 environment and contact with target language speakers is not widely available (such as learning English in Beijing, China). In this regard, in the context of learning English, a frequent abbreviation is "ESL" to refer to "English as a second language" and "EFL" for "English as a foreign language". The use of the term "second language acquisition" throughout this book generally includes foreign language acquisition, although the latter term will be used when it is important to make a distinction between the two circumstances.</p>
+
+  <p>The study of second language acquisition also generally encompasses the acquisition of a third or additional languages (sometimes referred to as the study of multilingualism), although research specifically devoted to describing how third (or more) language acquisition might resemble or differ from SLA is increasing.</p>
+
+  <p>In addition, this book uses the terms "acquisition" and "learning" interchangeably as this usage has been generally adopted by scholars in the field (see, for example, Ortega, 2009, p. 5).</p>
+
+  <div class="subhead">Why study second language acquisition?</div>
+
+  <p>To start, here are a number of questions that one might one want some answers to:</p>
+
+  <ul>
+    <li>Is second language acquisition like first language acquisition?</li>
+    <li>Does the first language help or get in the way of second language learning?</li>
+    <li>What are some of the circumstances in which people learn a second language?</li>
+    <li>Do innate capacities play an important role in second language acquisition?</li>
+    <li>Why do we make mistakes in a second language?</li>
+    <li>Do learners need their errors to be explicitly corrected?</li>
+    <li>Are there any universal processes affecting SLA?</li>
+    <li>Is there a teaching method that has proved to be more successful than others?</li>
+    <li>Can adults learn to speak a second language as well as native speakers?</li>
+    <li>What about individual differences? Are there factors that enable some people to learn aspects of a second language better or faster than others?</li>
+    <li>Are there certain learning strategies that seem particularly useful?</li>
+    <li>What happens when children learn two languages at the same time? Do they end up confused and does one or both of their languages suffer?</li>
+    <li>Can bilinguals "turn off" or ignore one of their languages?</li>
+  </ul>
+
+  <p>Our exploration throughout the field of SLA will offer some responses to the preceding questions. We begin in Chapter 2 by examining first language acquisition. A basic understanding of this universal process, noting ways in which it resembles or differs from second language acquisition, should be useful for gaining a clearer view of SLA. In the following chapter, Chapter 3, the reader is introduced to some of the variety of contexts, both naturalistic and classroom-related, associated with the learning of a second language. Chapter 4 presents an overview of main theoretical views underlying the field. Chapter 5 recognizes the importance of SLA applications to language teaching, an area of interest for a growing number of practitioners: predominant teaching approaches and methods are presented, followed by a look at some current instructional issues. Development of the L2 learner's language is the focus of Chapter 6. Chapter 7 begins an exploration into individual difference factors, by focusing on the effect of the learner's age on SLA. Additional individual difference factors, such as aptitude and motivation, are discussed in Chapter 8. Finally, in Chapter 9, the overlapping discipline of bilingualism is explored, with a look at characteristics of simultaneous language acquisition along with the possible cognitive effects of bilingualism.</p>
+
+  <p>To help illustrate concepts and issues, starting with Chapter 3 on language learning contexts we will follow six fictional language learners who are profiled throughout the book. These individuals each have their own unique backgrounds and experiences with second language acquisition. The learners profiled are:</p>
+
+  <ul>
+    <li>Mila, a widowed woman with two teenaged sons, who immigrated to the United States from her native war-ravaged Bosnia during the early 1990s;</li>
+    <li>Steve, an American university student who chose to study abroad in Beijing for a year;</li>
+    <li>Linda, a Boston schoolteacher who followed her passion for Italian opera to Tuscany, Italy;</li>
+    <li>Alberto, growing up bilingual in English and Spanish in Southern California;</li>
+    <li>Walid, also bilingual, but in Arabic and English, living near Detroit, Michigan;</li>
+    <li>Xia Mei, a native speaker of Cantonese who is learning English in an immersion program at her high school in Hong Kong.</li>
+  </ul>
+
+  <p>In addition, to clarify connections between research and practice, throughout the chapters the reader will encounter "Language learning in practice" textboxes illustrating the more practical applications of discussed research and theoretical approaches. Other features have also been included to aid in understanding the book's material. For example, new terms which may be unfamiliar to readers are bolded throughout the text and defined in the margins as well as in the end-of-book glossary. Also, readers can test their own knowledge after reading each chapter by doing the "Self-assessment questions" and by checking their answers at the online site (www.wiley.com/go/hummel). Classroom discussions can be stimulated after each chapter using the "Discussion questions" feature and students can undertake projects with reference to the "Exercises/Study projects" section. Each chapter also contains an annotated "Further reading and viewing" section which allows students to follow up on subjects treated in that chapter.</p>
+
+  <p>Since second language acquisition is an area of study that is increasingly recognized as relevant to a number of disciplines, I have attempted to write this book so that it will be accessible to any undergraduate student needing a basic introduction to the field. I hope it is also accessible to the general reader without a specialized academic background who is simply interested in learning more about second language acquisition.</p>
+
+  <p>We will begin this exploration by looking at first language acquisition. I hope you enjoy the journey!</p>
+
+  <div class="book-ref">
+    <strong>Reference</strong><br>
+    Ortega, L. (2009). <em>Understanding second language acquisition.</em> London: Hodder Education.
+  </div>
+
+</div>
+</div><!-- /panel-reading -->
+
+
+<!-- ═══════════════════════════════════
+     EXERCISES PANEL
+═══════════════════════════════════ -->
+<div id="panel-exercises" class="panel">
+
+  <div class="progress-wrap">
+    <span class="progress-label">Score</span>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="score-badge" id="score-display">0 / 0</div>
+  </div>
+
+  <main>
+
+    <!-- ── SECTION 1: TRUE / FALSE ── -->
+    <div class="section-header">
+      <div class="section-icon">1</div>
+      <h2><span>Exercise Type</span>True or False</h2>
+    </div>
+    <p class="section-intro">Decide whether each statement is <strong>True</strong> or <strong>False</strong> based on the chapter text.</p>
+
+    <div class="exercise-card" id="tf1">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">Second language acquisition (SLA) refers to beginning the learning of another language <strong>before</strong> a first language (L1) has been acquired.</div>
+      <div class="tf-row">
+        <button class="tf-btn" onclick="checkTF('tf1',false,this,'False. The text states that SLA refers to beginning the learning of another language <em>after</em> a first language (L1) has been acquired.')">True</button>
+        <button class="tf-btn" onclick="checkTF('tf1',true,this,'False. The text states that SLA refers to beginning the learning of another language <em>after</em> a first language (L1) has been acquired.')">False</button>
+      </div>
+      <div class="feedback" id="fb-tf1"></div>
+    </div>
+
+    <div class="exercise-card" id="tf2">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">Research into second language acquisition draws on multiple disciplines, including theoretical linguistics, education, psychology, and sociology.</div>
+      <div class="tf-row">
+        <button class="tf-btn" onclick="checkTF('tf2',true,this,'Correct! The text states: &quot;Research into second language acquisition is a truly multidisciplinary endeavor. Some of the major disciplines that contribute to SLA include theoretical linguistics, education, psychology, and sociology.&quot;')">True</button>
+        <button class="tf-btn" onclick="checkTF('tf2',false,this,'Correct! The text states: &quot;Research into second language acquisition is a truly multidisciplinary endeavor. Some of the major disciplines that contribute to SLA include theoretical linguistics, education, psychology, and sociology.&quot;')">False</button>
+      </div>
+      <div class="feedback" id="fb-tf2"></div>
+    </div>
+
+    <div class="exercise-card" id="tf3">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">"ESL" stands for "English as a Second Language," which applies when the learner lives in their L1 environment where contact with target language speakers is not widely available.</div>
+      <div class="tf-row">
+        <button class="tf-btn" onclick="checkTF('tf3',false,this,'False. ESL applies when the target language is the dominant language in the learner\'s environment (e.g., an immigrant learning English in the United States). The situation described — living in the L1 environment without wide access to target language speakers — defines EFL (English as a Foreign Language).')">True</button>
+        <button class="tf-btn" onclick="checkTF('tf3',true,this,'False. ESL applies when the target language is the dominant language in the learner\'s environment (e.g., an immigrant learning English in the United States). The situation described — living in the L1 environment without wide access to target language speakers — defines EFL (English as a Foreign Language).')">False</button>
+      </div>
+      <div class="feedback" id="fb-tf3"></div>
+    </div>
+
+    <div class="exercise-card" id="tf4">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">This book uses the terms "acquisition" and "learning" interchangeably, following the general practice adopted by scholars in the field.</div>
+      <div class="tf-row">
+        <button class="tf-btn" onclick="checkTF('tf4',true,this,'Correct! The text states: &quot;this book uses the terms \'acquisition\' and \'learning\' interchangeably as this usage has been generally adopted by scholars in the field.&quot;')">True</button>
+        <button class="tf-btn" onclick="checkTF('tf4',false,this,'Correct! The text states: &quot;this book uses the terms \'acquisition\' and \'learning\' interchangeably as this usage has been generally adopted by scholars in the field.&quot;')">False</button>
+      </div>
+      <div class="feedback" id="fb-tf4"></div>
+    </div>
+
+    <div class="exercise-card" id="tf5">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">The study of SLA is limited to the acquisition of a second language only and does not encompass third or additional languages.</div>
+      <div class="tf-row">
+        <button class="tf-btn" onclick="checkTF('tf5',false,this,'False. The text states: &quot;The study of second language acquisition also generally encompasses the acquisition of a third or additional languages (sometimes referred to as the study of multilingualism).&quot;')">True</button>
+        <button class="tf-btn" onclick="checkTF('tf5',true,this,'False. The text states: &quot;The study of second language acquisition also generally encompasses the acquisition of a third or additional languages (sometimes referred to as the study of multilingualism).&quot;')">False</button>
+      </div>
+      <div class="feedback" id="fb-tf5"></div>
+    </div>
+
+    <hr class="rule">
+
+    <!-- ── SECTION 2: MULTIPLE CHOICE ── -->
+    <div class="section-header">
+      <div class="section-icon">2</div>
+      <h2><span>Exercise Type</span>Multiple Choice</h2>
+    </div>
+    <p class="section-intro">Choose the best answer for each question based on the chapter text.</p>
+
+    <div class="exercise-card" id="mc1">
+      <div class="q-num">Question 6</div>
+      <div class="q-text">According to the text, what is "bilingual first language acquisition"?</div>
+      <div class="choices">
+        <button class="choice-btn" onclick="checkMC('mc1',0,0,'Correct! The text defines it as &quot;two languages learned at the same time.&quot;')"><span class="choice-letter">A</span>Two languages learned at the same time</button>
+        <button class="choice-btn" onclick="checkMC('mc1',1,0,'Correct! The text defines it as &quot;two languages learned at the same time.&quot;')"><span class="choice-letter">B</span>Learning a second language in a classroom setting</button>
+        <button class="choice-btn" onclick="checkMC('mc1',2,0,'Correct! The text defines it as &quot;two languages learned at the same time.&quot;')"><span class="choice-letter">C</span>Learning a foreign language after early childhood</button>
+        <button class="choice-btn" onclick="checkMC('mc1',3,0,'Correct! The text defines it as &quot;two languages learned at the same time.&quot;')"><span class="choice-letter">D</span>Switching between two languages as an adult</button>
+      </div>
+      <div class="feedback" id="fb-mc1"></div>
+    </div>
+
+    <div class="exercise-card" id="mc2">
+      <div class="q-num">Question 7</div>
+      <div class="q-text">The biblical story of the Tower of Babel is mentioned in the text primarily to illustrate:</div>
+      <div class="choices">
+        <button class="choice-btn" onclick="checkMC('mc2',0,2,'Correct! The text uses the Tower of Babel story as &quot;one of the earliest references to the importance and urgency of knowing another language.&quot;')"><span class="choice-letter">A</span>A famous example of language loss</button>
+        <button class="choice-btn" onclick="checkMC('mc2',1,2,'Correct! The text uses the Tower of Babel story as &quot;one of the earliest references to the importance and urgency of knowing another language.&quot;')"><span class="choice-letter">B</span>The historical origins of bilingualism</button>
+        <button class="choice-btn" onclick="checkMC('mc2',2,2,'Correct! The text uses the Tower of Babel story as &quot;one of the earliest references to the importance and urgency of knowing another language.&quot;')"><span class="choice-letter">C</span>The importance and urgency of knowing another language</button>
+        <button class="choice-btn" onclick="checkMC('mc2',3,2,'Correct! The text uses the Tower of Babel story as &quot;one of the earliest references to the importance and urgency of knowing another language.&quot;')"><span class="choice-letter">D</span>The dangers of not learning a foreign language in school</button>
+      </div>
+      <div class="feedback" id="fb-mc2"></div>
+    </div>
+
+    <div class="exercise-card" id="mc3">
+      <div class="q-num">Question 8</div>
+      <div class="q-text">Which fictional learner is described as an American university student who chose to study abroad in Beijing for a year?</div>
+      <div class="choices">
+        <button class="choice-btn" onclick="checkMC('mc3',0,0,'Correct! The text describes Steve as &quot;an American university student who chose to study abroad in Beijing for a year.&quot;')"><span class="choice-letter">A</span>Steve</button>
+        <button class="choice-btn" onclick="checkMC('mc3',1,0,'Correct! The text describes Steve as &quot;an American university student who chose to study abroad in Beijing for a year.&quot;')"><span class="choice-letter">B</span>Walid</button>
+        <button class="choice-btn" onclick="checkMC('mc3',2,0,'Correct! The text describes Steve as &quot;an American university student who chose to study abroad in Beijing for a year.&quot;')"><span class="choice-letter">C</span>Alberto</button>
+        <button class="choice-btn" onclick="checkMC('mc3',3,0,'Correct! The text describes Steve as &quot;an American university student who chose to study abroad in Beijing for a year.&quot;')"><span class="choice-letter">D</span>Xia Mei</button>
+      </div>
+      <div class="feedback" id="fb-mc3"></div>
+    </div>
+
+    <div class="exercise-card" id="mc4">
+      <div class="q-num">Question 9</div>
+      <div class="q-text">What does the text say about the status of SLA in universities today compared to earlier years?</div>
+      <div class="choices">
+        <button class="choice-btn" onclick="checkMC('mc4',0,0,'Correct! The text states: &quot;Universities now regularly offer courses in \'second language acquisition\' whereas in earlier years the subject was only briefly reviewed in the context of a basic introductory linguistics or second language pedagogy course, if at all.&quot;')"><span class="choice-letter">A</span>Universities now regularly offer dedicated SLA courses, whereas before it was only briefly covered in other courses</button>
+        <button class="choice-btn" onclick="checkMC('mc4',1,0,'Correct! The text states: &quot;Universities now regularly offer courses in \'second language acquisition\' whereas in earlier years the subject was only briefly reviewed in the context of a basic introductory linguistics or second language pedagogy course, if at all.&quot;')"><span class="choice-letter">B</span>SLA was a major subject in the past but interest has declined in recent decades</button>
+        <button class="choice-btn" onclick="checkMC('mc4',2,0,'Correct! The text states: &quot;Universities now regularly offer courses in \'second language acquisition\' whereas in earlier years the subject was only briefly reviewed in the context of a basic introductory linguistics or second language pedagogy course, if at all.&quot;')"><span class="choice-letter">C</span>SLA has always been a recognized independent discipline since the 19th century</button>
+        <button class="choice-btn" onclick="checkMC('mc4',3,0,'Correct! The text states: &quot;Universities now regularly offer courses in \'second language acquisition\' whereas in earlier years the subject was only briefly reviewed in the context of a basic introductory linguistics or second language pedagogy course, if at all.&quot;')"><span class="choice-letter">D</span>Only linguistics departments engage with SLA research</button>
+      </div>
+      <div class="feedback" id="fb-mc4"></div>
+    </div>
+
+    <div class="exercise-card" id="mc5">
+      <div class="q-num">Question 10</div>
+      <div class="q-text">According to the introduction, what does Chapter 9 cover?</div>
+      <div class="choices">
+        <button class="choice-btn" onclick="checkMC('mc5',0,3,'Correct! The text states: &quot;Finally, in Chapter 9, the overlapping discipline of bilingualism is explored, with a look at characteristics of simultaneous language acquisition along with the possible cognitive effects of bilingualism.&quot;')"><span class="choice-letter">A</span>Teaching approaches and methods for SLA classrooms</button>
+        <button class="choice-btn" onclick="checkMC('mc5',1,3,'Correct! The text states: &quot;Finally, in Chapter 9, the overlapping discipline of bilingualism is explored, with a look at characteristics of simultaneous language acquisition along with the possible cognitive effects of bilingualism.&quot;')"><span class="choice-letter">B</span>The effect of a learner's age on SLA</button>
+        <button class="choice-btn" onclick="checkMC('mc5',2,3,'Correct! The text states: &quot;Finally, in Chapter 9, the overlapping discipline of bilingualism is explored, with a look at characteristics of simultaneous language acquisition along with the possible cognitive effects of bilingualism.&quot;')"><span class="choice-letter">C</span>Development of the L2 learner's language</button>
+        <button class="choice-btn" onclick="checkMC('mc5',3,3,'Correct! The text states: &quot;Finally, in Chapter 9, the overlapping discipline of bilingualism is explored, with a look at characteristics of simultaneous language acquisition along with the possible cognitive effects of bilingualism.&quot;')"><span class="choice-letter">D</span>Bilingualism and the cognitive effects of simultaneous language acquisition</button>
+      </div>
+      <div class="feedback" id="fb-mc5"></div>
+    </div>
+
+    <div class="exercise-card" id="mc6">
+      <div class="q-num">Question 11</div>
+      <div class="q-text">According to the text, which chapter focuses on first language acquisition?</div>
+      <div class="choices">
+        <button class="choice-btn" onclick="checkMC('mc6',0,1,'Correct! The text states: &quot;We begin in Chapter 2 by examining first language acquisition.&quot;')"><span class="choice-letter">A</span>Chapter 1</button>
+        <button class="choice-btn" onclick="checkMC('mc6',1,1,'Correct! The text states: &quot;We begin in Chapter 2 by examining first language acquisition.&quot;')"><span class="choice-letter">B</span>Chapter 2</button>
+        <button class="choice-btn" onclick="checkMC('mc6',2,1,'Correct! The text states: &quot;We begin in Chapter 2 by examining first language acquisition.&quot;')"><span class="choice-letter">C</span>Chapter 5</button>
+        <button class="choice-btn" onclick="checkMC('mc6',3,1,'Correct! The text states: &quot;We begin in Chapter 2 by examining first language acquisition.&quot;')"><span class="choice-letter">D</span>Chapter 7</button>
+      </div>
+      <div class="feedback" id="fb-mc6"></div>
+    </div>
+
+    <div class="exercise-card" id="mc7">
+      <div class="q-num">Question 12</div>
+      <div class="q-text">Which of the following is NOT listed in the introduction as a question that the study of SLA seeks to address?</div>
+      <div class="choices">
+        <button class="choice-btn" onclick="checkMC('mc7',0,2,'Correct! The economic value of being bilingual is not mentioned in the list of motivating questions. All other options appear explicitly in that list.')"><span class="choice-letter">A</span>Can adults learn to speak a second language as well as native speakers?</button>
+        <button class="choice-btn" onclick="checkMC('mc7',1,2,'Correct! The economic value of being bilingual is not mentioned in the list of motivating questions. All other options appear explicitly in that list.')"><span class="choice-letter">B</span>Why do we make mistakes in a second language?</button>
+        <button class="choice-btn" onclick="checkMC('mc7',2,2,'Correct! The economic value of being bilingual is not mentioned in the list of motivating questions. All other options appear explicitly in that list.')"><span class="choice-letter">C</span>What is the economic value of being bilingual in the global market?</button>
+        <button class="choice-btn" onclick="checkMC('mc7',3,2,'Correct! The economic value of being bilingual is not mentioned in the list of motivating questions. All other options appear explicitly in that list.')"><span class="choice-letter">D</span>Are there any universal processes affecting SLA?</button>
+      </div>
+      <div class="feedback" id="fb-mc7"></div>
+    </div>
+
+    <div class="exercise-card" id="mc8">
+      <div class="q-num">Question 13</div>
+      <div class="q-text">This book is primarily intended for:</div>
+      <div class="choices">
+        <button class="choice-btn" onclick="checkMC('mc8',0,0,'Correct! The text states: &quot;I have attempted to write this book so that it will be accessible to any undergraduate student needing a basic introduction to the field. I hope it is also accessible to the general reader without a specialized academic background.&quot;')"><span class="choice-letter">A</span>Any undergraduate student needing a basic introduction to SLA, as well as interested general readers</button>
+        <button class="choice-btn" onclick="checkMC('mc8',1,0,'Correct! The text states: &quot;I have attempted to write this book so that it will be accessible to any undergraduate student needing a basic introduction to the field. I hope it is also accessible to the general reader without a specialized academic background.&quot;')"><span class="choice-letter">B</span>Graduate students specializing in theoretical linguistics</button>
+        <button class="choice-btn" onclick="checkMC('mc8',2,0,'Correct! The text states: &quot;I have attempted to write this book so that it will be accessible to any undergraduate student needing a basic introduction to the field. I hope it is also accessible to the general reader without a specialized academic background.&quot;')"><span class="choice-letter">C</span>Professional language teachers with advanced academic training</button>
+        <button class="choice-btn" onclick="checkMC('mc8',3,0,'Correct! The text states: &quot;I have attempted to write this book so that it will be accessible to any undergraduate student needing a basic introduction to the field. I hope it is also accessible to the general reader without a specialized academic background.&quot;')"><span class="choice-letter">D</span>Researchers publishing in specialist SLA journals</button>
+      </div>
+      <div class="feedback" id="fb-mc8"></div>
+    </div>
+
+    <hr class="rule">
+
+    <!-- ── SECTION 3: GAP FILL ── -->
+    <div class="section-header">
+      <div class="section-icon">3</div>
+      <h2><span>Exercise Type</span>Gap Fill</h2>
+    </div>
+    <p class="section-intro">Click a word from the word bank, then click a blank to fill it. Each word is used only once.</p>
+
+    <div class="word-bank" id="wordbank">
+      <div class="word-chip" id="chip-dominant"        onclick="selectChip('dominant')">dominant</div>
+      <div class="word-chip" id="chip-multidisciplinary" onclick="selectChip('multidisciplinary')">multidisciplinary</div>
+      <div class="word-chip" id="chip-naturalistic"    onclick="selectChip('naturalistic')">naturalistic</div>
+      <div class="word-chip" id="chip-interchangeably" onclick="selectChip('interchangeably')">interchangeably</div>
+      <div class="word-chip" id="chip-multilingualism" onclick="selectChip('multilingualism')">multilingualism</div>
+      <div class="word-chip" id="chip-motivation"      onclick="selectChip('motivation')">motivation</div>
+      <div class="word-chip" id="chip-aptitude"        onclick="selectChip('aptitude')">aptitude</div>
+      <div class="word-chip" id="chip-empirical"       onclick="selectChip('empirical')">empirical</div>
+    </div>
+
+    <div class="exercise-card" id="gf-all">
+      <div class="q-num">Questions 14–21 — Complete the sentences from the chapter</div>
+
+      <div class="gap-sent">14. Research into SLA is a truly <input class="gap-input" id="gap1" placeholder="▢" data-answer="multidisciplinary" onclick="fillGap('gap1')" readonly> endeavor, drawing on fields such as linguistics, education, psychology, and sociology.</div>
+
+      <div class="gap-sent">15. There has been a huge increase in <input class="gap-input" id="gap2" placeholder="▢" data-answer="empirical" onclick="fillGap('gap2')" readonly> research in the past few decades on a wide variety of dimensions related to SLA.</div>
+
+      <div class="gap-sent">16. "Second language acquisition" applies to circumstances in which the target language is generally the <input class="gap-input" id="gap3" placeholder="▢" data-answer="dominant" onclick="fillGap('gap3')" readonly> language used in the learner's environment.</div>
+
+      <div class="gap-sent">17. This book uses the terms "acquisition" and "learning" <input class="gap-input" id="gap4" placeholder="▢" data-answer="interchangeably" onclick="fillGap('gap4')" readonly> as this usage has been generally adopted by scholars in the field.</div>
+
+      <div class="gap-sent">18. The study of SLA also generally encompasses the acquisition of a third or additional languages, sometimes referred to as the study of <input class="gap-input" id="gap5" placeholder="▢" data-answer="multilingualism" onclick="fillGap('gap5')" readonly>.</div>
+
+      <div class="gap-sent">19. Chapter 3 introduces some of the variety of contexts, both <input class="gap-input" id="gap6" placeholder="▢" data-answer="naturalistic" onclick="fillGap('gap6')" readonly> and classroom-related, associated with the learning of a second language.</div>
+
+      <div class="gap-sent">20. Additional individual difference factors, such as <input class="gap-input" id="gap7" placeholder="▢" data-answer="aptitude" onclick="fillGap('gap7')" readonly> and motivation, are discussed in Chapter 8.</div>
+
+      <div class="gap-sent">21. The individual difference factors discussed in Chapter 8 include aptitude and <input class="gap-input" id="gap8" placeholder="▢" data-answer="motivation" onclick="fillGap('gap8')" readonly>.</div>
+
+      <button class="btn-check" onclick="checkGapFill()">Check Answers</button>
+      <div class="feedback" id="fb-gf"></div>
+    </div>
+
+    <hr class="rule">
+
+    <!-- ── SECTION 4: MATCHING ── -->
+    <div class="section-header">
+      <div class="section-icon">4</div>
+      <h2><span>Exercise Type</span>Matching</h2>
+    </div>
+    <p class="section-intro">Match each fictional learner (left) with their correct description from the text (right). Click a name, then click the matching description.</p>
+
+    <div class="exercise-card" id="match-card">
+      <div class="q-num">Questions 22–27 — Match the learners to their descriptions</div>
+      <div style="height:0.6rem"></div>
+      <div class="match-grid">
+        <div>
+          <div class="match-col-head">Learner</div>
+          <div id="ml-mila"    class="match-item" onclick="selMatch('mila','left')">Mila</div>
+          <div style="height:0.42rem"></div>
+          <div id="ml-steve"   class="match-item" onclick="selMatch('steve','left')">Steve</div>
+          <div style="height:0.42rem"></div>
+          <div id="ml-linda"   class="match-item" onclick="selMatch('linda','left')">Linda</div>
+          <div style="height:0.42rem"></div>
+          <div id="ml-alberto" class="match-item" onclick="selMatch('alberto','left')">Alberto</div>
+          <div style="height:0.42rem"></div>
+          <div id="ml-walid"   class="match-item" onclick="selMatch('walid','left')">Walid</div>
+          <div style="height:0.42rem"></div>
+          <div id="ml-xiamei"  class="match-item" onclick="selMatch('xiamei','left')">Xia Mei</div>
+        </div>
+        <div>
+          <div class="match-col-head">Description</div>
+          <div id="mr-d1" class="match-item" onclick="selMatch('d1','right')">A widowed woman with two teenaged sons who immigrated to the United States from war-ravaged Bosnia during the early 1990s</div>
+          <div style="height:0.42rem"></div>
+          <div id="mr-d2" class="match-item" onclick="selMatch('d2','right')">A Boston schoolteacher who followed her passion for Italian opera to Tuscany, Italy</div>
+          <div style="height:0.42rem"></div>
+          <div id="mr-d3" class="match-item" onclick="selMatch('d3','right')">Growing up bilingual in English and Spanish in Southern California</div>
+          <div style="height:0.42rem"></div>
+          <div id="mr-d4" class="match-item" onclick="selMatch('d4','right')">An American university student who chose to study abroad in Beijing for a year</div>
+          <div style="height:0.42rem"></div>
+          <div id="mr-d5" class="match-item" onclick="selMatch('d5','right')">Bilingual in Arabic and English, living near Detroit, Michigan</div>
+          <div style="height:0.42rem"></div>
+          <div id="mr-d6" class="match-item" onclick="selMatch('d6','right')">A native speaker of Cantonese learning English in an immersion program at a high school in Hong Kong</div>
+        </div>
+      </div>
+      <div class="feedback" id="fb-match"></div>
+    </div>
+
+    <!-- FINAL SCORE -->
+    <div id="final-score">
+      <h2>Exercises Complete!</h2>
+      <p class="sub2">Your score for Chapter 1</p>
+      <div class="big-n" id="final-num">0<span> / 0</span></div>
+      <p id="final-msg"></p>
+      <button id="restart-btn" onclick="restartAll()">↺ Try Again</button>
+    </div>
+
+  </main>
+</div><!-- /panel-exercises -->
+
+<script>
+  /* ── Tab switching ── */
+  function showTab(name, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  /* ── Scoring ── */
+  // Blocks: tf1..tf5 (5), mc1..mc8 (8), gf-all (1), match (1) = 15
+  const TOTAL = 15;
+  let correct = 0;
+  const done = {};
+
+  function reg(id, ok) {
+    if (done[id] !== undefined) return;
+    done[id] = ok;
+    if (ok) correct++;
+    const n = Object.keys(done).length;
+    document.getElementById('progress-fill').style.width = (n / TOTAL * 100) + '%';
+    document.getElementById('score-display').textContent = correct + ' / ' + n;
+    if (n === TOTAL) showFinal();
+  }
+
+  /* ── True/False ── */
+  const tfAns = { tf1:false, tf2:true, tf3:false, tf4:true, tf5:false };
+  function checkTF(id, userFalse, btn, msg) {
+    const card = document.getElementById(id);
+    if (card.classList.contains('answered')) return;
+    const ok = (userFalse === tfAns[id]);
+    card.querySelectorAll('.tf-btn').forEach(b => b.disabled = true);
+    btn.classList.add(ok ? 'correct' : 'wrong');
+    const fb = document.getElementById('fb-' + id);
+    fb.innerHTML = (ok ? '✓ Correct. ' : '✗ Incorrect. ') + msg;
+    fb.className = 'feedback show ' + (ok ? 'fb-ok' : 'fb-err');
+    card.classList.add('answered');
+    reg(id, ok);
+  }
+
+  /* ── Multiple Choice ── */
+  function checkMC(id, chosen, correct_idx, msg) {
+    const card = document.getElementById(id);
+    if (card.classList.contains('answered')) return;
+    const ok = chosen === correct_idx;
+    card.querySelectorAll('.choice-btn').forEach((b, i) => {
+      b.disabled = true;
+      if (i === correct_idx) b.classList.add('correct');
+      else if (i === chosen && !ok) b.classList.add('wrong');
+    });
+    const fb = document.getElementById('fb-' + id);
+    fb.innerHTML = (ok ? '✓ Correct. ' : '✗ Incorrect. The correct answer is highlighted. ') + msg;
+    fb.className = 'feedback show ' + (ok ? 'fb-ok' : 'fb-err');
+    card.classList.add('answered');
+    reg(id, ok);
+  }
+
+  /* ── Gap Fill ── */
+  let selChip = null;
+  function selectChip(word) {
+    if (selChip) {
+      const p = document.getElementById('chip-' + selChip);
+      if (p) p.classList.remove('chip-sel');
+    }
+    selChip = word;
+    const el = document.getElementById('chip-' + word);
+    if (el) el.classList.add('chip-sel');
+  }
+  function fillGap(gid) {
+    if (!selChip) return;
+    const inp = document.getElementById(gid);
+    if (inp.classList.contains('g-correct')) return;
+    if (inp.dataset.filled) {
+      const old = document.getElementById('chip-' + inp.dataset.filled);
+      if (old) old.classList.remove('used');
+    }
+    inp.value = selChip;
+    inp.dataset.filled = selChip;
+    const c = document.getElementById('chip-' + selChip);
+    if (c) { c.classList.add('used'); c.classList.remove('chip-sel'); }
+    selChip = null;
+  }
+  function checkGapFill() {
+    if (done['gf-all'] !== undefined) return;
+    const gaps = document.querySelectorAll('.gap-input');
+    let n = 0;
+    gaps.forEach(inp => {
+      const v = (inp.value || '').trim().toLowerCase();
+      if (v === inp.dataset.answer) { inp.classList.add('g-correct'); inp.classList.remove('g-wrong'); n++; }
+      else { inp.classList.add('g-wrong'); inp.classList.remove('g-correct'); }
+    });
+    const all = n === gaps.length;
+    const fb = document.getElementById('fb-gf');
+    if (all) {
+      fb.innerHTML = '✓ All ' + gaps.length + ' gaps correct! Well done.';
+      fb.className = 'feedback show fb-ok';
+      document.querySelector('#gf-all .btn-check').disabled = true;
+      reg('gf-all', true);
+    } else {
+      fb.innerHTML = 'You got ' + n + ' of ' + gaps.length + ' correct. Incorrect blanks are in red — adjust and check again.';
+      fb.className = 'feedback show fb-err';
+    }
+  }
+
+  /* ── Matching ── */
+  const pairs = { mila:'d1', steve:'d4', linda:'d2', alberto:'d3', walid:'d5', xiamei:'d6' };
+  let mSel = null;
+  const mDone = {};
+  function selMatch(key, side) {
+    const eid = side === 'left' ? 'ml-' + key : 'mr-' + key;
+    const el = document.getElementById(eid);
+    if (!el || el.classList.contains('ok')) return;
+    if (!mSel) { mSel = {key, side}; el.classList.add('sel'); return; }
+    if (mSel.side === side) {
+      document.querySelectorAll('.match-item.sel').forEach(e => e.classList.remove('sel'));
+      mSel = {key, side}; el.classList.add('sel'); return;
+    }
+    const lk = side === 'right' ? mSel.key : key;
+    const rk = side === 'right' ? key : mSel.key;
+    const ok = pairs[lk] === rk;
+    const lEl = document.getElementById('ml-' + lk);
+    const rEl = document.getElementById('mr-' + rk);
+    if (ok) {
+      lEl.classList.remove('sel'); lEl.classList.add('ok'); lEl.onclick = null;
+      rEl.classList.remove('sel'); rEl.classList.add('ok'); rEl.onclick = null;
+      mDone[lk] = true;
+      const fb = document.getElementById('fb-match');
+      if (Object.keys(mDone).length === 6) {
+        fb.innerHTML = '✓ All matches correct! Excellent work.';
+        fb.className = 'feedback show fb-ok';
+        reg('match', true);
+      } else {
+        fb.innerHTML = '✓ Correct match! Keep going.';
+        fb.className = 'feedback show fb-ok';
+      }
+    } else {
+      lEl.classList.remove('sel'); lEl.classList.add('bad');
+      rEl.classList.remove('sel'); rEl.classList.add('bad');
+      const fb = document.getElementById('fb-match');
+      fb.innerHTML = '✗ Not quite — try again!';
+      fb.className = 'feedback show fb-err';
+      setTimeout(() => { lEl.classList.remove('bad'); rEl.classList.remove('bad'); }, 900);
+    }
+    mSel = null;
+  }
+
+  /* ── Final ── */
+  function showFinal() {
+    const fs = document.getElementById('final-score');
+    fs.style.display = 'block';
+    document.getElementById('final-num').innerHTML = correct + '<span> / ' + TOTAL + '</span>';
+    const pct = Math.round(correct / TOTAL * 100);
+    document.getElementById('final-msg').textContent =
+      pct === 100 ? 'Perfect score! Outstanding command of the material.' :
+      pct >= 80   ? 'Great work! You have a strong understanding of this chapter.' :
+      pct >= 60   ? 'Good effort. Review the sections you found difficult and try again.' :
+                    'Keep studying — re-read the text carefully and give it another go.';
+    fs.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  function restartAll() { location.reload(); }
+</script>
+</body>
+</html>
