@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 5 – Teaching Approaches and Instructional Issues</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --paper: #fffef9;
+    --ink: #1a1410;
+    --muted: #5c5248;
+    --accent: #2d6a4f;
+    --accent-light: #d8f3dc;
+    --accent-mid: #52b788;
+    --highlight: #f9c74f;
+    --gap-bg: #eef7f1;
+    --gap-border: #52b788;
+    --gap-correct: #d8f3dc;
+    --gap-wrong: #fde8e4;
+    --gap-correct-border: #2d6a4f;
+    --gap-wrong-border: #c1440e;
+    --sidebar: #f0ebe1;
+    --sidebar-accent: #b5838d;
+    --rule: #c9b99a;
+    --chapter-red: #c1440e;
+    --hint-bg: #1a1410;
+    --hint-text: #faf7f2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--bg); color: var(--ink); font-size: 16px; line-height: 1.75; }
+
+  .book-header { background: var(--ink); color: var(--bg); padding: 2rem 3rem; display: flex; align-items: center; gap: 2rem; border-bottom: 4px solid var(--accent); }
+  .chapter-num { font-family: 'Playfair Display', serif; font-size: 6rem; line-height: 1; color: var(--accent-mid); font-weight: 400; flex-shrink: 0; }
+  .header-text h1 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; letter-spacing: 0.02em; line-height: 1.2; }
+  .header-text p { font-size: 0.85rem; color: #b5c4bc; margin-top: 0.5rem; font-style: italic; }
+  .locke { margin-top: 0.8rem; font-style: italic; color: var(--accent-mid); font-size: 0.9rem; }
+  .locke cite { font-style: normal; color: #a8c5b5; }
+
+  .controls-bar { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 2px solid var(--rule); padding: 0.75rem 3rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .controls-bar label { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+  .btn { padding: 0.5rem 1.4rem; border: 2px solid var(--accent); background: transparent; color: var(--accent); font-family: 'Source Serif 4', serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; border-radius: 2px; letter-spacing: 0.04em; transition: all 0.18s; }
+  .btn:hover { background: var(--accent); color: #fff; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #1a5236; border-color: #1a5236; }
+  .btn-reset { border-color: var(--chapter-red); color: var(--chapter-red); }
+  .btn-reset:hover { background: var(--chapter-red); color: #fff; }
+  .score-badge { margin-left: auto; background: var(--accent-light); border: 2px solid var(--accent); padding: 0.35rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--accent); border-radius: 2px; display: none; }
+  .score-badge.visible { display: block; }
+
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; display: grid; grid-template-columns: 1fr 230px; gap: 3rem; align-items: start; }
+
+  .outline-box { border: 1px solid var(--rule); background: var(--sidebar); padding: 1.5rem; margin-bottom: 2.5rem; }
+  .outline-box h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--accent); margin-bottom: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; font-style: italic; }
+  .outline-box ol { list-style: none; padding: 0; }
+  .outline-box li { font-size: 0.82rem; line-height: 1.5; color: var(--muted); padding: 0.1rem 0; border-bottom: 1px dotted var(--rule); }
+  .outline-box .sub { padding-left: 1.2rem; }
+  .outline-box .sub2 { padding-left: 2.2rem; }
+
+  .section-rule { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 1.2rem; }
+  .section-rule::before { content: ''; flex: 1; height: 2px; background: var(--rule); }
+  .section-rule h2 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--accent); white-space: nowrap; font-style: italic; }
+  .section-rule .sec-num { font-size: 1rem; color: var(--chapter-red); font-weight: 700; font-style: normal; font-family: 'Playfair Display', serif; }
+
+  h3.sub-section { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--ink); margin: 2rem 0 0.8rem; font-style: italic; }
+
+  p { margin-bottom: 1.2rem; }
+
+  .sidebar-col { position: sticky; top: 80px; align-self: start; }
+  .def-card { background: var(--paper); border-left: 4px solid var(--accent); padding: 0.9rem 1rem; margin-bottom: 1.2rem; font-size: 0.8rem; line-height: 1.55; box-shadow: 2px 2px 8px rgba(0,0,0,0.05); }
+  .def-card strong { display: block; font-family: 'Playfair Display', serif; color: var(--accent); font-size: 0.9rem; margin-bottom: 0.3rem; }
+
+  .practice-box { background: var(--sidebar); border: 1px solid var(--rule); border-left: 4px solid var(--sidebar-accent); padding: 1.2rem 1.4rem; margin: 1.8rem 0; font-size: 0.88rem; line-height: 1.65; }
+  .practice-box h4 { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--sidebar-accent); margin-bottom: 0.6rem; font-weight: 700; }
+
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; line-height: 1.55; }
+  table caption { text-align: left; font-weight: 600; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; font-style: italic; color: var(--muted); }
+  th { background: var(--accent); color: #fff; padding: 0.6rem 0.8rem; text-align: left; font-family: 'Playfair Display', serif; font-weight: 400; }
+  td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  tr:nth-child(even) td { background: #f5f1e8; }
+
+  blockquote { border-left: 3px solid var(--accent-mid); margin: 1.2rem 0 1.2rem 1rem; padding: 0.5rem 1rem; color: var(--muted); font-style: italic; font-size: 0.9rem; line-height: 1.7; }
+  blockquote cite { display: block; margin-top: 0.4rem; font-style: normal; font-size: 0.82rem; color: var(--ink); }
+
+  .dialogue { background: #f5f1e8; border: 1px solid var(--rule); padding: 1rem 1.2rem; margin: 1.2rem 0; font-size: 0.88rem; line-height: 1.7; }
+  .dialogue p { margin-bottom: 0.3rem; }
+
+  .drill-box { background: #f5f1e8; border: 1px solid var(--rule); padding: 0.8rem 1.2rem; margin: 0.8rem 0; font-size: 0.88rem; line-height: 1.8; font-family: monospace; }
+
+  .figure-wrap { border: 1px solid var(--rule); padding: 1.2rem; margin: 1.8rem 0; background: var(--paper); text-align: center; }
+  .figure-wrap figcaption { font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; font-style: italic; line-height: 1.4; }
+
+  .berlitz-fig { border: 2px solid var(--rule); padding: 1.2rem; margin: 1.5rem 0; background: #f9f6ee; font-size: 0.9rem; }
+  .berlitz-fig p { margin-bottom: 0.3rem; }
+
+  .key-concepts { column-count: 2; column-gap: 2rem; font-size: 0.85rem; line-height: 1.7; }
+  .key-concepts li { margin-bottom: 0.2rem; break-inside: avoid; }
+
+  .assessment ol { padding-left: 1.5rem; }
+  .assessment li { margin-bottom: 0.8rem; }
+  .assessment ol ol { list-style: lower-alpha; padding-left: 1.5rem; margin-top: 0.4rem; }
+
+  .gap-wrap { display: inline-block; position: relative; vertical-align: middle; }
+  .gap { display: inline-block; border: none; border-bottom: 2px solid var(--gap-border); background: var(--gap-bg); padding: 0 6px 1px; font-family: 'Source Serif 4', serif; font-size: 1em; color: var(--ink); width: 160px; min-width: 80px; outline: none; border-radius: 2px 2px 0 0; transition: background 0.2s, border-color 0.2s; vertical-align: baseline; }
+  .gap:focus { background: #e0f2e9; border-bottom-color: var(--accent); }
+  .gap.correct { background: var(--gap-correct); border-bottom-color: var(--gap-correct-border); color: #1a5236; }
+  .gap.wrong { background: var(--gap-wrong); border-bottom-color: var(--gap-wrong-border); color: #7a1f07; }
+
+  .gap-wrap .hint-tip { visibility: hidden; opacity: 0; position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--hint-bg); color: var(--hint-text); font-size: 0.74rem; line-height: 1.4; padding: 0.4rem 0.7rem; border-radius: 4px; pointer-events: none; z-index: 200; transition: opacity 0.15s; max-width: 240px; white-space: normal; text-align: center; }
+  .gap-wrap .hint-tip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--hint-bg); }
+  .gap-wrap:hover .hint-tip { visibility: visible; opacity: 1; }
+
+  .references { font-size: 0.8rem; line-height: 1.7; }
+  .references p { margin-bottom: 0.5rem; }
+
+  @media (max-width: 800px) {
+    .page-wrap { grid-template-columns: 1fr; }
+    .sidebar-col { position: static; }
+    .book-header { flex-direction: column; gap: 0.8rem; padding: 1.5rem; }
+    .chapter-num { font-size: 4rem; }
+    .controls-bar { padding: 0.75rem 1rem; }
+    .key-concepts { column-count: 1; }
+  }
+</style>
+</head>
+<body>
+
+<header class="book-header">
+  <div class="chapter-num">5</div>
+  <div class="header-text">
+    <h1>Teaching Approaches<br>and Instructional Issues</h1>
+    <p>Introducing Second Language Acquisition: Perspectives and Practices — Kirsten M. Hummel © 2014</p>
+    <p class="locke">"French should be talked into the child . . . Grammar is only for those who have the language already." <cite>— John Locke (1690)</cite></p>
+  </div>
+</header>
+
+<div class="controls-bar">
+  <label>Fill in the gaps, then check your answers:</label>
+  <button class="btn btn-primary" onclick="checkAll()">Check All Answers</button>
+  <button class="btn" onclick="showAll()">Reveal All</button>
+  <button class="btn btn-reset" onclick="resetAll()">Reset</button>
+  <div class="score-badge" id="scoreBadge"></div>
+</div>
+
+<div class="page-wrap">
+<main>
+
+<div class="outline-box">
+  <h3>Chapter Outline</h3>
+  <ol>
+    <li>5.0 &nbsp; Chapter overview &nbsp; 106</li>
+    <li>5.1 &nbsp; Historical and current perspectives on language teaching &nbsp; 106</li>
+    <li class="sub">5.1.1 &nbsp; Language teaching in antiquity &nbsp; 107</li>
+    <li class="sub">5.1.2 &nbsp; The Grammar Translation Method &nbsp; 108</li>
+    <li class="sub">5.1.3 &nbsp; The Direct Method &nbsp; 109</li>
+    <li class="sub">5.1.4 &nbsp; The Audiolingual Method &nbsp; 110</li>
+    <li class="sub">5.1.5 &nbsp; Affective-Humanistic approaches: Suggestopedia &nbsp; 112</li>
+    <li class="sub">5.1.6 &nbsp; Total Physical Response &nbsp; 114</li>
+    <li class="sub">5.1.7 &nbsp; Communicative Language Teaching &nbsp; 115</li>
+    <li class="sub">5.1.8 &nbsp; Task-based language teaching &nbsp; 116</li>
+    <li class="sub">5.1.9 &nbsp; Postmethod perspective &nbsp; 117</li>
+    <li>5.2 &nbsp; Classroom instructional issues &nbsp; 118</li>
+    <li class="sub">5.2.1 &nbsp; Focus on form &nbsp; 119</li>
+    <li class="sub2">5.2.1.1 &nbsp; Input enhancement and input flooding &nbsp; 120</li>
+    <li class="sub2">5.2.1.2 &nbsp; Processing Instruction &nbsp; 122</li>
+    <li class="sub">5.2.2 &nbsp; Corrective feedback or "How should errors be corrected?" &nbsp; 124</li>
+    <li class="sub">5.2.3 &nbsp; L1 use in the classroom &nbsp; 125</li>
+    <li class="sub">5.2.4 &nbsp; Technology and language learning &nbsp; 128</li>
+    <li>5.3 &nbsp; Summing up &nbsp; 129</li>
+    <li>Key concepts &nbsp; 130</li>
+    <li>Self-assessment questions &nbsp; 130</li>
+    <li>Discussion questions &nbsp; 131</li>
+    <li>Exercises/Project ideas &nbsp; 132</li>
+    <li>Further reading and viewing &nbsp; 132</li>
+    <li>References &nbsp; 133</li>
+  </ol>
+</div>
+
+<!-- 5.0 -->
+<div class="section-rule" id="s50">
+  <span class="sec-num">5.0</span>
+  <h2>Chapter Overview</h2>
+</div>
+
+<p>Language teaching approaches and instructional issues are primary areas of interest for the many individuals involved in teaching, learning, or in researching second language learning. As Chapter 4 has described, there have been multiple 
+<span class="gap-wrap"><input class="gap" data-answers="theoretical perspectives" placeholder="…" spellcheck="false"><span class="hint-tip">Different theoretical viewpoints or frameworks in SLA — multiple ___ have existed</span></span> in SLA, and, as one might imagine, theories about how a language is learned have contributed in a number of ways to ideas about how to 
+<span class="gap-wrap"><input class="gap" data-answers="teach a language in the classroom" placeholder="…" spellcheck="false"><span class="hint-tip">The practical application of SLA theory — ideas about how to ___ in a formal setting</span></span>. However, at the same time, ideas that do not clearly rely on any one theoretical view about how best to teach a language have also taken hold among practitioners.</p>
+
+<p>It should be pointed out that the issue of the contribution of 
+<span class="gap-wrap"><input class="gap" data-answers="theory to pedagogy" placeholder="…" spellcheck="false"><span class="hint-tip">The relationship between academic knowledge and classroom practice — the contribution of ___ is debated</span></span> is a controversial one, and this controversy is not exclusive to the discipline of second language acquisition. Some L2 theoreticians suggest that there is little direct application for their theories, and some practitioners suggest concrete applications arise primarily from practice and have little to learn from theory. Perhaps more realistic is another view which suggests that L2 theory has the potential to 
+<span class="gap-wrap"><input class="gap" data-answers="inform instructional practice" placeholder="…" spellcheck="false"><span class="hint-tip">A moderate view holds that theory has the potential to ___, and evidence from practice can adjust theory</span></span> and, by the same token, evidence from practice can lead to adjustments in theory.</p>
+
+<!-- 5.1 -->
+<div class="section-rule" id="s51">
+  <span class="sec-num">5.1</span>
+  <h2>Historical and Current Perspectives on Language Teaching</h2>
+</div>
+
+<p>To begin, one distinction that has been made in the terminology on language teaching is that between the terms 
+<span class="gap-wrap"><input class="gap" data-answers="approach, method, and technique" placeholder="…" spellcheck="false"><span class="hint-tip">Three key terms in language teaching terminology that Anthony (1963) distinguished</span></span>. Anthony (1963) specified that an approach to language teaching is a teaching perspective that reflects a theoretical view or model. A 
+<span class="gap-wrap"><input class="gap" data-answers="method" placeholder="…" spellcheck="false"><span class="hint-tip">Anthony called this a specific set of procedures consistent with a given approach</span></span> he considered to be a specific set of procedures that are consistent with a given approach, while a technique refers to a specific classroom tool used in teaching the target language, such as the use of dialogues, or language drills. In more recent times, Richards and Rodgers (2001) proposed "method" as an "umbrella" term for the links between theory and practice. More specifically, for Richards and Rodgers, "method" comprises 
+<span class="gap-wrap"><input class="gap" data-answers="approach, design, and procedure|approach design and procedure" placeholder="…" spellcheck="false"><span class="hint-tip">Richards and Rodgers' three components of "method": ___, design, and procedure</span></span> (the theory of language and language learning), design (the content of instruction, learner and teacher roles, material types and functions, etc.), and procedure (the actual use of techniques and practices).</p>
+
+<!-- 5.1.1 -->
+<h3 class="sub-section" id="s511">5.1.1 Language Teaching in Antiquity</h3>
+
+<p>One of the earliest known practices advocated to teach a new language involved the teaching of the classical languages Greek and Latin in ancient times. Up until the Middle Ages, Latin and Greek were the predominant languages of wider communication across the Roman Empire. A body of texts known as the 
+<span class="gap-wrap"><input class="gap" data-answers="hermeneumata" placeholder="…" spellcheck="false"><span class="hint-tip">The name of the standardised Latin/Greek teaching texts used across the Roman Empire (earliest dated AD 207)</span></span> were used as standardized texts in the teaching of Latin or Greek to speakers of the local languages across the Roman Empire, the earliest of which is dated from ad 207. These texts include certain common features: 
+<span class="gap-wrap"><input class="gap" data-answers="vocabulary lists" placeholder="…" spellcheck="false"><span class="hint-tip">A key feature of these ancient teaching texts: ___ arranged by subject as well as alphabetically</span></span> arranged by subject as well as alphabetically, and basic conversational dialogues. The alphabet was also presented, as well as an introduction to syllables in tables where each consonant was paired with one of the Latin or Greek vowels (Dickey &amp; Chahoud, 2010). Students were taught to begin by learning vocabulary; they then practiced 
+<span class="gap-wrap"><input class="gap" data-answers="grammatical rules and vocabulary" placeholder="…" spellcheck="false"><span class="hint-tip">Ancient students practiced these two things by reading instructive texts</span></span> by reading instructive texts. They were taught to compare their L1 words and structures with those in the target language, Latin or Greek.</p>
+
+<p>Another widespread technique used to teach spoken Latin in the Middle Ages up through the 1800s was the use of dialogues (known as "colloquy") in which 
+<span class="gap-wrap"><input class="gap" data-answers="prompting questions" placeholder="…" spellcheck="false"><span class="hint-tip">A technique using these questions to help students memorise longer pieces of text</span></span> were posed to help in the memorizing of longer pieces of text. Howatt and Widdowson (2004, p. 11) provide an example from a late eighteenth-century textbook by Joseph Priestley:</p>
+
+<div class="dialogue">
+  <p>Q What is Grammar?</p>
+  <p>A Grammar is the art of using words properly.</p>
+  <p>Q Of how many parts doth Grammar consist?</p>
+  <p>A Of four: Orthography, Etymology, Syntax, and Prosody.</p>
+  <p>Q What is Orthography?</p>
+  <p>A Orthography is the art of combining letters into syllables, and syllables into words.</p>
+</div>
+
+<!-- 5.1.2 -->
+<h3 class="sub-section" id="s512">5.1.2 The Grammar Translation Method</h3>
+
+<p>During the Middle Ages and up until the nineteenth century, the teaching of Latin and Greek came to be associated primarily with what has been termed the "Classical Method." Little or no attention was given to learning the 
+<span class="gap-wrap"><input class="gap" data-answers="pronunciation of the language" placeholder="…" spellcheck="false"><span class="hint-tip">The Classical Method gave little attention to this aspect — the main goal was reading and writing, not speaking</span></span>, as the main objective of classical scholars was to develop knowledge to read and write in the language, not to converse. It was thought that learning these languages would be intellectually beneficial to the learner and much prestige was associated with this endeavor. The focus of teaching was on 
+<span class="gap-wrap"><input class="gap" data-answers="grammatical rules" placeholder="…" spellcheck="false"><span class="hint-tip">The Classical Method focused on these, plus memorising vocabulary lists and translating texts</span></span> and memorizing lists of vocabulary, as well translating texts from the target language into the L1 and vice versa.</p>
+
+<p>An educational reformer, Johannes Amos Comenius (1592–1670), offered a strong critique of the teaching methods and, in particular, the language teaching methods of his times: "Latin grammar was taught us with all the exceptions and irregularities Greek grammar with all its dialects, and we, poor wretches, were so confused that we scarcely understood what it was all about." Instead, Comenius argued "that no language be learned from a grammar, but from suitable authors." Comenius can be credited with promoting the use of 
+<span class="gap-wrap"><input class="gap" data-answers="vernacular languages" placeholder="…" spellcheck="false"><span class="hint-tip">Comenius is credited with promoting the use of these everyday, locally-spoken languages in education</span></span> in education.</p>
+
+<p>Despite Comenius's efforts, up until the mid-twentieth century, this "classical" method was applied to languages other than Latin and Greek and became widespread. The emphasis on grammar and translating of sentences evolved into what came to be known as the 
+<span class="gap-wrap"><input class="gap" data-answers="Grammar Translation Method" placeholder="…" spellcheck="false"><span class="hint-tip">The teaching method that evolved from the Classical Method, emphasising grammar and sentence translation</span></span>. Howatt and Widdowson (2004) point out that the Grammar Translation Method began in Prussia (present-day Germany), at the end of the eighteenth century, and was devised to be used in secondary schools. The following textbox lists key features of the Grammar Translation Method.</p>
+
+<div class="practice-box">
+  <h4>Language learning in practice: Key features of the Grammar Translation Method (Prator &amp; Celce-Murcia, 1979, p. 3):</h4>
+  <ol style="padding-left:1.4rem; line-height:1.8;">
+    <li>Classes are taught in the mother tongue, with little active use of the target language.</li>
+    <li>Much vocabulary is taught in the form of lists of isolated words.</li>
+    <li>Long elaborate explanations of the intricacies of grammar are given.</li>
+    <li>Grammar provides the rules for putting words together, and instruction often focuses on the form and inflection of words.</li>
+    <li>Reading of difficult classical texts is begun early.</li>
+    <li>Little attention is paid to the content of texts, which are treated as exercises in grammatical analysis.</li>
+    <li>Often the only drills are exercises in translating disconnected sentences from the target language into the mother tongue.</li>
+    <li>Little or no attention is given to pronunciation.</li>
+  </ol>
+</div>
+
+<p>The Grammar Translation Method left its mark in classrooms for many years in the form of an emphasis on 
+<span class="gap-wrap"><input class="gap" data-answers="explicit teaching and memorization" placeholder="…" spellcheck="false"><span class="hint-tip">The Grammar Translation Method's lasting legacy: emphasis on ___ of grammatical rules</span></span> of grammatical rules as well as on developing 
+<span class="gap-wrap"><input class="gap" data-answers="reading skills" placeholder="…" spellcheck="false"><span class="hint-tip">The Grammar Translation Method prioritised developing these skills in the target language</span></span> in the target language, relegating the development of oral fluency to a lower priority.</p>
+
+<!-- 5.1.3 -->
+<h3 class="sub-section" id="s513">5.1.3 The Direct Method</h3>
+
+<p>In a sharp break with the Grammar Translation Method, at the end of the nineteenth century and throughout much of the twentieth century, a new approach that gave priority to 
+<span class="gap-wrap"><input class="gap" data-answers="oral expression" placeholder="…" spellcheck="false"><span class="hint-tip">The Direct Method broke from the Grammar Translation Method by prioritising this skill</span></span> and avoided recourse to the learner's native language appeared throughout North America and in other parts of the world. This approach became known as the 
+<span class="gap-wrap"><input class="gap" data-answers="Direct Method" placeholder="…" spellcheck="false"><span class="hint-tip">The name of this new approach — also associated with the Berlitz schools</span></span>. The person most associated with the Direct Method in North America was a German immigrant to the United States, Maximilian Berlitz, who developed what he termed the "Berlitz Method" and founded the Berlitz language schools, beginning with one in Providence, Rhode Island, in 1878.</p>
+
+<p>The underlying principles associated with the Direct Method include the virtual exclusive use of the 
+<span class="gap-wrap"><input class="gap" data-answers="target language" placeholder="…" spellcheck="false"><span class="hint-tip">The Direct Method emphasised exclusive use of this language in the classroom — not the L1</span></span> in the classroom, and an avoidance of explicit teaching of grammatical rules, although it was acknowledged that learners would receive exposure to grammar through dialogues and conversational exchanges. There was also an emphasis on teaching 
+<span class="gap-wrap"><input class="gap" data-answers="basic, useful vocabulary" placeholder="…" spellcheck="false"><span class="hint-tip">The Direct Method taught this type of vocabulary through short dialogues and concrete objects/pictures</span></span> through short dialogues and the use of concrete objects and pictures.</p>
+
+<div class="berlitz-fig">
+  <p><strong>Figure 5.1</strong> Figure from THE BERLITZ SELF-TEACHER: SPANISH, copyright 1949 by The Berlitz Schools of Languages of America, Inc. Used by permission of Grosset &amp; Dunlap, Inc., a division of Penguin Group (USA) Inc.</p>
+  <p style="margin-top:0.6rem; font-style:italic;">(Translation: "Is this the box? Is this the key? What is this?")</p>
+  <p style="margin-top:0.4rem;">10. ¿Es esto la caja?</p>
+  <p>11. ¿Es esto la llave?</p>
+  <p>12. ¿Qué es esto?</p>
+</div>
+
+<p>Cook (2010) reports that in later times Berlitz schools and courses were strictly regulated, to the extent that teachers were monitored through microphones in classrooms to make sure they were following guidelines and 
+<span class="gap-wrap"><input class="gap" data-answers="avoiding recourse to translation" placeholder="…" spellcheck="false"><span class="hint-tip">The Direct Method strictly prohibited this — teachers were monitored to prevent it</span></span>.</p>
+
+<p>The Direct Method appeared successful when carried out in the context of 
+<span class="gap-wrap"><input class="gap" data-answers="private language schools" placeholder="…" spellcheck="false"><span class="hint-tip">The Direct Method worked well in this type of setting where students were highly motivated and groups were small</span></span> where students tended to be highly motivated and small groups were the norm. On the other hand, the method turned out to be less successful when applied to large 
+<span class="gap-wrap"><input class="gap" data-answers="public school language classrooms" placeholder="…" spellcheck="false"><span class="hint-tip">The Direct Method was less successful in this type of setting — often staffed by non-native teachers</span></span> characterized by teachers who more often than not were not native speakers of the target language.</p>
+
+<!-- 5.1.4 -->
+<h3 class="sub-section" id="s514">5.1.4 The Audiolingual Method</h3>
+
+<p>Appearing toward the mid-1900s, the 
+<span class="gap-wrap"><input class="gap" data-answers="Audiolingual Method" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated ALM; strongly influenced by behaviorist psychology and structuralist linguistics</span></span> (ALM) shared a number of features with the Direct Method, such as the emphasis on developing oral communication skill, but it also differed in important ways. One influence on this method was the build up to World War II, when officials in the United States were faced with the need to rapidly train specialists in second languages, especially those languages used in the conflict zones. The Audiolingual Method was strongly influenced by the psychological framework predominant at the time, in particular 
+<span class="gap-wrap"><input class="gap" data-answers="behaviorist views" placeholder="…" spellcheck="false"><span class="hint-tip">The ALM drew heavily on these psychological views — learning as habituation between stimulus and response</span></span> that considered learning to occur as the result of habituation between a stimulus and a response. Structuralist views from linguistics also contributed to development of this method. The ALM relied heavily on 
+<span class="gap-wrap"><input class="gap" data-answers="repetition and language drills" placeholder="…" spellcheck="false"><span class="hint-tip">The ALM's core technique — heavy reliance on these in the language laboratory</span></span> in the language laboratory and it was considered important that learners avoid making errors. Common exercises included 
+<span class="gap-wrap"><input class="gap" data-answers="pattern practice drills" placeholder="…" spellcheck="false"><span class="hint-tip">A key ALM exercise type — learners repeatedly pronounce the same phrase with one linguistic unit changed</span></span> in which learners were asked to repeatedly pronounce the same phrase followed by a change in one linguistic unit, as it was thought that this would lead to the formation of 
+<span class="gap-wrap"><input class="gap" data-answers="automatic habits" placeholder="…" spellcheck="false"><span class="hint-tip">The ALM aimed to build these through repetition — the behaviorist goal of language learning</span></span>. The L1 habits needed to be broken and replaced by the new patterns of the target language. Similar to the Direct Method, 
+<span class="gap-wrap"><input class="gap" data-answers="explicit instruction of grammatical rules" placeholder="…" spellcheck="false"><span class="hint-tip">Like the Direct Method, the ALM avoided this type of instruction</span></span> was avoided. However, the Audiolingual Method differed from the Direct Method in giving less attention to vocabulary and more emphasis to repetitions of grammatical patterns.</p>
+
+<div class="practice-box">
+  <h4>Language learning in practice: Audiolingual Drill</h4>
+  <div class="drill-box">
+    <p>Teacher: I put the <strong>book</strong> on the table.</p>
+    <p>Student: I put the book on the table.</p>
+    <p>Teacher: pen</p>
+    <p>Student: I put the <strong>pen</strong> on the table.</p>
+    <p>Teacher: ruler</p>
+    <p>Student: I put the <strong>ruler</strong> on the table.</p>
+    <p>Teacher: paper</p>
+    <p>Student: I put the <strong>paper</strong> on the table.</p>
+  </div>
+</div>
+
+<p>Although elements of this approach continue to characterize some language classrooms, and language lab exercises and drills have certainly not disappeared from language teaching programs, a number of shortcomings gradually became apparent during the second half of the twentieth century. The failure of the method to effectively 
+<span class="gap-wrap"><input class="gap" data-answers="teach real conversational skills" placeholder="…" spellcheck="false"><span class="hint-tip">The ALM's key failure — it could not effectively do this despite drilling</span></span> became clear. Also, the many weaknesses in the 
+<span class="gap-wrap"><input class="gap" data-answers="behaviorist approach" placeholder="…" spellcheck="false"><span class="hint-tip">Weaknesses in this underlying psychological approach also contributed to the ALM's decline</span></span> to learning contributed to increasing skepticism surrounding the Audiolingual Method.</p>
+
+<!-- 5.1.5 -->
+<h3 class="sub-section" id="s515">5.1.5 Affective-Humanistic Approaches: Suggestopedia</h3>
+
+<p>In the second half of the twentieth century, alternative ways of approaching language instruction appeared in which 
+<span class="gap-wrap"><input class="gap" data-answers="emotional and affective aspects" placeholder="…" spellcheck="false"><span class="hint-tip">These aspects of human experience were given special emphasis in affective-humanistic approaches</span></span> of the human experience were given emphasis. In the 1970s, one of these approaches was known as 
+<span class="gap-wrap"><input class="gap" data-answers="Suggestopedia" placeholder="…" spellcheck="false"><span class="hint-tip">The affective-humanistic approach developed by Bulgarian psychotherapist Georgi Lozanov</span></span> (sometimes referred to more recently as "desuggestopedia"), the name itself revealing links with the "power of suggestion" in human behavior. The main proponent of Suggestopedia was a Bulgarian psychotherapist, Georgi Lozanov. Lozanov promoted the idea that the language learner needed to be "liberated" from 
+<span class="gap-wrap"><input class="gap" data-answers="stress and anxiety-provoking factors" placeholder="…" spellcheck="false"><span class="hint-tip">Lozanov argued learners needed liberation from these emotional barriers to learning</span></span>. Language learning was to take place in a relaxed, non-threatening environment; learners would sit in a physically comfortable environment while they listened to soothing background music (preferably Baroque music). In Lozanov's view, the relaxed ambiance would allow learners to be 
+<span class="gap-wrap"><input class="gap" data-answers="receptive to language exposure" placeholder="…" spellcheck="false"><span class="hint-tip">The goal of Suggestopedia's relaxed environment — to make learners more ___ through dialogues and role-playing</span></span> through dialogues, role-playing, and other devices presenting features of the target language.</p>
+
+<div class="practice-box">
+  <h4>Language learning in practice: Suggestopedia</h4>
+  <p>The applied linguist Diane Larsen-Freeman (1986, pp. 72–74) describes an opening procedure in a university class in Egypt in which English was being taught through Suggestopedia; her description is based on classes she observed:</p>
+  <p style="margin-top:0.6rem;">The students are seated in cushioned armchairs that are arranged in a semicircle facing the front of the room. The lighting is dim. There is soft music playing. There are several posters on the walls. Most of them are travel posters with scenes from America; a few, however, contain grammatical information . . . The teacher greets the students in Arabic and tells them in English in that they are about to begin a new and exciting experience in language learning . . . The teacher puts on a record of The Grand Canyon Suite and invites the students to close their eyes and to become aware of their breathing. She says almost in a whisper "In, out, in, out" . . . She then invites the students to take an imaginary trip with her. She tells them that they are going to visit America. She will be their guide. She describes the airplane flight, what they will see when they first land and how they will feel in the airport. She tells them to listen to the English all around them and to feel themselves replying fluently in English to questions posed to them by the customs and immigration officials. "Now," she says "slowly bring your awareness back to this room, its sound and its smells. When you are ready, open your eyes. Welcome to English."</p>
+</div>
+
+<p>Although there are attractive features associated with this approach (e.g., the emphasis on relaxation, exposure to calming music, etc.), exaggerated claims as to its 
+<span class="gap-wrap"><input class="gap" data-answers="efficacy" placeholder="…" spellcheck="false"><span class="hint-tip">Exaggerated claims about this — the method's effectiveness — prevented widespread adoption</span></span> (see Scovel, 1979, for an in-depth review) and a lack of evidence of its success, along with practical limitations, have kept it from being 
+<span class="gap-wrap"><input class="gap" data-answers="adopted on a wide scale" placeholder="…" spellcheck="false"><span class="hint-tip">Despite its attractive features, Suggestopedia was never ___ — practical limitations prevented this</span></span>.</p>
+
+<div class="practice-box">
+  <h4>Language learning in practice: Suggestopedia for training federal civil servants in Canada</h4>
+  <p>During the 1970s, a form of Suggestopedia was implemented to teach French to English-speaking civil servants in Canada. Despite some positive reports of the experience (e.g., Rachle, 1975), there is little consensus among researchers that the study's effects were solely due to Suggestopedia methodology.</p>
+</div>
+
+<!-- 5.1.6 -->
+<h3 class="sub-section" id="s516">5.1.6 Total Physical Response</h3>
+
+<p>The 
+<span class="gap-wrap"><input class="gap" data-answers="Total Physical Response" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated TPR; developed by James Asher in the 1960s — learners respond to commands with actions</span></span> (TPR) Method was developed in the 1960s by James Asher, a psychology professor in California. Asher developed this method to apply to L2 teaching what he signaled as important sequencing in L1 acquisition, notably the fact that young children begin by 
+<span class="gap-wrap"><input class="gap" data-answers="listening to the language" placeholder="…" spellcheck="false"><span class="hint-tip">The L1 acquisition sequence TPR is based on — children begin by ___ before they start to speak</span></span> in their surroundings and only later on do they begin to speak. TPR therefore puts no pressure on learners to 
+<span class="gap-wrap"><input class="gap" data-answers="orally produce the target language" placeholder="…" spellcheck="false"><span class="hint-tip">TPR removes the pressure to do this — learners instead carry out actions in response to commands</span></span>, but asks them to carry out actions in response to the instructor's commands. Learners are encouraged to speak only when they feel ready to do so and this is thought to help 
+<span class="gap-wrap"><input class="gap" data-answers="relieve stress" placeholder="…" spellcheck="false"><span class="hint-tip">A key advantage of the TPR approach — it helps to ___ associated with language learning</span></span> associated with language learning. The method is generally targeted toward beginning learners who need to acquire elementary speaking skills.</p>
+
+<div class="practice-box">
+  <h4>Language learning in practice: Total Physical Response</h4>
+  <div class="drill-box">
+    <p>Teacher's command: Stand up.</p>
+    <p>Students' response: (They stand up.)</p>
+    <p>Teacher's command: Mary, put the book on my desk.</p>
+    <p>Mary's response: (Mary goes to put the book on the teacher's desk.)</p>
+    <p>Teacher's command: Everybody, sit down and put your hands on your desk.</p>
+    <p>Students' response: (They sit and put their hands on their desk.)</p>
+  </div>
+</div>
+
+<!-- 5.1.7 -->
+<h3 class="sub-section" id="s517">5.1.7 Communicative Language Teaching</h3>
+
+<p>In the 1970s and 1980s, teachers in North America and elsewhere became increasingly aware that language instruction often failed to enable students to develop 
+<span class="gap-wrap"><input class="gap" data-answers="communicative competence" placeholder="…" spellcheck="false"><span class="hint-tip">The ability to express oneself in real-life situations — what CLT aimed to develop</span></span> in the target language, or the ability to express themselves in real life situations. Under the influence of theoretical views that emphasized the learner's cognitive abilities and rejected behavioristic thought, applied linguists and teachers increasingly recognized the need to teach languages in ways that allowed learners to 
+<span class="gap-wrap"><input class="gap" data-answers="communicate meaning" placeholder="…" spellcheck="false"><span class="hint-tip">CLT shifted focus from memorising structures to enabling learners to ___, rather than recite rules</span></span>, rather than memorize structures and rules. This approach became known as the 
+<span class="gap-wrap"><input class="gap" data-answers="Communicative Approach|Communicative Language Teaching|CLT" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CLT; the approach that emphasises authentic, functional use of language for meaningful purposes</span></span>, or Communicative Language Teaching (CLT).</p>
+
+<p>As there has been an abundance of variations on the theme of CLT, applied linguist H. Douglas Brown (2007, p. 241) offers a useful synthesis of defining features:</p>
+
+<ul style="padding-left:1.5rem; margin-bottom:1.2rem; line-height:1.8; font-size:0.95rem;">
+  <li>Classroom goals are focused on all of the components of 
+    <span class="gap-wrap"><input class="gap" data-answers="communicative competence" placeholder="…" spellcheck="false"><span class="hint-tip">CLT goals target all components of this — not just grammatical competence</span></span> and not restricted to grammatical or linguistic competence.</li>
+  <li>Language techniques are designed to engage learners in the pragmatic, authentic, functional use of language for meaningful purposes. Organizational language forms are not the central focus but rather aspects of language that enable the learner to accomplish those purposes.</li>
+  <li>Fluency and accuracy are seen as complementary principles underlying communicative techniques. At times fluency may have to take on more importance than accuracy in order to keep learners meaningfully engaged in language use.</li>
+  <li>In the communicative classroom, students ultimately have to use the language, productively and receptively, in 
+    <span class="gap-wrap"><input class="gap" data-answers="unrehearsed contexts" placeholder="…" spellcheck="false"><span class="hint-tip">A defining CLT feature — students must ultimately use the language in these kinds of contexts</span></span>.</li>
+</ul>
+
+<p>Communicative classrooms recognize the importance of using 
+<span class="gap-wrap"><input class="gap" data-answers="authentic materials" placeholder="…" spellcheck="false"><span class="hint-tip">Materials not designed specifically for the classroom — e.g., newspapers, magazine articles — are called this</span></span>, that is, materials that are not designed specifically for the classroom, for example, using newspapers, magazine articles, book reviews, etc., to teach the target language.</p>
+
+<!-- 5.1.8 -->
+<h3 class="sub-section" id="s518">5.1.8 Task-Based Language Teaching</h3>
+
+<p>A relatively recent approach that grew out of the CLT approach is what has been referred to as 
+<span class="gap-wrap"><input class="gap" data-answers="task-based instruction|task-based language teaching|TBLT" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated TBLT; an approach emphasising what learners can do with the language through concrete learning outcomes</span></span> or task-based language teaching (TBLT). Norris (2011, p. 578) defines TBLT as ". . . an approach to second or foreign language education that integrates theoretical and empirical foundations for good pedagogy with a focus on tangible learning outcomes in the form of 'tasks'—that is, what learners are able to do with the language." One can trace its roots back to 
+<span class="gap-wrap"><input class="gap" data-answers="experiential learning theory" placeholder="…" spellcheck="false"><span class="hint-tip">The theoretical roots of TBLT — the view that individuals need to fully engage in the learning process (Dewey, 1933)</span></span>, the view that individuals need to fully engage in the learning process in order to get the most benefit (Dewey, 1933; Kolb, 1984).</p>
+
+<p>One factor that led to the development of TBLT was debate about certain perceived weaknesses with the CLT approach. In particular, there was general recognition that while the CLT approach may be better at promoting 
+<span class="gap-wrap"><input class="gap" data-answers="fluency" placeholder="…" spellcheck="false"><span class="hint-tip">CLT was seen as better at promoting ___ than previous methods, but weaker on grammatical accuracy</span></span> than previous teaching approaches, it may be less successful in promoting grammatical accuracy.</p>
+
+<p>Another important factor leading to TBLT was L2 research that increasingly emphasized the important roles played by input, 
+<span class="gap-wrap"><input class="gap" data-answers="interaction, and output" placeholder="…" spellcheck="false"><span class="hint-tip">Along with input, TBLT drew on L2 research emphasising the roles of ___ (as described in Chapter 4)</span></span> (as described in Chapter 4). In this sense, TBLT is closely linked with the concept "negotiation for meaning" as well as with research drawing attention to the critical role of "
+<span class="gap-wrap"><input class="gap" data-answers="noticing" placeholder="…" spellcheck="false"><span class="hint-tip">Schmidt's concept — TBLT is closely linked with research on the critical role of ___ in L2 learning</span></span>" in L2 learning.</p>
+
+<p>The notion of "task" is central in this approach. A task can be described (e.g., Skehan, 1998, p. 95) as an activity in which:</p>
+<ul style="padding-left:1.5rem; margin-bottom:1.2rem; line-height:1.8; font-size:0.95rem;">
+  <li>Meaning is primary;</li>
+  <li>There is some communication problem to solve;</li>
+  <li>There is some sort of relationship to comparable real-world activities;</li>
+  <li>Task completion has some priority;</li>
+  <li>The assessment of the task is in terms of outcome.</li>
+</ul>
+
+<p>Task-based instruction is designed to maximize the learner's 
+<span class="gap-wrap"><input class="gap" data-answers="engagement" placeholder="…" spellcheck="false"><span class="hint-tip">TBLT is designed to maximize the learner's ___ with a given classroom task</span></span> with a given classroom task, and, consistent with the communicative approach, emphasizes the importance of meaningful exchanges in L2 development. Tasks are seen as distinct from more traditional classroom exercises in that they have objectives that go beyond what is purely linguistic, and involve social action and 
+<span class="gap-wrap"><input class="gap" data-answers="pragmatic goals" placeholder="…" spellcheck="false"><span class="hint-tip">Tasks involve social action and these — going beyond purely linguistic objectives</span></span>. Learners are required to mobilize their linguistic skills in finding solutions to real-world problems that they might confront outside the classroom.</p>
+
+<div class="practice-box">
+  <h4>Language learning in practice: Task-based activities</h4>
+  <p>Skehan (1998, pp. 95–96) provides a few concrete examples of task-based activities:</p>
+  <ul style="padding-left:1.2rem; margin-top:0.4rem; line-height:1.7;">
+    <li>Completion of family trees;</li>
+    <li>Discovering whether one's paths will cross (out of school) in the next week;</li>
+    <li>Solving a riddle;</li>
+    <li>Leaving a message on someone's answering machine.</li>
+  </ul>
+</div>
+
+<!-- 5.1.9 -->
+<h3 class="sub-section" id="s519">5.1.9 Postmethod Perspective</h3>
+
+<p>In a relatively recent, critical view of previous methods in language teaching, the applied linguist Kumaravadivelu has argued that ". . . language teaching methods are based on idealized concepts geared towards idealized contexts" (Kumaravadivelu, 2012, p. 10). According to Kumaravadivelu (2012, p. 10): "We now know that there is no best method out there, that a futile search for one will only drive us to continually recycle and repackage the same old ideas and that nothing short of breaking the cycle can salvage the situation."</p>
+
+<p>In his articulation of this 
+<span class="gap-wrap"><input class="gap" data-answers="postmethod perspective" placeholder="…" spellcheck="false"><span class="hint-tip">Kumaravadivelu's critical view that no single method is universally appropriate</span></span>, Kumaravadivelu (1994) points to increasing globalization, cross-cultural contacts, and changes in geopolitical forces as some of the factors making it necessary to offer a new vision of language teaching. In his view, teaching practices need to be adapted to each distinct 
+<span class="gap-wrap"><input class="gap" data-answers="teaching context" placeholder="…" spellcheck="false"><span class="hint-tip">The postmethod view argues practices must be adapted to each distinct ___ — not applied universally</span></span>. He argues that teachers should not merely serve as "conduits" of previously determined knowledge about what and how to teach, but rather they need to take on role of "
+<span class="gap-wrap"><input class="gap" data-answers="reflective practitioners" placeholder="…" spellcheck="false"><span class="hint-tip">Kumaravadivelu's preferred teacher role — thinking deeply about principles, practices, and processes of instruction</span></span> who deeply think about the principles, practices and processes of classroom instruction and bring to their task a considerable degree of creativity, artistry, and context sensitivity."</p>
+
+<p>To replace the concept of "method" as the predominant operating principle in L2 teaching and teacher education, Kumaravadivelu proposes three parameters to act as operating principles: "particularity," "practicality," and "possibility." 
+<span class="gap-wrap"><input class="gap" data-answers="Particularity" placeholder="…" spellcheck="false"><span class="hint-tip">The first of Kumaravadivelu's three parameters — sensitivity to the specific context of language teaching</span></span> refers to sensitivity to the particular context in which the language teaching takes place. 
+<span class="gap-wrap"><input class="gap" data-answers="Practicality" placeholder="…" spellcheck="false"><span class="hint-tip">The second parameter — breaks with tradition by emphasising that teachers are best placed to develop theory from classroom practice</span></span> refers to the relationship between theory and practice, and breaks with tradition in emphasizing that teachers themselves are best placed to develop theory from their situated classroom practices. And the third operating principle "possibility" emerges from the notion of 
+<span class="gap-wrap"><input class="gap" data-answers="critical pedagogy" placeholder="…" spellcheck="false"><span class="hint-tip">Kumaravadivelu's third parameter draws on this concept — the view that pedagogy can be used to maintain sociopolitical power</span></span>, i.e., the view that pedagogy is used by the more powerful agents in a society (governments, corporations) as an instrument to maintain that power.</p>
+
+<!-- 5.2 -->
+<div class="section-rule" id="s52">
+  <span class="sec-num">5.2</span>
+  <h2>Classroom Instructional Issues</h2>
+</div>
+
+<p>There are a number of issues concerning language instruction that are the subject of ongoing debate and discussion. Many of these fall within a 
+<span class="gap-wrap"><input class="gap" data-answers="cognitive approach" placeholder="…" spellcheck="false"><span class="hint-tip">Many instructional issues fall within this approach — giving emphasis to mental processing in L2 learning</span></span>, in that they give emphasis to the cognitive or mental processing that accompanies L2 language learning; others stem as well from a 
+<span class="gap-wrap"><input class="gap" data-answers="sociocultural approach" placeholder="…" spellcheck="false"><span class="hint-tip">Other issues draw on this approach — acknowledging the role of social interactions in L2 learning</span></span>, in acknowledging the important role played by social interactions in L2 language learning. One predominant issue is the question of whether and how to focus attention on aspects of form in the classroom. Schmidt's 
+<span class="gap-wrap"><input class="gap" data-answers="Noticing Hypothesis" placeholder="…" spellcheck="false"><span class="hint-tip">Schmidt's hypothesis — discussed in Chapter 4 — that led to increasing attention on learners' "noticing" in L2 development</span></span>, discussed in Chapter 4, led to increasing attention given to the central role played by the learner's "noticing" in order for input to become intake in L2 development.</p>
+
+<!-- 5.2.1 -->
+<h3 class="sub-section" id="s521">5.2.1 Focus on Form</h3>
+
+<p>The widespread popularity of the communicative approach ultimately led to questions about whether such classrooms with an emphasis on meaning might need to be supplemented by drawing attention to aspects of form, or to a 
+<span class="gap-wrap"><input class="gap" data-answers="focus on form" placeholder="…" spellcheck="false"><span class="hint-tip">The phrase used to describe drawing attention to linguistic features within a meaning-based communicative approach</span></span>. Within a communicative approach, the phrase "focus on form" or 
+<span class="gap-wrap"><input class="gap" data-answers="form-focused instruction" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated FFI; any pedagogical effort drawing learners' attention to language form, implicitly or explicitly</span></span> (FFI) has been used to refer to drawing attention to formal features of language, such as grammatical features, that play a role in the meanings that are negotiated. Note that FFI has been contrasted with 
+<span class="gap-wrap"><input class="gap" data-answers="focus on forms" placeholder="…" spellcheck="false"><span class="hint-tip">Note the plural — this contrasting term is associated with more traditional classrooms isolating forms for practice through exercises</span></span> (notice the plural "forms"), a view associated with more traditional language classrooms, which emphasizes formal aspects of language by isolating them for practice through exercises, rather than drawing attention to forms through meaningful activities.</p>
+
+<p>For applied linguist Nina Spada (1997, p. 73) FFI is "any pedagogical effort which is used to draw the learners' attention to language form either implicitly or explicitly." In traditional, grammar-based classrooms, this was implemented through 
+<span class="gap-wrap"><input class="gap" data-answers="metalinguistic explanations" placeholder="…" spellcheck="false"><span class="hint-tip">The traditional way of implementing FFI — through explicit explanations about the language system</span></span>. In communicative classrooms where priority is given to using functional language and meaningful communication, drawing attention to language forms can occur in a number of ways. Long (1991, pp. 45–46) explains: ". . . focus on form . . . overtly draws students' attention to 
+<span class="gap-wrap"><input class="gap" data-answers="linguistic elements" placeholder="…" spellcheck="false"><span class="hint-tip">Focus on form draws attention to these as they arise incidentally in lessons whose overriding focus is on meaning</span></span> as they arise incidentally in lessons whose overriding focus is on meaning or communication."</p>
+
+<p>There is increasing recognition that L2 learners benefit from some type of explicit attention to aspects of linguistic form. R. Ellis (2008, p. 846) points out that: "While there is general recognition that much of the L2 can be learnt naturally (i.e. without any form-focused instruction), it is also clear that most L2 learners (especially adults) do not achieve full target language competence as a result of exposure . . . and thus need assistance. That is, there may be certain linguistic properties that cannot be 
+<span class="gap-wrap"><input class="gap" data-answers="acquired by L2 learners" placeholder="…" spellcheck="false"><span class="hint-tip">Ellis argues certain linguistic properties cannot be ___ unless learners receive specific instruction in them</span></span> unless they receive instruction in them."</p>
+
+<p>Some research supports the usefulness of FFI. For example, a small-scale study on feedback, noticing, and instructed L2 learning (Mackey, 2006) reported results interpreted as support for a focus on form approach. Participants in this study were university students enrolled in an 
+<span class="gap-wrap"><input class="gap" data-answers="intensive ESL program" placeholder="…" spellcheck="false"><span class="hint-tip">The type of program participants were enrolled in — ESL instruction at a high contact-hour rate</span></span>. The target items were question forms, plural forms, and past tense structures. Learners reported more noticing when 
+<span class="gap-wrap"><input class="gap" data-answers="feedback" placeholder="…" spellcheck="false"><span class="hint-tip">Learners reported more noticing when this was provided — a "focus on form"</span></span>, or a "focus on form" was provided.</p>
+
+<!-- 5.2.1.1 -->
+<h3 class="sub-section" id="s5211">5.2.1.1 Input Enhancement and Input Flooding</h3>
+
+<p>As we discussed in Chapter 4, Schmidt's Noticing Hypothesis emphasized the fundamental role played by 
+<span class="gap-wrap"><input class="gap" data-answers="attention and noticing" placeholder="…" spellcheck="false"><span class="hint-tip">Schmidt's Noticing Hypothesis emphasised the fundamental role of ___ in L2 learning</span></span> in L2 learning. The Noticing Hypothesis stipulates that input needs to be noticed in order for it to become "intake." One way to attract the learner's attention in a meaning-oriented task has been termed "
+<span class="gap-wrap"><input class="gap" data-answers="input enhancement" placeholder="…" spellcheck="false"><span class="hint-tip">The term attributed to Sharwood Smith (1991) for various means of making target forms more noticeable</span></span>." The term "input enhancement" is generally attributed to applied linguist Michael Sharwood Smith (1991; 1993), who used the term to refer to various means of 
+<span class="gap-wrap"><input class="gap" data-answers="drawing attention to aspects of the target language" placeholder="…" spellcheck="false"><span class="hint-tip">The purpose of input enhancement — ___ so that students notice and learn them</span></span> so that students will notice and learn them. Input can be "enhanced" in a variety of ways, such as underlining or using bold type.</p>
+
+<p>One study (White, 1998) manipulated the 
+<span class="gap-wrap"><input class="gap" data-answers="typographical appearance" placeholder="…" spellcheck="false"><span class="hint-tip">White's (1998) study manipulated the ___ of target forms — using bold or capital letters</span></span> of English target forms (possessive determiners "his" and "her") for French-speaking children in intensive ESL classes in Quebec. For one group of learners the target items appeared in an enhanced form, such as in bold type or in capital letters. While both the experimental and control groups improved in learning the forms, there was no significant difference between the groups, leading White to suggest the 
+<span class="gap-wrap"><input class="gap" data-answers="typographical differences" placeholder="…" spellcheck="false"><span class="hint-tip">White suggested the ___ were not explicit enough to produce a significant effect</span></span> were not explicit enough.</p>
+
+<p>Effect differences across input enhancement studies may be due to the specific grammatical forms used as targets. Forms with relatively little 
+<span class="gap-wrap"><input class="gap" data-answers="communicative value" placeholder="…" spellcheck="false"><span class="hint-tip">Forms with little ___ (e.g., possessive determiners) may resist enhancement effects more than high-value forms</span></span> (e.g., possessive determiners in White, 1998) may be resistant to input enhancement effects, while forms with greater communicative value (e.g., the present perfect, as in Cho, 2010) may be more likely to reveal effects.</p>
+
+<p>Similar to the notion of "input enhancement" is "
+<span class="gap-wrap"><input class="gap" data-answers="input flooding" placeholder="…" spellcheck="false"><span class="hint-tip">Exposing learners to substantial amounts of examples of a given linguistic feature — metaphorically named</span></span>." As the term metaphorically suggests, input flooding refers to exposing learners to substantial amounts of input, or examples of a given linguistic feature. Trahey and White (1993) examined input flooding by exposing French-speaking ESL students in Quebec, Canada, to a large number of sentences containing 
+<span class="gap-wrap"><input class="gap" data-answers="adverbs" placeholder="…" spellcheck="false"><span class="hint-tip">The target linguistic feature in Trahey and White's (1993) input flooding study</span></span>. English adverb placement poses certain difficulties to French speakers since the rules differ between the two languages. The authors of this study found that students improved in recognizing correct adverb placement in English sentences, except for instances which reflect correct French adverb placement order, but are incorrect in English. These findings suggest input flooding may not be effective in instances where learners try to apply features of their L1; 
+<span class="gap-wrap"><input class="gap" data-answers="explicit information" placeholder="…" spellcheck="false"><span class="hint-tip">The study suggests ___ to correct L1-influenced utterances may be necessary when input flooding fails</span></span> to correct those utterances may be necessary.</p>
+
+<p>In addition to not always being effective, input flooding might also have negative effects. It has been pointed out (e.g., Han, Park, &amp; Combs, 2008) that input enhancement combined with input flooding could lead to 
+<span class="gap-wrap"><input class="gap" data-answers="overuse of the enhanced form" placeholder="…" spellcheck="false"><span class="hint-tip">A potential negative consequence of combining input enhancement with input flooding</span></span>.</p>
+
+<!-- 5.2.1.2 -->
+<h3 class="sub-section" id="s5212">5.2.1.2 Processing Instruction</h3>
+
+<p>VanPatten's Input Processing (IP) model (discussed in Chapter 4) led to the development (e.g., VanPatten, 1996; 2004) of pedagogical applications for reading and listening tasks that are related to the focus on form issue. In contrast to traditional L2 teaching techniques which tend to suggest intervening at the 
+<span class="gap-wrap"><input class="gap" data-answers="output phase" placeholder="…" spellcheck="false"><span class="hint-tip">Traditional methods intervene at this phase — PI differs by intervening at the input phase instead</span></span> in order to teach grammatical patterns, 
+<span class="gap-wrap"><input class="gap" data-answers="Processing Instruction" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated PI; a pedagogical approach derived from VanPatten's IP model — intervenes at the input phase</span></span> (PI) entails intervening at the input phase. In order to foster learners' attention to grammatical forms and other structural features of the input, learners are put in situations where they must rely on language 
+<span class="gap-wrap"><input class="gap" data-answers="form to understand" placeholder="…" spellcheck="false"><span class="hint-tip">In PI, learners are placed in situations where they must rely on ___ — no contextual clues available</span></span> (where there are no contextual, prior knowledge clues, etc.).</p>
+
+<p>VanPatten argues that input needs to be organized to attract attention to meanings. He proposed three main features of Processing Instruction: 1) provide explicit information about the 
+<span class="gap-wrap"><input class="gap" data-answers="target structure" placeholder="…" spellcheck="false"><span class="hint-tip">The first feature of PI — provide explicit information about this</span></span>; 2) provide explicit information about processing strategies; and 3) provide structured input activities so that learners must rely on the form and structures to get the meaning.</p>
+
+<p>PI also incorporates 
+<span class="gap-wrap"><input class="gap" data-answers="referential activities" placeholder="…" spellcheck="false"><span class="hint-tip">PI's form-meaning tasks in which learners must process a form to understand a specific meaning</span></span> (or form-meaning tasks). For example, concerning the past "–ed" ending, the following exercise might be used, with no other cues present, in which learners are asked to choose the best response:</p>
+
+<div class="practice-box" style="font-family: monospace; font-size:0.88rem; line-height:1.8;">
+  <p>When did the following activity happen?</p>
+  <p>1. I walked to town. Last week / Usually</p>
+  <p>2. I wash the car. Last week / Usually</p>
+</div>
+
+<p>Thus, when considered necessary, learners are given explicit instructions about how target forms are used to convey the meaning. For instance, for an English native speaker learning Spanish, the tendency is to interpret sentences as following the same word order pattern as in English, 
+<span class="gap-wrap"><input class="gap" data-answers="SVO" placeholder="…" spellcheck="false"><span class="hint-tip">The English default word order pattern (Subject, Verb, Object) that learners of Spanish tend to over-apply</span></span>, or Subject, Verb, Object. However, in Spanish other orders are possible, including OVS, in which, for example, an object pronoun can occur before the verb. English native speakers tend to interpret a sentence such as "la escucha el chico" as "she listens to the boy" rather than the correct interpretation "the boy listens to her." In a PI approach, for such an example appropriate 
+<span class="gap-wrap"><input class="gap" data-answers="visual images" placeholder="…" spellcheck="false"><span class="hint-tip">PI uses these to focus attention on the meaning associated with L2 forms — e.g., Drawing A or B</span></span> to focus attention on the meaning associated with L2 forms might be used to reinforce the correct interpretation.</p>
+
+<p>In a final step in PI, 
+<span class="gap-wrap"><input class="gap" data-answers="affective exercises" placeholder="…" spellcheck="false"><span class="hint-tip">The final step in PI — real-world tasks making a personal link, with no right or wrong answers</span></span> (or real-world tasks) are proposed. An affective activity is one which makes a personal or real-world link with learners. It is suggested that affective activities reinforce 
+<span class="gap-wrap"><input class="gap" data-answers="form-meaning connections" placeholder="…" spellcheck="false"><span class="hint-tip">Affective activities reinforce these — the core of what PI aims to establish</span></span> that are carried out during the referential activities. As these exercises normally require learners to give an opinion, there are no right or wrong answers.</p>
+
+<p>The effectiveness of PI has been demonstrated in some studies. For instance, VanPatten and Cadierno (1993) investigated two instructional approaches applied to English L1 learners of Spanish, with a focus on word order: one approach was rule-oriented, with an emphasis on 
+<span class="gap-wrap"><input class="gap" data-answers="output practice" placeholder="…" spellcheck="false"><span class="hint-tip">The traditional approach in VanPatten and Cadierno's study — emphasising this type of practice</span></span>, while the experimental approach explicitly taught effective 
+<span class="gap-wrap"><input class="gap" data-answers="processing strategies" placeholder="…" spellcheck="false"><span class="hint-tip">The PI approach explicitly taught these — to help learners draw attention to form during comprehension</span></span> to draw attention to form. The experimental group performed significantly better than the traditional group when measured by a comprehension task, with equivalent results between the two groups on a production task.</p>
+
+<!-- 5.2.2 -->
+<h3 class="sub-section" id="s522">5.2.2 Corrective Feedback or "How Should Errors be Corrected?"</h3>
+
+<p>The focus on form approach is closely linked with interest in the role of 
+<span class="gap-wrap"><input class="gap" data-answers="corrective feedback" placeholder="…" spellcheck="false"><span class="hint-tip">Providing learners with information — explicitly or implicitly — that their utterance is not correct</span></span> in the classroom. A considerable amount of attention has been devoted to exploring the type of corrective feedback that is most useful to learners. Long's Interaction Hypothesis, discussed in Chapter 4, led to increasing interest in investigating the specific ways that interaction might affect L2 development. Corrective feedback can be either 
+<span class="gap-wrap"><input class="gap" data-answers="explicit" placeholder="…" spellcheck="false"><span class="hint-tip">One type of corrective feedback — overtly pointing out an error to students</span></span>, as in overtly pointing out an error to students, or 
+<span class="gap-wrap"><input class="gap" data-answers="implicit" placeholder="…" spellcheck="false"><span class="hint-tip">Another type of corrective feedback — e.g., repeating the error with intonation suggesting misunderstanding</span></span>, such as by repeating the student's error but with an intonation that suggests misunderstanding.</p>
+
+<p>One type of common feedback in L2 classrooms, considered to be implicit by some authors, is the "
+<span class="gap-wrap"><input class="gap" data-answers="recast" placeholder="…" spellcheck="false"><span class="hint-tip">The teacher's reformulation of all or part of a student's utterance minus the error</span></span>," briefly defined in Chapter 4 as "rephrasing an incorrect utterance correctly." A more detailed definition is provided by Lyster and Ranta (1997, p. 46): "Recasts involve the teacher's reformulation of all or part of a student's utterance minus the error." For instance, if a student learning English produces the following incorrect sentence: "I goed at the library yesterday," the instructor could provide the following recast: "Oh, so you went to the library yesterday."</p>
+
+<p>In a study that looked at error correction in four different French immersion classrooms with young children in Canada, Lyster and Ranta (1997) examined six types of oral feedback: recasts, elicitation (such as when the instructor asks students to complete a sentence), clarification requests (the instructor indicates the student's utterance has not been understood), 
+<span class="gap-wrap"><input class="gap" data-answers="metalinguistic feedback" placeholder="…" spellcheck="false"><span class="hint-tip">A type of oral feedback — pointing out an utterance is incorrect without providing the correction</span></span> (pointing out an utterance is incorrect without providing the correction), explicit correction (the instructor's providing a correct form), and repetition, to see the effects on student "
+<span class="gap-wrap"><input class="gap" data-answers="uptake" placeholder="…" spellcheck="false"><span class="hint-tip">A learner's utterance that immediately follows and incorporates teacher feedback</span></span>." "Uptake" was defined as "a student's utterance that immediately follows the teacher's feedback and that constitutes a reaction in some way to the teacher's intention to draw the learner's attention to some aspect of the student's initial response."</p>
+
+<p>The researchers found that recasts were the most common type of oral feedback on the part of teachers, making up over half of the teachers' corrections. However, recasts turned out to be largely 
+<span class="gap-wrap"><input class="gap" data-answers="ignored by learners" placeholder="…" spellcheck="false"><span class="hint-tip">Despite being most common, recasts were largely ___ — few were followed by uptake or repair</span></span>, at least as measured by "uptake" since the majority of recasts were not followed by uptake and even fewer led to any overt 
+<span class="gap-wrap"><input class="gap" data-answers="repair" placeholder="…" spellcheck="false"><span class="hint-tip">The act of correcting an erroneous utterance following teacher feedback</span></span> on the part of the learners (less than 20% of instructors' recasts).</p>
+
+<p>In a follow up study using the same Lyster and Ranta (1997) data, Lyster (1998) reclassified corrective feedback into three main categories: explicit correction, recasts (implicit correction), and 
+<span class="gap-wrap"><input class="gap" data-answers="negotiation of form" placeholder="…" spellcheck="false"><span class="hint-tip">Lyster's third feedback category — no correction, but cues given to prompt learner self-repair</span></span> (no correction, but cues to the learner to repair the utterance). He found that negotiation of form was most successful in getting learners to repair grammatical and lexical errors, while recasts were most effective for repairing 
+<span class="gap-wrap"><input class="gap" data-answers="phonological errors" placeholder="…" spellcheck="false"><span class="hint-tip">The type of error for which recasts were found to be most effective</span></span>.</p>
+
+<p>Other research suggests recasts can be effective in certain instructional settings. For instance, Mackey and Philp (1998) found that recasts led to better learning of 
+<span class="gap-wrap"><input class="gap" data-answers="morphosyntactic forms" placeholder="…" spellcheck="false"><span class="hint-tip">Mackey and Philp found recasts led to better learning of these types of grammatical forms among advanced learners</span></span> among advanced learners. They also argued that learners may be learning from recasts beyond what is indicated from measures of immediate 
+<span class="gap-wrap"><input class="gap" data-answers="uptake" placeholder="…" spellcheck="false"><span class="hint-tip">Mackey and Philp argued learning from recasts goes beyond what this short-term measure can detect</span></span>.</p>
+
+<p>Some researchers (e.g., Ellis &amp; Sheen, 2006; Nassaji, 2009) have pointed out that recasts vary in the degree to which they can actually be considered implicit or explicit types of feedback. For instance, when parts of the recast are 
+<span class="gap-wrap"><input class="gap" data-answers="stressed" placeholder="…" spellcheck="false"><span class="hint-tip">When parts of a recast receive this treatment, it can be argued the feedback becomes explicit</span></span>, it can be argued that this constitutes explicit feedback. Some evidence (e.g., Zhuo, 2010) suggests when recasts are made explicit, they are more effective.</p>
+
+<!-- 5.2.3 -->
+<h3 class="sub-section" id="s523">5.2.3 L1 Use in the Classroom</h3>
+
+<p>Another issue related to classroom instruction, but which has received relatively little research attention, is whether there is a role for the learner's L1 in the classroom. As discussed in the first part of this chapter, the emphasis on using or strictly avoiding use of any language other than the 
+<span class="gap-wrap"><input class="gap" data-answers="target language" placeholder="…" spellcheck="false"><span class="hint-tip">Various teaching approaches have differed on the role of the learner's L1 vs. this language in the classroom</span></span> has differed from one approach to another. The more recent meaning-based, communicative approaches tend to stress the importance of primarily using the target language, in order to give students as much exposure to it as possible. However, there is evidence that students in some situations and at some stages of learning may benefit from both receiving information in their L1 and from being allowed to use the L1. Despite efforts to 
+<span class="gap-wrap"><input class="gap" data-answers="ban the L1 from language classrooms" placeholder="…" spellcheck="false"><span class="hint-tip">What previous approaches like the Direct Method did — ___, though more recent views support L1 use</span></span> that characterized previous teaching approaches, such as the Direct Method, there is more recent support for acknowledging learners' L1 knowledge and using it to make explicit references and links across languages, including explicit translation.</p>
+
+<p>A study by Moore (2002) suggests specific benefits associated with the use of students' L1 in the language classroom including drawing attention to areas of contrast between languages and developing students' 
+<span class="gap-wrap"><input class="gap" data-answers="metalinguistic awareness" placeholder="…" spellcheck="false"><span class="hint-tip">A key benefit of L1 use in the classroom — developing students' conscious knowledge about language structure</span></span>. Moore reports the following example from a classroom in which Italian-speaking students are learning French.</p>
+
+<div class="dialogue">
+  <p><strong>Teacher:</strong> (. . .) On range. Vous RAN-GEZ. Comme il te reste très peu de temps. Mais il ne reste presque plus de temps. Qu'est-ce que tu fais ? (. . .) (Let's tidy up. TI-DY UP. There is little time left. There is almost no time left. What are you doing?)</p>
+  <p><strong>Learner:</strong> un caletrillo (a caletrillo "trolley")</p>
+  <p><strong>Teacher:</strong> un caletrillo? Moi je ne comprends pas. Qu'est-ce que c'est un caletrillo? (a caletrillo? I don't understand. What is a caletrillo?)</p>
+  <p><strong>Learner:</strong> pour emmener des choses (to carry things)</p>
+  <p><strong>Teacher:</strong> Quelque chose pour emmener des choses. Je ne connaissais pas ce mot-là. Ah! Un caletrillo. C'est quelque chose avec des roues et on emmène des choses dedans? C'est ça? En français tu sais le dire Mélanie? Moi non plus. Tu ranges tes dessins dans ton classeur alors hein (. . .)</p>
+  <p><strong>Teacher:</strong> (. . .) C'est quoi ça? Ah ça y est j'ai compris. C'est les roues là. Il y a les roues et là on met les choses dedans pour emmener les choses. EN-FIN j'ai compris! Un CHARIOT. Un chariot. D'accord. Comme ça ça fonctionne (. . .) (What's that? Ah here we are. I understand. Here are the wheels. There are wheels and here this is where we put things we want to carry. AT LAST I understand! A TROLLEY. A trolley. OK. Now it works.)</p>
+</div>
+
+<p>Moore (2002) suggests that exchanges such as that above, in which the young learner is allowed to resort to his or her L1, can lead to an increase in 
+<span class="gap-wrap"><input class="gap" data-answers="linguistic awareness" placeholder="…" spellcheck="false"><span class="hint-tip">Moore suggests allowing L1 use can lead to an increase in ___ — awareness of form-meaning relationships across languages</span></span>. The language switch trigger word "caletrillo" (trolley) led to the student's attempt to define the L1 word, essentially a 
+<span class="gap-wrap"><input class="gap" data-answers="metalinguistic task" placeholder="…" spellcheck="false"><span class="hint-tip">Defining a word in another language is essentially this type of task — involving conscious language reflection</span></span>, by using the target language.</p>
+
+<p>In written texts as well, the use of the L1 through translation or exposure to translation equivalents can be argued as providing some learning advantages. The French translation specialist Jean-René Ladmiral (1984, p. 45) suggested that a comparison of linguistic systems in context, i.e., juxtaposed by means of 
+<span class="gap-wrap"><input class="gap" data-answers="translation" placeholder="…" spellcheck="false"><span class="hint-tip">Ladmiral argued that comparing linguistic systems via this constitutes the best catalyst for metalinguistic awareness</span></span>, constitutes the best catalyst for a metalinguistic awareness of those systems.</p>
+
+<p>Overtly allowing students to 
+<span class="gap-wrap"><input class="gap" data-answers="compare words or structures across languages" placeholder="…" spellcheck="false"><span class="hint-tip">An explicit classroom activity that can increase awareness of both structural differences and similarities between languages</span></span> can increase awareness of both structural differences and structural similarities between languages. Furthermore, for an activity as mentally challenging as translating a text from the L1 to the L2, the act of having to express thoughts and ideas formulated in the L1 into another language makes it less possible to avoid words or grammatical structures required to properly convey those thoughts and ideas.</p>
+
+<p>Cook (2010) devotes an entire book to the issue of 
+<span class="gap-wrap"><input class="gap" data-answers="translation in language teaching|TILT" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated TILT — Cook's book on this topic draws attention to its virtual absence from SLA surveys</span></span> (TILT) and draws attention to the virtual absence of any discussion of it in major surveys of language teaching or SLA. He makes a number of arguments for the value of translation for language learning based on empirical evidence, educational policy, and 
+<span class="gap-wrap"><input class="gap" data-answers="pedagogical effectiveness" placeholder="…" spellcheck="false"><span class="hint-tip">Cook bases his arguments on empirical evidence, educational policy, and ___ for translation</span></span>.</p>
+
+<!-- 5.2.4 -->
+<h3 class="sub-section" id="s524">5.2.4 Technology and Language Learning</h3>
+
+<p>
+<span class="gap-wrap"><input class="gap" data-answers="Computer-assisted language learning|CALL" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CALL; using the computer and computerized resources in L2 learning</span></span> (CALL), which refers to the using of the computer and computerized resources in L2 learning, has become a flourishing source of innovation for second language learning and teaching over the past several decades. The development and increasing accessibility of the personal computer in the latter part of the last century led to the development and implementation of software programs that allow focused learning of language skills such as 
+<span class="gap-wrap"><input class="gap" data-answers="reading comprehension and grammar use" placeholder="…" spellcheck="false"><span class="hint-tip">Early CALL software focused on allowing focused learning of these two language skills</span></span>. At the same time, what has become known as 
+<span class="gap-wrap"><input class="gap" data-answers="computer-mediated communication|CMC" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CMC; communication through electronic devices such as emails, texts, video — omnipresent in daily life</span></span> (CMC) has become omnipresent in our daily lives, and similarly has permeated language learning.</p>
+
+<p>One way in which new electronic technology assists the language learner is through 
+<span class="gap-wrap"><input class="gap" data-answers="Internet-available resources" placeholder="…" spellcheck="false"><span class="hint-tip">A key way technology assists learners — access to online dictionaries, grammar paradigms, pronunciation samples, etc.</span></span>. There is an abundance of material ranging from online dictionaries and thesauruses, to grammatical paradigms and pronunciation samples. In addition, learners can check the accuracy of their 
+<span class="gap-wrap"><input class="gap" data-answers="sentence structure" placeholder="…" spellcheck="false"><span class="hint-tip">Learners can check the accuracy of this by entering it into a search engine</span></span> by entering it into a search engine and in this way determine with some degree of certainty whether that phrasing is grammatically or stylistically correct or not.</p>
+
+<p>Furthermore, there is an increasing amount of software available that has been developed specifically to aid language learners by providing exercises as well as feedback on responses. These resources can be integrated into traditional classrooms as in-class or homework exercises or used by individuals learning a language on their own. In such ways the development of digital resources has led to greater opportunities for learners to become more 
+<span class="gap-wrap"><input class="gap" data-answers="autonomous" placeholder="…" spellcheck="false"><span class="hint-tip">Digital resources give learners opportunities to become more ___ in their learning</span></span> in their learning.</p>
+
+<p>In terms of classroom applications, teachers can encourage students to develop digital portfolios and online blogs. Language teachers can also implement CMC in both 
+<span class="gap-wrap"><input class="gap" data-answers="synchronous" placeholder="…" spellcheck="false"><span class="hint-tip">This type of CMC environment means "at the same time" — contrasted with asynchronous</span></span> (at the same time) and 
+<span class="gap-wrap"><input class="gap" data-answers="asynchronous" placeholder="…" spellcheck="false"><span class="hint-tip">This type of CMC environment means "at different times" — contrasted with synchronous</span></span> (different times) environments. Online CMC can be integrated as part of course requirements or as optional activities. For synchronous activities, predetermined time periods can be set aside for online 
+<span class="gap-wrap"><input class="gap" data-answers="tandem exchanges" placeholder="…" spellcheck="false"><span class="hint-tip">Online paired exchanges where learners interact with native speakers who simultaneously learn from them</span></span>, allowing learners to interact with and learn from native speakers of the target language at the same time that they serve as target language models for their online partners.</p>
+
+<!-- 5.3 -->
+<div class="section-rule" id="s53">
+  <span class="sec-num">5.3</span>
+  <h2>Summing Up</h2>
+</div>
+
+<p>Second language teaching methodology has varied in approach and emphasis over the years. Within the last century, classrooms have witnessed diverse methods characterized by strict adherence to 
+<span class="gap-wrap"><input class="gap" data-answers="grammar drills and repetitive lab exercises" placeholder="…" spellcheck="false"><span class="hint-tip">Earlier methods — especially the ALM — were characterised by adherence to these</span></span>, as well as a shift to more communicative-based approaches, and a recent postmethod view. In addition, classroom issues have been the subject of debate, such as whether and how to draw attention to grammar, as in the 
+<span class="gap-wrap"><input class="gap" data-answers="focus on form debate" placeholder="…" spellcheck="false"><span class="hint-tip">The key classroom instructional debate — whether to draw attention to grammar in meaning-focused classrooms</span></span>. Form-focusing techniques include 
+<span class="gap-wrap"><input class="gap" data-answers="input enhancement and input flooding" placeholder="…" spellcheck="false"><span class="hint-tip">Two form-focusing techniques discussed in this chapter — named for drawing attention to and flooding learners with target forms</span></span>, as well as Processing Instruction. Corrective feedback can take a number of forms; quite a bit of research has examined 
+<span class="gap-wrap"><input class="gap" data-answers="recasts" placeholder="…" spellcheck="false"><span class="hint-tip">The most common but often-ignored form of corrective feedback examined extensively in research</span></span>. The question of L1 use in classrooms, including arguments that 
+<span class="gap-wrap"><input class="gap" data-answers="translation" placeholder="…" spellcheck="false"><span class="hint-tip">Cook and others argue this activity may have learning benefits — its role has been surprisingly under-researched</span></span> may have benefits, was raised. Finally, computer-based technology and 
+<span class="gap-wrap"><input class="gap" data-answers="computer-mediated communication" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CMC; the digital communication forms increasingly permeating language learning</span></span> (CMC), in the field known as computer-assisted language learning, or CALL, are taking on increasingly important roles in second language learning and teaching.</p>
+
+<!-- KEY CONCEPTS -->
+<div class="section-rule"><h2>Key Concepts</h2></div>
+<ul class="key-concepts" style="list-style: disc; padding-left:1.4rem;">
+  <li>Grammar Translation Method</li><li>Direct Method</li><li>Audiolingual Method</li><li>Suggestopedia</li><li>Total Physical Response</li><li>Communicative Approach or Communicative Language Teaching (CLT)</li><li>Task-based language teaching (TBLT)</li><li>Postmethod perspective</li><li>Focus on form</li><li>Form-focused instruction (FFI)</li><li>Focus on forms</li><li>Input enhancement</li><li>Input flooding</li><li>Processing Instruction (PI)</li><li>Corrective feedback</li><li>Uptake</li><li>Computer-assisted language learning (CALL)</li><li>Computer-mediated communication (CMC)</li>
+</ul>
+
+<!-- SELF-ASSESSMENT -->
+<div class="section-rule"><h2>Self-Assessment Questions</h2></div>
+<div class="assessment">
+<ol>
+  <li>The L2 teaching approach that most emphasizes learning through oral repetitions and drills is:
+    <ol type="a"><li>Grammar Translation Method</li><li>Suggestopedia</li><li>Direct Method</li><li>Audiolingual Method.</li></ol>
+  </li>
+  <li>The L2 teaching approach that emphasizes the use of functional language and meaning-based language instruction in the classroom is:
+    <ol type="a"><li>Audiolingual Method</li><li>Grammar Translation Method</li><li>Communicative language teaching</li><li>Suggestopedia.</li></ol>
+  </li>
+  <li>Task-based instruction is most closely associated with the following teaching approach:
+    <ol type="a"><li>Audiolingual Method</li><li>Communicative language teaching</li><li>Suggestopedia</li><li>Direct Method.</li></ol>
+  </li>
+  <li>The view that gives the language teacher a critical role in developing context-appropriate instruction is mostly closely linked with:
+    <ol type="a"><li>Total Physical Response</li><li>Postmethod perspective</li><li>Suggestopedia</li><li>Direct Method.</li></ol>
+  </li>
+  <li>The Processing Instruction approach was developed largely by:
+    <ol type="a"><li>M. Long</li><li>R. Schmidt</li><li>B. VanPatten</li><li>G. Lozanov.</li></ol>
+  </li>
+  <li>The term that best describes "the teacher's reformulation of all or part of a student's utterance minus the error" is:
+    <ol type="a"><li>elicitation</li><li>recast</li><li>uptake</li><li>explicit correction.</li></ol>
+  </li>
+</ol>
+</div>
+
+<!-- DISCUSSION QUESTIONS -->
+<div class="section-rule"><h2>Discussion Questions</h2></div>
+<ol style="padding-left:1.5rem; line-height:1.8;">
+  <li>What kind of language teaching approaches/methods have you experienced? What were the main characteristics you observed? In your opinion, what were the main strengths and weaknesses?</li>
+  <li>Suggest aspects of a teaching method that in your opinion would make language learning both enjoyable and effective.</li>
+  <li>What L2 classroom correction techniques do you think would be most useful to you? Why?</li>
+  <li>Do you think language teachers should restrict themselves to using the target language only in the classroom? Why or why not?</li>
+</ol>
+
+<!-- EXERCISES -->
+<div class="section-rule"><h2>Exercises / Project Ideas</h2></div>
+<ol style="padding-left:1.5rem; line-height:1.8;">
+  <li>Interview L2 or foreign language teachers in your school or in any other school to which you have access. Ask them questions that would allow you to determine which L2 teaching approach guides their teaching. Ask them to give their opinion about the efficacy of that approach.</li>
+  <li>Interview students who are taking an L2 or foreign language class at your school. Ask them questions about the L2 teaching approach that appears to be used. Ask them to give their opinion about the efficacy of that approach.</li>
+  <li>If you are able to observe a language class, note what corrective feedback techniques are used by the instructor. Do you notice instances of uptake or repair on the part of students, following the corrective feedback?</li>
+</ol>
+
+<!-- FURTHER READING -->
+<div class="section-rule"><h2>Further Reading and Viewing</h2></div>
+<div class="references">
+  <p>Chaudron, C. (1988). <em>Second language classrooms.</em> Cambridge: Cambridge University Press. <em>This book provides a comprehensive look at language classroom research in the last century.</em></p>
+  <p>Cook, G. (2010). <em>Translation in language teaching.</em> Oxford: Oxford University Press. <em>A resource for those interested in pursuing further the issue of translation and its possible role in L2 teaching.</em></p>
+  <p>Ellis, R. (2003). <em>Task-based language learning and teaching.</em> Oxford: Oxford University Press. <em>A good source for further information about task-based language teaching.</em></p>
+  <p>Larsen-Freeman, D., &amp; Anderson, M. (2011). <em>Techniques and principles in language teaching.</em> (3rd ed.). New York: Oxford University Press.</p>
+  <p>Lee, J.F., &amp; VanPatten, B. (2003). <em>Making communicative language teaching happen</em> (2nd ed.). New York: McGraw Hill.</p>
+  <p>Long, M.H., &amp; Doughty, C.J. (Eds.) (2009). <em>The handbook of language teaching.</em> Oxford: Wiley-Blackwell.</p>
+  <p>Musumeci, D. (2009). The history of language teaching. In M.H. Long &amp; C.J. Doughty (Eds.), <em>The handbook of language teaching</em> (pp. 42–62). Oxford: Wiley-Blackwell.</p>
+  <p>Nunan, D. (1989). <em>Designing tasks for the communicative classroom.</em> Cambridge: Cambridge University Press.</p>
+  <p>Richards, J., &amp; Rodgers, T. (2001). <em>Approaches and methods in language teaching</em> (2nd ed.). Cambridge: Cambridge University Press.</p>
+</div>
+
+</main>
+
+<!-- SIDEBAR -->
+<aside class="sidebar-col">
+  <div class="def-card">
+    <strong>Grammar Translation Method</strong>
+    A teaching method with an emphasis on grammar and translation of sentences.
+  </div>
+  <div class="def-card">
+    <strong>Direct Method</strong>
+    An approach developed in reaction to the Grammar Translation Method which gave priority to oral expression and avoided recourse to the learner's native language.
+  </div>
+  <div class="def-card">
+    <strong>Audiolingual Method (ALM)</strong>
+    Based on behaviorist principles, this method attempted to develop good language habits through repetitive drills and pattern practices.
+  </div>
+  <div class="def-card">
+    <strong>Suggestopedia</strong>
+    An L2 teaching approach developed by Georgi Lozanov that promoted a relaxed stress-free environment for language learning in small groups.
+  </div>
+  <div class="def-card">
+    <strong>Total Physical Response (TPR)</strong>
+    An approach developed by Asher that allows learners to wait until they are ready to speak, but asks them to carry out actions.
+  </div>
+  <div class="def-card">
+    <strong>Communicative Language Teaching (CLT)</strong>
+    An approach that emphasizes using techniques that engage learners in the pragmatic, authentic, functional use of language for meaningful purposes.
+  </div>
+  <div class="def-card">
+    <strong>Task-based language teaching (TBLT)</strong>
+    An approach related to communicative language teaching which emphasizes, through concrete learning outcomes in the form of "tasks," what learners are able to do with the language.
+  </div>
+  <div class="def-card">
+    <strong>Postmethod perspective</strong>
+    The view (e.g., Kumaravadivelu) that implementing any single method is misguided; teachers need to take their specific teaching context into account and take an active role.
+  </div>
+  <div class="def-card">
+    <strong>focus on forms</strong>
+    Placing an emphasis on formal aspects of language in the classroom by isolating them for practice through exercises, rather than drawing attention to forms through meaningful activities.
+  </div>
+  <div class="def-card">
+    <strong>focus on form / form-focused instruction (FFI)</strong>
+    Drawing students' attention to aspects of linguistic form in classrooms, characterized by a meaning- or communication-based approach.
+  </div>
+  <div class="def-card">
+    <strong>input enhancement</strong>
+    Various means of drawing attention to aspects of the target language, such as underlining or using bold type, so that students will notice and learn them.
+  </div>
+  <div class="def-card">
+    <strong>input flooding</strong>
+    Exposing learners to substantial amounts of input, or examples of a given linguistic feature.
+  </div>
+  <div class="def-card">
+    <strong>Processing Instruction (PI)</strong>
+    An approach to L2 teaching based on Input Processing which draws learners' attention to grammatical forms through various means.
+  </div>
+  <div class="def-card">
+    <strong>corrective feedback</strong>
+    Providing feedback to the learner, explicitly or implicitly, that an utterance is not entirely correct.
+  </div>
+  <div class="def-card">
+    <strong>uptake</strong>
+    Learner's utterance that follows and incorporates teacher feedback.
+  </div>
+  <div class="def-card">
+    <strong>computer-assisted language learning (CALL)</strong>
+    This refers to using the computer and computerized resources in L2 learning.
+  </div>
+  <div class="def-card">
+    <strong>computer-mediated communication (CMC)</strong>
+    Communication through electronic devices, such as sending emails, using text messages, video-based programs, etc.
+  </div>
+</aside>
+
+</div><!-- /page-wrap -->
+
+<script>
+  function norm(s) {
+    return s.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[–—]/g, '-');
+  }
+  function checkGap(input) {
+    const raw = input.value.trim();
+    if (!raw) return;
+    const accepted = input.dataset.answers.split('|');
+    const correct = accepted.some(a => norm(raw) === norm(a));
+    input.classList.remove('correct', 'wrong');
+    input.classList.add(correct ? 'correct' : 'wrong');
+  }
+  function checkAll() {
+    const inputs = document.querySelectorAll('.gap');
+    let right = 0;
+    inputs.forEach(input => { if (input.value.trim()) { checkGap(input); if (input.classList.contains('correct')) right++; } });
+    const badge = document.getElementById('scoreBadge');
+    badge.textContent = `Score: ${right} / ${inputs.length} filled correctly`;
+    badge.classList.add('visible');
+  }
+  function showAll() {
+    document.querySelectorAll('.gap').forEach(input => {
+      input.value = input.dataset.answers.split('|')[0];
+      input.classList.remove('wrong');
+      input.classList.add('correct');
+    });
+    const badge = document.getElementById('scoreBadge');
+    badge.textContent = 'All answers revealed.';
+    badge.classList.add('visible');
+  }
+  function resetAll() {
+    document.querySelectorAll('.gap').forEach(input => {
+      input.value = '';
+      input.classList.remove('correct', 'wrong');
+    });
+    document.getElementById('scoreBadge').classList.remove('visible');
+  }
+  document.querySelectorAll('.gap').forEach(input => {
+    input.addEventListener('blur', () => { if (input.value.trim()) checkGap(input); });
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { checkGap(input); input.blur(); } });
+  });
+</script>
+</body>
+</html>
