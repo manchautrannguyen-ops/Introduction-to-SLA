@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 4 – Theoretical Perspectives: Past and Present</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --paper: #fffef9;
+    --ink: #1a1410;
+    --muted: #5c5248;
+    --accent: #2d6a4f;
+    --accent-light: #d8f3dc;
+    --accent-mid: #52b788;
+    --highlight: #f9c74f;
+    --gap-bg: #eef7f1;
+    --gap-border: #52b788;
+    --gap-correct: #d8f3dc;
+    --gap-wrong: #fde8e4;
+    --gap-correct-border: #2d6a4f;
+    --gap-wrong-border: #c1440e;
+    --sidebar: #f0ebe1;
+    --sidebar-accent: #b5838d;
+    --rule: #c9b99a;
+    --chapter-red: #c1440e;
+    --hint-bg: #1a1410;
+    --hint-text: #faf7f2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── HEADER ── */
+  .book-header {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 4px solid var(--accent);
+  }
+  .chapter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--accent-mid);
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+  .header-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .header-text p {
+    font-size: 0.85rem;
+    color: #b5c4bc;
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+  .einstein {
+    margin-top: 0.8rem;
+    font-style: italic;
+    color: var(--accent-mid);
+    font-size: 0.9rem;
+  }
+  .einstein cite { font-style: normal; color: #a8c5b5; }
+
+  /* ── CONTROLS BAR ── */
+  .controls-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 2px solid var(--rule);
+    padding: 0.75rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .controls-bar label {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+  }
+  .btn {
+    padding: 0.5rem 1.4rem;
+    border: 2px solid var(--accent);
+    background: transparent;
+    color: var(--accent);
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+    transition: all 0.18s;
+  }
+  .btn:hover { background: var(--accent); color: #fff; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #1a5236; border-color: #1a5236; }
+  .btn-reset { border-color: var(--chapter-red); color: var(--chapter-red); }
+  .btn-reset:hover { background: var(--chapter-red); color: #fff; }
+  .score-badge {
+    margin-left: auto;
+    background: var(--accent-light);
+    border: 2px solid var(--accent);
+    padding: 0.35rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    border-radius: 2px;
+    display: none;
+  }
+  .score-badge.visible { display: block; }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 230px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* ── CHAPTER OUTLINE ── */
+  .outline-box {
+    border: 1px solid var(--rule);
+    background: var(--sidebar);
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .outline-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+  .outline-box ol {
+    list-style: none;
+    padding: 0;
+  }
+  .outline-box li {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--muted);
+    padding: 0.1rem 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .outline-box li a { color: inherit; text-decoration: none; }
+  .outline-box li a:hover { color: var(--accent); }
+  .outline-box .sub { padding-left: 1.2rem; }
+
+  /* ── SECTION HEADINGS ── */
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0 1.2rem;
+  }
+  .section-rule::before {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--rule);
+  }
+  .section-rule h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--accent);
+    white-space: nowrap;
+    font-style: italic;
+  }
+  .section-rule .sec-num {
+    font-size: 1rem;
+    color: var(--chapter-red);
+    font-weight: 700;
+    font-style: normal;
+    font-family: 'Playfair Display', serif;
+  }
+
+  h3.sub-section {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    margin: 2rem 0 0.8rem;
+    font-style: italic;
+  }
+
+  /* ── BODY TEXT ── */
+  p { margin-bottom: 1.2rem; }
+
+  /* ── SIDEBAR DEFINITIONS ── */
+  .sidebar-col { position: sticky; top: 80px; align-self: start; }
+  .def-card {
+    background: var(--paper);
+    border-left: 4px solid var(--accent);
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.8rem;
+    line-height: 1.55;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+  }
+  .def-card strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+  .def-card .abbr { color: var(--muted); font-style: italic; }
+
+  /* ── PRACTICE BOX ── */
+  .practice-box {
+    background: var(--sidebar);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--sidebar-accent);
+    padding: 1.2rem 1.4rem;
+    margin: 1.8rem 0;
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+  .practice-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--sidebar-accent);
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  table caption {
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--muted);
+  }
+  th {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+  td {
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #f5f1e8; }
+
+  /* ── FIGURE / DIAGRAM ── */
+  .figure-wrap {
+    border: 1px solid var(--rule);
+    padding: 1.2rem;
+    margin: 1.8rem 0;
+    background: var(--paper);
+    text-align: center;
+  }
+  .figure-wrap figcaption {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 0.6rem;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .figure-wrap svg { max-width: 100%; }
+
+  /* ── KEY CONCEPTS ── */
+  .key-concepts {
+    column-count: 2;
+    column-gap: 2rem;
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+  .key-concepts li { margin-bottom: 0.2rem; break-inside: avoid; }
+
+  /* ── SELF-ASSESSMENT ── */
+  .assessment ol { padding-left: 1.5rem; }
+  .assessment li { margin-bottom: 0.8rem; }
+  .assessment ol ol { list-style: lower-alpha; padding-left: 1.5rem; margin-top: 0.4rem; }
+
+  /* ── GAP FILL ── */
+  .gap-wrap {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+  }
+  .gap {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid var(--gap-border);
+    background: var(--gap-bg);
+    padding: 0 6px 1px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 1em;
+    color: var(--ink);
+    width: 140px;
+    min-width: 80px;
+    outline: none;
+    border-radius: 2px 2px 0 0;
+    transition: background 0.2s, border-color 0.2s;
+    vertical-align: baseline;
+  }
+  .gap:focus { background: #e0f2e9; border-bottom-color: var(--accent); }
+  .gap.correct { background: var(--gap-correct); border-bottom-color: var(--gap-correct-border); color: #1a5236; }
+  .gap.wrong   { background: var(--gap-wrong);   border-bottom-color: var(--gap-wrong-border);  color: #7a1f07; }
+
+  /* Hint tooltip */
+  .gap-wrap .hint-tip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--hint-bg);
+    color: var(--hint-text);
+    font-size: 0.74rem;
+    line-height: 1.4;
+    padding: 0.4rem 0.7rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 200;
+    transition: opacity 0.15s;
+    max-width: 220px;
+    white-space: normal;
+    text-align: center;
+  }
+  .gap-wrap .hint-tip::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--hint-bg);
+  }
+  .gap-wrap:hover .hint-tip { visibility: visible; opacity: 1; }
+
+  /* Feedback icons after check */
+  .gap.correct::after { content: '✓'; }
+  .feedback-icon { margin-left: 2px; font-size: 0.75em; }
+
+  /* ── QUOTE BLOCK ── */
+  blockquote {
+    border-left: 3px solid var(--accent-mid);
+    margin: 1.2rem 0 1.2rem 1rem;
+    padding: 0.5rem 1rem;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  blockquote cite {
+    display: block;
+    margin-top: 0.4rem;
+    font-style: normal;
+    font-size: 0.82rem;
+    color: var(--ink);
+  }
+
+  /* ── DIALOGUE ── */
+  .dialogue {
+    background: #f5f1e8;
+    border: 1px solid var(--rule);
+    padding: 1rem 1.2rem;
+    margin: 1.2rem 0;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+  .dialogue p { margin-bottom: 0.3rem; }
+
+  /* ── WES EXAMPLES ── */
+  .examples-list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0.6rem 0;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ── FIGURE DESCRIPTIONS ── */
+  .fig-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  /* ── REFERENCES ── */
+  .references { font-size: 0.8rem; line-height: 1.7; }
+  .references p { margin-bottom: 0.5rem; }
+
+  /* ── MISC ── */
+  .full-width { grid-column: 1 / -1; }
+  hr.section-divider { border: none; border-top: 1px solid var(--rule); margin: 2rem 0; }
+
+  @media (max-width: 800px) {
+    .page-wrap { grid-template-columns: 1fr; }
+    .sidebar-col { position: static; }
+    .book-header { flex-direction: column; gap: 0.8rem; padding: 1.5rem; }
+    .chapter-num { font-size: 4rem; }
+    .controls-bar { padding: 0.75rem 1rem; }
+    .key-concepts { column-count: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="book-header">
+  <div class="chapter-num">4</div>
+  <div class="header-text">
+    <h1>Theoretical Perspectives:<br>Past and Present</h1>
+    <p>Introducing Second Language Acquisition: Perspectives and Practices — Kirsten M. Hummel © 2014</p>
+    <p class="einstein">"It is the theory that decides what can be observed." <cite>— Albert Einstein</cite></p>
+  </div>
+</header>
+
+<!-- CONTROLS -->
+<div class="controls-bar">
+  <label>Fill in the gaps, then check your answers:</label>
+  <button class="btn btn-primary" onclick="checkAll()">Check All Answers</button>
+  <button class="btn" onclick="showAll()">Reveal All</button>
+  <button class="btn btn-reset" onclick="resetAll()">Reset</button>
+  <div class="score-badge" id="scoreBadge"></div>
+</div>
+
+<div class="page-wrap">
+<main>
+
+<!-- CHAPTER OUTLINE -->
+<div class="outline-box">
+  <h3>Chapter Outline</h3>
+  <ol>
+    <li>4.0 &nbsp; Chapter overview &nbsp; 60</li>
+    <li>4.1 &nbsp; Contrastive analysis &nbsp; 61</li>
+    <li>4.2 &nbsp; Error analysis &nbsp; 64</li>
+    <li>4.3 &nbsp; Universal Grammar &nbsp; 67</li>
+    <li>4.4 &nbsp; The Monitor Model/Input Hypothesis &nbsp; 70</li>
+    <li>4.5 &nbsp; Information processing/cognitive approach &nbsp; 75</li>
+    <li>4.6 &nbsp; Processing-related hypotheses &nbsp; 77</li>
+    <li class="sub">4.6.1 &nbsp; The Interaction Hypothesis &nbsp; 77</li>
+    <li class="sub">4.6.2 &nbsp; Comprehensible Output Hypothesis &nbsp; 80</li>
+    <li class="sub">4.6.3 &nbsp; The Noticing Hypothesis &nbsp; 81</li>
+    <li class="sub">4.6.4 &nbsp; Input processing &nbsp; 85</li>
+    <li>4.7 &nbsp; Emergentism and usage-based approaches &nbsp; 86</li>
+    <li class="sub">4.7.1 &nbsp; Connectionism &nbsp; 87</li>
+    <li class="sub">4.7.2 &nbsp; Cognitive linguistics &nbsp; 89</li>
+    <li class="sub">4.7.3 &nbsp; Language as a complex adaptive system &nbsp; 90</li>
+    <li>4.8 &nbsp; The Sociocultural approach &nbsp; 91</li>
+    <li>4.9 &nbsp; Summing up &nbsp; 93</li>
+    <li>Key concepts &nbsp; 94</li>
+    <li>Self-assessment questions &nbsp; 95</li>
+    <li>Discussion questions &nbsp; 96</li>
+    <li>Exercises/Project ideas &nbsp; 97</li>
+    <li>Further reading and viewing &nbsp; 97</li>
+    <li>References &nbsp; 99</li>
+  </ol>
+</div>
+
+<!-- 4.0 -->
+<div class="section-rule" id="s40">
+  <span class="sec-num">4.0</span>
+  <h2>Chapter Overview</h2>
+</div>
+
+<p>The term "theory" has been defined in various ways, but essentially it refers to ". . . a set of statements about natural phenomena that explains why these phenomena occur the way they do" (VanPatten &amp; Williams, 2007, p. 2). For example, the psychologist Jean Piaget, introduced in Chapter 2, proposed a theory in which children go through four distinct stages in 
+<span class="gap-wrap"><input class="gap" data-answer="cognitive growth" data-answers="cognitive growth" placeholder="…" spellcheck="false"><span class="hint-tip">Piaget described children's mental development in terms of stages of ___</span></span>, ranging from the earliest sensorimotor stage when infants react to their environment based on what they perceive through their senses, to the fourth stage of formal operations, in which the 12-year-old becomes capable of 
+<span class="gap-wrap"><input class="gap" data-answer="abstract thought" data-answers="abstract thought" placeholder="…" spellcheck="false"><span class="hint-tip">The final Piagetian stage enables this type of reasoning</span></span>. Piaget's theory was therefore an attempt to explain what he observed about children's cognitive development.</p>
+
+<p>The philosopher of science Thomas Kuhn (1977) specified five criteria he considered should help 
+<span class="gap-wrap"><input class="gap" data-answer="determine theory choice" data-answers="determine theory choice" placeholder="…" spellcheck="false"><span class="hint-tip">Kuhn's five criteria help scholars do this when selecting a theoretical framework</span></span>, but at the same time Kuhn pointed out that people will apply these guidelines differently, given their individual perspectives:</p>
+
+<ol style="padding-left:1.8rem; margin-bottom:1.2rem;">
+  <li style="margin-bottom:0.4rem;"><strong>Accurate</strong>—its predictions should correspond with results found through experiments and observations.</li>
+  <li style="margin-bottom:0.4rem;"><strong>Consistent</strong>—it should be internally consistent, as well as with other currently accepted theories about related phenomena.</li>
+  <li style="margin-bottom:0.4rem;"><strong>Broad scope</strong>—a theory's consequences should extend beyond what it was initially designed to explain.</li>
+  <li style="margin-bottom:0.4rem;"><strong>Simple</strong>—it should be the simplest explanation.</li>
+  <li style="margin-bottom:0.4rem;"><strong>Fruitful</strong>—a theory should disclose new phenomena or new relationships among phenomena.</li>
+</ol>
+
+<p>Another important concept related to theory is "hypothesis." A hypothesis is different from a theory in that it makes a 
+<span class="gap-wrap"><input class="gap" data-answer="prediction" data-answers="prediction" placeholder="…" spellcheck="false"><span class="hint-tip">A hypothesis does this about a distinct phenomenon, whereas a theory is broader</span></span> about a distinct phenomenon that derives from a more general theory. To continue with the example of Piaget's work, a hypothesis derived from his overall theory is that children who have not yet reached the formal operations stage will be unable to perform certain tasks requiring 
+<span class="gap-wrap"><input class="gap" data-answer="abstract reasoning" data-answers="abstract reasoning" placeholder="…" spellcheck="false"><span class="hint-tip">Piaget's formal operations stage enables this type of thinking</span></span>.</p>
+
+<p>As is the case in any other discipline, there is a long tradition of theoretical views and hypotheses underlying the study of second language acquisition, and these views have changed considerably over the years. An early view tended to consider language learning largely in comparison to 
+<span class="gap-wrap"><input class="gap" data-answer="first language acquisition" data-answers="first language acquisition|L1 acquisition" placeholder="…" spellcheck="false"><span class="hint-tip">Early SLA views compared L2 learning to this process in children</span></span>. More recent views reflect the multifaceted set of influences on L2 learning. Some views highlight the contribution of 
+<span class="gap-wrap"><input class="gap" data-answer="innate principles" data-answers="innate principles" placeholder="…" spellcheck="false"><span class="hint-tip">The UG approach stresses these biologically given properties that guide acquisition</span></span> that guide acquisition. Other perspectives stress the cognitive nature of L2 acquisition, with an accompanying focus on mental processes such as attention and memory. Another approach points out the importance of input and practice in establishing links between language forms. In yet another view, the essentially social nature of the language learning process is highlighted.</p>
+
+<p>Learning about various theories and the approaches that have emerged from them can help us understand the L2 learning process better. What at first might appear as disconnected observations about language learning can become clearer when viewed through the prism of a given 
+<span class="gap-wrap"><input class="gap" data-answer="theoretical framework" data-answers="theoretical framework" placeholder="…" spellcheck="false"><span class="hint-tip">A conceptual lens or model that organises research observations</span></span>, and may allow new insights. These insights may ultimately lead to more effective learning and teaching practices.</p>
+
+<!-- 4.1 -->
+<div class="section-rule" id="s41">
+  <span class="sec-num">4.1</span>
+  <h2>Contrastive Analysis</h2>
+</div>
+
+<p>In the 1950s, a 
+<span class="gap-wrap"><input class="gap" data-answer="structuralist" data-answers="structuralist" placeholder="…" spellcheck="false"><span class="hint-tip">This school of linguistics focused on describing observable forms/structures of language</span></span> view of language was predominant among linguists. As the term indicates, the emphasis was on language forms or structures, as opposed to their functions. The structuralist linguist sought to identify and describe the observable units of a language. What can be termed a 
+<span class="gap-wrap"><input class="gap" data-answer="contrastive analysis" data-answers="contrastive analysis|CA" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CA; the comparison of linguistic structures across two or more languages</span></span> (CA) approach characterizing second language learning and teaching in the 1950s and 1960s represents such a structuralist view.</p>
+
+<p>During this period, in the neighboring discipline of psychology, 
+<span class="gap-wrap"><input class="gap" data-answer="behaviorist" data-answers="behaviorist|behaviourist" placeholder="…" spellcheck="false"><span class="hint-tip">B.F. Skinner was a major figure in this school of psychological thought</span></span> theories were predominant. As we saw in Chapter 2, a major figure in the behaviorist school of thought was B.F. Skinner, a psychologist. In the behaviorist view, L2 learning took place in the same way as any other kind of learning—it involved procedures such as 
+<span class="gap-wrap"><input class="gap" data-answer="imitation, repetition, and reinforcement" data-answers="imitation, repetition, and reinforcement|imitation repetition reinforcement" placeholder="…" spellcheck="false"><span class="hint-tip">Three key behaviorist procedures for habit formation (list all three)</span></span>, which enable learners to develop "habits" of the L2. The process of learning either the L1 or an L2 was considered to be the establishment of habits through stimulus-response connections. When one learns an L2, the learner already has in place a well-functioning linguistic system, i.e., the L1. From the behaviorist perspective, therefore, those L1 
+<span class="gap-wrap"><input class="gap" data-answer="stimulus-response patterns" data-answers="stimulus-response patterns|stimulus response patterns" placeholder="…" spellcheck="false"><span class="hint-tip">In behaviorist theory, L1 learning creates these conditioned connections that must be replaced in L2 learning</span></span> have to be replaced by new L2 habits.</p>
+
+<p>Behaviorist views led to the claim that first language acquisition and second language acquisition were fundamentally similar processes. For instance, it was pointed out that in both situations imitation, repetition, and practice were involved to some degree and comprehension normally precedes production.</p>
+
+<p>Stemming from the contrastive analysis view is what became known as the 
+<span class="gap-wrap"><input class="gap" data-answer="Contrastive Analysis Hypothesis" data-answers="Contrastive Analysis Hypothesis|CAH" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CAH; predicts difficulty based on L1–L2 structural differences</span></span> (CAH). This hypothesis consisted of the assertion that 
+<span class="gap-wrap"><input class="gap" data-answer="L1 interference" data-answers="L1 interference" placeholder="…" spellcheck="false"><span class="hint-tip">The CAH claims this is the main obstacle to L2 learning</span></span> is what constitutes the main obstacle to L2 learning.</p>
+
+<p>As a result, a main objective of the CA approach was to carry out a structural analysis of the L1 and the target language, in order to determine areas of 
+<span class="gap-wrap"><input class="gap" data-answer="linguistic contrast" data-answers="linguistic contrast|linguistic contrasts" placeholder="…" spellcheck="false"><span class="hint-tip">CA aimed to identify these structural differences between two languages</span></span>. Those areas of contrast were precisely where it would be possible to predict that there would be learner difficulties. Areas of similarity were those where the learner was predicted to learn easily. Thus, in this strong version of the CAH, a CA was expected to 
+<span class="gap-wrap"><input class="gap" data-answer="predict the areas of difficulty" data-answers="predict the areas of difficulty|predict areas of difficulty" placeholder="…" spellcheck="false"><span class="hint-tip">The strong version of the CAH claimed CA could do this for L2 learners</span></span> for L2 learners.</p>
+
+<p>Robert Lado, who wrote <em>Linguistics across Cultures</em>, was raised in Spain and settled in the United States at 21 years of age. His experiences in learning English as an adult contributed to his views about language learning. Along with linguist Charles Fries, he developed the CAH and wrote <em>Linguistics across Cultures</em> to guide language teachers in the CA approach. He also developed the Lado English Series of books for English as a Second Language (ESL) learners, still widely used today, originally based on this approach. Some strong claims for the CA approach are found in <em>Linguistics across Cultures</em> (Lado, 1957, p. 59):</p>
+
+<blockquote>Since the learner tends to transfer the habits of his native language, we have here the major source of difficulty or ease in learning the structure of a foreign language. Those structures that are similar will be easy to learn because they will be transferred and may function satisfactorily in the foreign language. Those structures that are different will be difficult because when transferred they will not function satisfactorily in the foreign language and will therefore have to be changed.</blockquote>
+
+<p>It was therefore expected that learners would be likely to make errors in areas in which L2 structures differed from the L1. Meanwhile, areas which were similar between the two languages were expected not to pose a problem for learners. For instance, for the English-speaking learner of French, one would expect no problems in learning sentences formed by the sequence 
+<span class="gap-wrap"><input class="gap" data-answer="Subject Verb Object" data-answers="Subject Verb Object|SVO" placeholder="…" spellcheck="false"><span class="hint-tip">This word-order sequence is shared by both English and French basic sentences (use full term or abbreviation)</span></span>, since that same sequence characterizes most English sentences: "I see the book" (French: "Je vois le livre.")</p>
+
+<p>On the other hand, when a pronoun is substituted for the object (book) in the French sentence, it is normally placed before the verb as in: "Je le vois" (I see it.)</p>
+
+<p>In the CAH approach, the expectation was that this SOV (Subject Object Verb) structure would be problematic for the learner, since it conflicted with the L1 structure. The learner was predicted to make the error "Je vois le" ("I see it.") Indeed, this is a typical error on the part of English-speaking beginning learners of French.</p>
+
+<p>Some adherents to the CAH set out to establish what was referred to as a "hierarchy of difficulty" in order to allow 
+<span class="gap-wrap"><input class="gap" data-answer="predictions" data-answers="predictions|prediction" placeholder="…" spellcheck="false"><span class="hint-tip">The hierarchy of difficulty was designed to allow researchers to make these about where errors would occur</span></span> as to where L2 learners could be expected to make errors, based on the degree to which structures across the L1 and the L2 differed. This involved careful examination of the structures of both languages and an attempt to determine which areas constituted a higher degree of difficulty or difference.</p>
+
+<p>The hierarchy proposed by Stockwell, Bowen, and Martin (1965) ranged from a "zero level" of easy 
+<span class="gap-wrap"><input class="gap" data-answer="transfer" data-answers="transfer" placeholder="…" spellcheck="false"><span class="hint-tip">The term for carrying over features from one language into another; cognates represent zero-level ___</span></span> between languages (for example, words that are cognates across languages, as in "table" in English and French), to a level 5, or "split," in which one item in the L1 becomes two or more in the target language, predicted to be very difficult for the learner. For example, for English speakers, in learning a language such as French, the distinction between use of "tu" ("you" singular and informal) and "vous" ("you" plural and formal) must be learned where there is only one form "you" in the L1. In principle, therefore, the proposed hierarchy of difficulty would allow researchers to identify and predict where learners were most likely to need special instruction in order to overcome 
+<span class="gap-wrap"><input class="gap" data-answer="interference from the L1" data-answers="interference from the L1|L1 interference" placeholder="…" spellcheck="false"><span class="hint-tip">The hierarchy aimed to help learners overcome this negative influence of the first language</span></span>.</p>
+
+<div class="practice-box">
+  <h4>Language learning in practice: the Audiolingual Method</h4>
+  <p>During this period in which behaviorism was largely predominant, language educators attempted to develop teaching materials that reflected the CAH, including the belief that language learning meant establishing an entire new set of habits and breaking the former L1 habits. These views largely contributed to the development of the Audiolingual teaching method throughout North America. The Audiolingual Method (ALM) focused on establishing "good" language habits through repetition, mechanical language drills and pattern practices, often carried out through language laboratory exercises. The Audiolingual Method will be discussed further in Chapter 5.</p>
+</div>
+
+<p>Attempts to apply such a CA approach met with some success, but it soon became apparent that the approach was basically flawed. One problem that became evident quite rapidly is that it is very difficult, if not impossible, to make decisions about the degree of similarity or difference between languages because considerable 
+<span class="gap-wrap"><input class="gap" data-answer="subjectivity" data-answers="subjectivity" placeholder="…" spellcheck="false"><span class="hint-tip">A key weakness: assessments of L1–L2 similarity involved too much of this</span></span> is involved. There was also a failure to find support for the predictions of CAH. For instance, one study (Whitman &amp; Jackson, 1972) revealed that linguists' CA predictions applied to an English grammar test for Japanese native speakers were not supported: the Japanese speakers did not have most difficulty with the structures that differed the most from their L1. In addition, other studies (e.g., Hernandez-Chavez, 1977) revealed that learners often make errors in areas where the L1 and L2 are fundamentally similar. In fact, it may be the more subtle areas of difference between languages that cause the most problems.</p>
+
+<p>There are other examples where cross-language similarity does not necessarily lead to 
+<span class="gap-wrap"><input class="gap" data-answer="language transfer" data-answers="language transfer|transfer" placeholder="…" spellcheck="false"><span class="hint-tip">The incorporation of features from one language into another is called ___</span></span>, i.e., incorporating aspects of one language into another. For instance, researchers (Hulstijn &amp; Marchena, 1989) found that Dutch L1 learners of English, whose L1 contains phrasal verbs (i.e., a verb plus a particle, as in "get up" or "give in") just as English does, tended to avoid using them and instead opted for a single word. In fact, they particularly avoided English items that most closely resembled their L1 phrasal verbs, i.e., "give up," "break out," "go off," and "bring up."</p>
+
+<p>Given the lack of supporting evidence, researchers proposed a less categorical version of the CAH. Rather than stating that CA allows one to predict areas of difficulty for language learners, it was suggested that CA can help in explaining the occurrence of certain errors resulting from 
+<span class="gap-wrap"><input class="gap" data-answer="transfer from the L1" data-answers="transfer from the L1|L1 transfer" placeholder="…" spellcheck="false"><span class="hint-tip">Errors resulting from the influence of the first language on the second</span></span> into the L2. This more nuanced view of transfer across languages has come to be referred to as 
+<span class="gap-wrap"><input class="gap" data-answer="cross-linguistic influence" data-answers="cross-linguistic influence|CLI" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CLI; the broader modern term replacing L1 interference</span></span> (CLI).</p>
+
+<!-- 4.2 -->
+<div class="section-rule" id="s42">
+  <span class="sec-num">4.2</span>
+  <h2>Error Analysis</h2>
+</div>
+
+<p>The CA approach tried to predict and eliminate errors by emphasizing L1 interference. An examination of learner errors, however, ultimately led to the realization that many errors are not due to L1 interference, but rather to the learner's own contribution in attempting to master the new linguistic system. Learners make many errors that are due to 
+<span class="gap-wrap"><input class="gap" data-answer="overgeneralizing" data-answers="overgeneralizing|overgeneralization" placeholder="…" spellcheck="false"><span class="hint-tip">Applying a rule too broadly (e.g., "I goed") is called ___</span></span> from their present understanding of the target language. For example, learners of English may tend to overgeneralize the past tense "–ed" ending on verbs: "I called" is correct, but "I goed" or "She hurted me" are not.</p>
+
+<p>Another point that the CA approach did not take into account is the finding that as learners advance in their mastery of the target language, the type and frequency of errors changes. Errors made in later learning are not necessarily the same ones that tend to occur in the early stages.</p>
+
+<p>In the 1960s, one researcher who came to be identified with a shift in thought about the role of errors in language learning was applied linguist Pit Corder. Corder argued that errors are important in providing a glimpse into the learning process and proposed a perspective that came to be known as 
+<span class="gap-wrap"><input class="gap" data-answer="error analysis" data-answers="error analysis|EA" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated EA; the systematic description and classification of learner errors</span></span> (EA). Corder (1967, p. 167) pointed out: "A learner's errors . . . are significant in that they provide to the researcher evidence of how language is learned or acquired, what strategies or procedures the learner is employing in the discovery of the language."</p>
+
+<p>An important development during this period was recognizing learner language as a true system with its own regularities, an 
+<span class="gap-wrap"><input class="gap" data-answer="interlanguage" data-answers="interlanguage|IL" placeholder="…" spellcheck="false"><span class="hint-tip">Selinker's term for the learner's developing L2 system (abbreviated IL)</span></span> (IL). Selinker (1972, p. 214) defined interlanguage as a "separate linguistic system based on observable output which results from a learner's attempted production of a TL [target language] norm." A more recent, but similar, definition is Bialystok and Sharwood Smith's (1985, p. 101): "Interlanguage: a systematic language performance (in production and recognition of utterances) by second language learners who have not achieved sufficient levels of analysis of linguistic knowledge or control of processing to be identified completely with native speakers." Other terms have also been used to characterize the learner's developing system, including 
+<span class="gap-wrap"><input class="gap" data-answer="learner language" data-answers="learner language|approximative system|idiosyncratic dialect" placeholder="…" spellcheck="false"><span class="hint-tip">Three other terms for the learner's developing system include this one, approximative system, and idiosyncratic dialect</span></span>, approximative system, and idiosyncratic dialect, but the term interlanguage has come to be widely accepted to refer to the learner's evolving second language knowledge.</p>
+
+<p>As mentioned earlier, the CAH predicted that English learners of French would make errors such as "Je vois le" ("I see it"), following the sentence patterns of their L1. By the same token, it was predicted that French L1 learners of English would make the error "I it see" following the pattern of French "Je le vois." However, it was found that French speakers do not tend to make that error. Because of wrong predictions such as this (as well as growing interest in a very different linguistic perspective, Universal Grammar, which will be covered in Section 4.3), CA grew out of favor. This led to greater attention being paid to analyzing learner errors and the recognition that one could not simply make predictions based on similarity or difference between language structures. The results of error analyses helped to discredit 
+<span class="gap-wrap"><input class="gap" data-answer="behaviorist views" data-answers="behaviorist views|behaviourist views" placeholder="…" spellcheck="false"><span class="hint-tip">Error analysis results helped to undermine these psychological theories of L2 learning</span></span> of L2 learning and increasingly the focus shifted to the learner's own creative processes in developing language.</p>
+
+<p>The study of learner errors by Corder and others tended to direct attention away from L1 interference and toward what was referred to as the learner's "creative construction." Ellis 2008 describes Corder's 1974 proposed procedures for carrying out EA research, as outlined in Table 4.1.</p>
+
+<!-- TABLE 4.1 -->
+<table>
+  <caption>Table 4.1 &nbsp; Error Analysis procedures.</caption>
+  <colgroup><col style="width:32%"><col style="width:68%"></colgroup>
+  <tr><th>Step</th><th>Description</th></tr>
+  <tr>
+    <td>1. Collection of learner language</td>
+    <td>A sample corpus of learner language needed to be collected. Often, the sample came from written production tasks.</td>
+  </tr>
+  <tr>
+    <td>2. Identification of errors</td>
+    <td>This step entailed examining the learner's language and determining which errors were reflections of lack of knowledge and not simply momentary lapses, or mistakes. There are a number of problems that can arise in attempting to determine what actually constitutes an error (see R. Ellis, 2008, for an in-depth discussion).</td>
+  </tr>
+  <tr>
+    <td>3. Description of errors</td>
+    <td>For some researchers, a description entailed examining sentence structures and pointing out whether an element was added, omitted, substituted or erroneously ordered (e.g., "She patted the dog big."). Other researchers opted for describing errors in terms of which linguistic aspect was affected, i.e., phonology, vocabulary, morphology, syntax, etc.</td>
+  </tr>
+  <tr>
+    <td>4. Explanation of errors</td>
+    <td>For error explanation the principal objective was to determine the source of the error, two main sources being transfer from the L1, and developmental errors, such as L2 overgeneralization.</td>
+  </tr>
+  <tr>
+    <td>5. Evaluation of errors</td>
+    <td>This stage involved establishing the effect a given error had on the learner's conversational partner, such as whether it interfered with comprehension.</td>
+  </tr>
+</table>
+
+<p>Ultimately, the EA perspective was instrumental in drawing attention to the 
+<span class="gap-wrap"><input class="gap" data-answer="creative processes" data-answers="creative processes" placeholder="…" spellcheck="false"><span class="hint-tip">EA shifted focus to these, rather than L1 interference, as drivers of L2 development</span></span> that guide the learner's L2 development. It also contributed the view that errors can provide a glimpse into the learner's developing interlanguage: they are part of the learner's ongoing attempts to acquire a new language.</p>
+
+<p>Still there were a number of shortcomings in the EA approach, a very important one being that focusing on learners' errors necessarily takes attention away from what learners are able to do correctly in acquiring a new language. Learners also find ways to 
+<span class="gap-wrap"><input class="gap" data-answer="avoid certain structures" data-answers="avoid certain structures|avoidance" placeholder="…" spellcheck="false"><span class="hint-tip">Learners may sidestep difficult patterns — this strategy is called ___ and is ignored by EA</span></span> or patterns that cause them difficulty, and avoidance is ignored in an EA approach. By the late 1970s and early 1980s, researchers were spending less time singling out errors for in-depth examination, and other theoretical perspectives were exerting their influence on the study of L2 acquisition.</p>
+
+<!-- 4.3 -->
+<div class="section-rule" id="s43">
+  <span class="sec-num">4.3</span>
+  <h2>Universal Grammar</h2>
+</div>
+
+<p>As was pointed out in Chapter 2, a new view of language emerged during the 1950s that developed out of the structuralist school of thought, but which differed in important ways. Noam Chomsky, a linguist teaching at MIT, published a book (1957), <em>Syntactic Structures</em>, which proposed that languages are fundamentally similar and that a primary goal of the linguist is to describe the underlying rule system beneath the structure of all languages, known as 
+<span class="gap-wrap"><input class="gap" data-answer="Universal Grammar" data-answers="Universal Grammar|UG" placeholder="…" spellcheck="false"><span class="hint-tip">Chomsky's term for the innate system of principles underlying all human languages (abbreviated UG)</span></span>. It was proposed that a set of universal principles characterizes all human languages. This view sharply contrasted with that held by behaviorists and structuralists in that it regarded language as an 
+<span class="gap-wrap"><input class="gap" data-answer="innate ability" data-answers="innate ability|innate" placeholder="…" spellcheck="false"><span class="hint-tip">UG regards language not as environmentally shaped but as this — part of human genetic endowment</span></span>, part of the human genetic endowment, and not as something that is largely crafted in response to environmental influences and pressures. Universal Grammar (UG) therefore adopts a 
+<span class="gap-wrap"><input class="gap" data-answer="nativist" data-answers="nativist" placeholder="…" spellcheck="false"><span class="hint-tip">The view that emphasises innate contributions to language acquisition is called ___</span></span> view, the view that emphasizes innate contributions to the task at hand.</p>
+
+<p>Another key concept in the UG approach introduced in Chapter 2 is 
+<span class="gap-wrap"><input class="gap" data-answer="competence" data-answers="competence" placeholder="…" spellcheck="false"><span class="hint-tip">In Chomskyan linguistics, this is the underlying knowledge that accounts for language ability (vs. performance)</span></span>, the underlying knowledge that accounts for one's language ability. The object of interest for UG scholars is competence, as opposed to 
+<span class="gap-wrap"><input class="gap" data-answer="performance" data-answers="performance" placeholder="…" spellcheck="false"><span class="hint-tip">The actual use of linguistic competence in real situations — contrasted with competence</span></span> or the actual use of that competence in real situations. Another term associated with the UG approach is "formalist" in that there is an emphasis on forms or structures, rather than behaviors, as characterized the behaviorist approach.</p>
+
+<p>From a UG approach, a basic question is whether L2 learners continue to have access to UG constraints. As similarly argued in L1 acquisition, the "poverty of the stimulus" argument is raised, i.e., that exposure to linguistic evidence in the environment, the input, cannot on its own explain the abstract system of rules that ultimately characterizes the learner's language. In other words, learners appear to know what to do with a language even though they have not been explicitly taught certain rules; also they avoid making certain kinds of errors that are logically possible. How they do so is difficult to explain from looking only at the language they hear in their environment.</p>
+
+<p>A considerable body of research has gone into investigating the relation between UG and second language acquisition. White (2003, p. 38) summarized the UG view in second language acquisition (SLA) as follows: ". . . claims for UG operation in L2 acquisition are simply claims that interlanguage grammars will fall within a limited range, that the 'hypothesis space,' is specified by UG." In this view, the interlanguage grammar, or 
+<span class="gap-wrap"><input class="gap" data-answer="interim grammar" data-answers="interim grammar" placeholder="…" spellcheck="false"><span class="hint-tip">The learner's developing grammatical system at any given stage is also called this</span></span>, does not need to be shown to be identical to the target language, only that it is constrained by the principles of UG.</p>
+
+<p>In terms of repercussions for L2 learning, there are a range of logical possibilities concerning whether or not Universal Grammar remains available for the L2 learner. We can describe three main hypotheses concerning 
+<span class="gap-wrap"><input class="gap" data-answer="access to UG" data-answers="access to UG" placeholder="…" spellcheck="false"><span class="hint-tip">The central debate in UG-SLA research concerns this — whether learners still have it</span></span>, each of which has been supported by evidence.</p>
+
+<p>A first hypothesis is that the nature and availability of UG are the same in L1 and L2 acquisition: L2 learners continue to have full, direct access to UG, similar to the case of children learning their L1. There is some evidence for continuing access to UG in the re-setting of 
+<span class="gap-wrap"><input class="gap" data-answer="parameters" data-answers="parameters|parameter" placeholder="…" spellcheck="false"><span class="hint-tip">In UG, these are a small set of alternatives for grammatical features (e.g., head-initial vs head-final)</span></span>. UG parameters are a small set of alternatives for a given grammatical feature, for example, whether a complement, such as a preposition (Prep), precedes or follows the main element (or the "head"), such as the Noun (N) of a noun phrase (Prep N or N Prep). For example, Japanese is considered as a "head-final" language, and the preposition normally follows the head, for example: Nihon-ni ("Japan in"). Japanese speakers easily acquire the English L2 head parameter in which the preposition occurs before the head ("in Japan") and since that parameter is easily acquired, that evidence has been used to support the idea that UG remains available in learning an L2. In other words, UG guides both L1 and L2 acquisition (Flynn, 1996).</p>
+
+<p>A second hypothesis suggests that UG is present and available to L2 learners, but that the L1 acquisition process has to some extent affected its availability in L2 acquisition, so that learners 
+<span class="gap-wrap"><input class="gap" data-answer="access UG indirectly" data-answers="access UG indirectly|access UG indirectly, through their L1" placeholder="…" spellcheck="false"><span class="hint-tip">In Hypothesis 2, learners can still use UG, but only ___, through their L1</span></span>, through their L1.</p>
+
+<p>In a third hypothesis, second language learners no longer have access to UG. Evidence for this position stems largely from studies indicating important differences in performance between child L1 language learners and L2 learners, particularly with regard to 
+<span class="gap-wrap"><input class="gap" data-answer="ultimate linguistic outcomes" data-answers="ultimate linguistic outcomes|ultimate attainment" placeholder="…" spellcheck="false"><span class="hint-tip">Adult L2 learners rarely achieve native-like ability — this refers to end-state or ___ proficiency</span></span>; adult L2 learners rarely achieve native-like ability and there is substantial variation among learners in the proficiency level that they achieve.</p>
+
+<p>Over the past years, the UG approach has seen major revisions, most notably the proposal of what is known as the 
+<span class="gap-wrap"><input class="gap" data-answer="Minimalist Program" data-answers="Minimalist Program" placeholder="…" spellcheck="false"><span class="hint-tip">This major revision of UG gives a greater role to the lexicon in determining grammatical features</span></span>, which gives a greater role to the lexicon in determining grammatical features. This revision has led to important consequences for the data that would be considered relevant as evidence for the issue of access to UG.</p>
+
+<!-- Figure 4.1 -->
+<figure class="figure-wrap">
+  <figcaption><strong>Figure 4.1</strong> Three hypotheses for the role of UG in SLA</figcaption>
+  <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" font-family="'Source Serif 4', Georgia, serif" font-size="12">
+    <!-- UG circle -->
+    <ellipse cx="80" cy="80" rx="60" ry="35" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="2"/>
+    <text x="80" y="77" text-anchor="middle" fill="#1a5236" font-weight="600">Universal</text>
+    <text x="80" y="92" text-anchor="middle" fill="#1a5236" font-weight="600">Grammar</text>
+    <!-- L1/L2 circles -->
+    <ellipse cx="460" cy="50" rx="55" ry="22" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="460" y="54" text-anchor="middle" fill="#2d6a4f">L1</text>
+    <ellipse cx="460" cy="110" rx="55" ry="22" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="460" y="114" text-anchor="middle" fill="#2d6a4f">L2</text>
+    <!-- Arrows -->
+    <!-- H1: Direct -->
+    <line x1="140" y1="60" x2="400" y2="50" stroke="#2d6a4f" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="260" y="50" text-anchor="middle" fill="#2d6a4f" font-size="10">Hypothesis 1: Direct access</text>
+    <!-- H2: Indirect -->
+    <line x1="140" y1="80" x2="400" y2="80" stroke="#c1440e" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow2)"/>
+    <text x="260" y="75" text-anchor="middle" fill="#c1440e" font-size="10">Hypothesis 2: Indirect access</text>
+    <!-- H3: No access -->
+    <line x1="140" y1="100" x2="400" y2="115" stroke="#5c5248" stroke-width="1.5" stroke-dasharray="2,4" marker-end="url(#arrow3)"/>
+    <text x="260" y="118" text-anchor="middle" fill="#5c5248" font-size="10">Hypothesis 3: No UG access</text>
+    <defs>
+      <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#2d6a4f"/>
+      </marker>
+      <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#c1440e"/>
+      </marker>
+      <marker id="arrow3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="#5c5248"/>
+      </marker>
+    </defs>
+  </svg>
+</figure>
+
+<p>The UG approach to L2 acquisition does not include an exploration of the effects of social factors or the overall sociocultural context of language. The objects of interest for the UG linguist are competence and the "ideal speaker-hearer" as expressed by Chomsky (1965, p. 3):</p>
+
+<blockquote>Linguistic theory is concerned primarily with an ideal speaker-hearer, in a completely homogenous speech community, who knows its language perfectly and is unaffected by such grammatically irrelevant conditions as memory limitations, distractions, shifts of attention and interest, and errors (random or characteristic) in applying his [sic] knowledge of the language in actual performance.</blockquote>
+
+<div class="practice-box">
+  <h4>Language learning in practice: UG and language teaching</h4>
+  <p>Chomsky himself suggested skepticism about any practical applications of UG theory to language teaching, as illustrated by these widely cited remarks: "I am frankly, rather sceptical about the significance, for the teaching of languages, of such insights and understanding as have been attained in linguistics and psychology . . . It is possible—even likely—that principles of psychology and linguistics and research in these disciplines, may supply insights useful to the language teacher. But these must be demonstrated, and cannot be presumed . . ." (Chomsky, 1966/71, pp. 152–155, cited in Widdowson, 2003.)</p>
+  <p>While UG theory may have led thus far to few direct applications to the classroom, its impact on theoretical aspects of second language acquisition has been major.</p>
+</div>
+
+<!-- 4.4 -->
+<div class="section-rule" id="s44">
+  <span class="sec-num">4.4</span>
+  <h2>The Monitor Model / Input Hypothesis</h2>
+</div>
+
+<p>In the mid-1970s, in the wake of the UG approach to language acquisition, applied linguist Stephen Krashen developed an influential model of L2 learning. Initially named the 
+<span class="gap-wrap"><input class="gap" data-answer="Monitor Model" data-answers="Monitor Model" placeholder="…" spellcheck="false"><span class="hint-tip">Krashen's original name for his model, based on the editing function of learned knowledge</span></span> and, later on, the 
+<span class="gap-wrap"><input class="gap" data-answer="Input Hypothesis" data-answers="Input Hypothesis" placeholder="…" spellcheck="false"><span class="hint-tip">The later name for Krashen's model, emphasising the role of comprehensible input</span></span>, the model consisted of five separate, though interconnected, hypotheses pertaining to second language learning. Much debate and interest has been generated from this model and it has left lasting traces in L2 classroom practices, in particular.</p>
+
+<p>The first of the hypotheses was referred to as the 
+<span class="gap-wrap"><input class="gap" data-answer="Acquisition-Learning Hypothesis" data-answers="Acquisition-Learning Hypothesis" placeholder="…" spellcheck="false"><span class="hint-tip">Krashen's first hypothesis, distinguishing subconscious from conscious language development</span></span>. This hypothesis states that there is a fundamental distinction between ways in which individual learners can develop language competence. One way is through 
+<span class="gap-wrap"><input class="gap" data-answer="subconscious exposure" data-answers="subconscious exposure" placeholder="…" spellcheck="false"><span class="hint-tip">Krashen called the process driven by this (not consciously focused on form) "acquisition"</span></span> to language, in which the learner engages in communicative exchanges and is not consciously focused on language features, as tends to occur in naturalistic situations. Krashen labeled this process "acquisition." Another way is through conscious exposure to language data, as in a typical language classroom in which learners are taught the language through grammar and vocabulary exercises. This process was labeled "learning." In a controversial view in what became known as the "
+<span class="gap-wrap"><input class="gap" data-answer="non-interface position" data-answers="non-interface position" placeholder="…" spellcheck="false"><span class="hint-tip">Krashen's controversial view that "learned" knowledge cannot become "acquired" knowledge</span></span>," Krashen stipulated that what is "learned" cannot become "acquired" knowledge.</p>
+
+<p>In this second hypothesis Krashen went on to state that "learned" knowledge served as a "monitor." According to Krashen (1982, p. 15): "Learning has only one function . . . as a Monitor or editor . . . Learning . . . makes changes in the form of our utterance, after it has been produced by the acquired system." The Monitor was stated to function like an editor, in that it could allow the learners to correct their utterances, under certain specific conditions: that the learner be focused on the 
+<span class="gap-wrap"><input class="gap" data-answer="form of the utterance" data-answers="form of the utterance|form" placeholder="…" spellcheck="false"><span class="hint-tip">One of three conditions for Monitor use: focus on this aspect of an utterance</span></span>, that the learner have sufficient time to use the Monitor, and that the learner know the relevant grammatical rule necessary to correct the utterance.</p>
+
+<p>The third hypothesis of the model was the 
+<span class="gap-wrap"><input class="gap" data-answer="Natural Order Hypothesis" data-answers="Natural Order Hypothesis" placeholder="…" spellcheck="false"><span class="hint-tip">Krashen's hypothesis claiming that language elements are acquired in a fixed, predetermined order</span></span>. This hypothesis stipulated that language elements are acquired in an essentially fixed, pre-determined order. This position was largely based on a number of 
+<span class="gap-wrap"><input class="gap" data-answer="morpheme order studies" data-answers="morpheme order studies|morpheme acquisition order studies" placeholder="…" spellcheck="false"><span class="hint-tip">Research studies examining the sequence in which grammatical morphemes are acquired</span></span> that had been carried out during this period, in which it was concluded that L2 learners from different L1 backgrounds tended to acquire L2 (primarily English) morphemes in the same sequence.</p>
+
+<p>The fourth hypothesis of the model, the 
+<span class="gap-wrap"><input class="gap" data-answer="Comprehensible Input Hypothesis" data-answers="Comprehensible Input Hypothesis" placeholder="…" spellcheck="false"><span class="hint-tip">Krashen's hypothesis about i + 1 — exposure slightly beyond the learner's current level</span></span>, stated that the one most effective way to increase L2 competence was by exposure to "comprehensible input." Krashen stated that if enough input was understood, then the necessary grammar would be automatically provided. Comprehensible input was defined as language that was at an "
+<span class="gap-wrap"><input class="gap" data-answer="i + 1" data-answers="i + 1|i+1|i plus 1" placeholder="…" spellcheck="false"><span class="hint-tip">Krashen's formula for the level of input that promotes acquisition (current level + 1)</span></span>" level, i.e., one level beyond the learner's current level.</p>
+
+<p>Finally, the fifth hypothesis, the 
+<span class="gap-wrap"><input class="gap" data-answer="Affective Filter Hypothesis" data-answers="Affective Filter Hypothesis" placeholder="…" spellcheck="false"><span class="hint-tip">Krashen's hypothesis about how emotional states (e.g., anxiety) can block acquisition</span></span>, stated that learners possessed a mechanism, a filter, which, under certain conditions, could cause access to the language acquisition device to become blocked. The 
+<span class="gap-wrap"><input class="gap" data-answer="language acquisition device" data-answers="language acquisition device|LAD" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated LAD; the innate mental component UG linguists proposed to account for language acquisition</span></span> is what UG linguists originally proposed as an innate component, or mental organ, to account for language acquisition. Conditions proposed to cause the filter to block language acquisition were primarily related to the learner's emotional state, such as high 
+<span class="gap-wrap"><input class="gap" data-answer="anxiety" data-answers="anxiety" placeholder="…" spellcheck="false"><span class="hint-tip">The emotional state Krashen identified as a primary condition raising the affective filter</span></span> in certain learning contexts.</p>
+
+<!-- Figure 4.2 -->
+<figure class="figure-wrap">
+  <figcaption><strong>Figure 4.2</strong> Krashen's Monitor Model (from Cook, 1993, p. 54). Comprehensible input, thought to occur when the learner is exposed to real messages slightly beyond his or her current level (i + 1), is hypothesized as the source of acquired knowledge allowing productive output; it is only accessible when the learner's affective filter is not blocking access to it. Learned knowledge, such as the grammar lessons the learner receives in a classroom situation, only serves to allow monitoring, under certain circumstances.</figcaption>
+  <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" font-family="'Source Serif 4', Georgia, serif" font-size="11">
+    <rect x="5" y="65" width="110" height="30" rx="4" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <text x="60" y="84" text-anchor="middle" fill="#1a5236" font-weight="600">Comprehensible input</text>
+    <rect x="145" y="65" width="90" height="30" rx="4" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="190" y="84" text-anchor="middle" fill="#1a5236">Affective filter</text>
+    <rect x="265" y="65" width="90" height="30" rx="4" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="310" y="78" text-anchor="middle" fill="#1a5236">Acquired</text>
+    <text x="310" y="91" text-anchor="middle" fill="#1a5236">knowledge</text>
+    <rect x="385" y="65" width="70" height="30" rx="4" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <text x="420" y="84" text-anchor="middle" fill="#1a5236" font-weight="600">Output</text>
+    <rect x="195" y="115" width="90" height="28" rx="4" fill="#f5f1e8" stroke="#c9b99a" stroke-width="1.5"/>
+    <text x="240" y="133" text-anchor="middle" fill="#5c5248">Learnt knowledge</text>
+    <line x1="115" y1="80" x2="143" y2="80" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="235" y1="80" x2="263" y2="80" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="355" y1="80" x2="383" y2="80" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="240" y1="115" x2="310" y2="95" stroke="#c9b99a" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arr3)"/>
+    <defs>
+      <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#2d6a4f"/></marker>
+      <marker id="arr3" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#c9b99a"/></marker>
+    </defs>
+  </svg>
+</figure>
+
+<div class="practice-box">
+  <h4>Language learning in practice: The Natural Approach</h4>
+  <p>Krashen and Terrell (1983) applied the principles of the Monitor Model to the L2 classroom in the form of the Natural Approach, characterized by an emphasis on communicative activities, including exposure to large amounts of comprehensible input, or input slightly beyond students' current level. To reduce anxiety, students were encouraged not to speak until they were ready.</p>
+  <p>Specific classroom recommendations based on the Monitor Model (Dulay, Burt, &amp; Krashen, 1982, pp. 263–269) were:</p>
+  <ol style="padding-left:1.4rem; font-size:0.88rem; margin-top:0.6rem; line-height:1.7;">
+    <li>Maximize students' exposure to natural communication.</li>
+    <li>Incorporate a silent phase in your program.</li>
+    <li>Use concrete referents to make input comprehensible.</li>
+    <li>Devise techniques to relax students and protect their egos.</li>
+    <li>Include time for formal grammar for adults.</li>
+    <li>Learn motivations of your students and incorporate this into the lessons.</li>
+    <li>Create an atmosphere in which students are not embarrassed by their errors.</li>
+    <li>Use socially useful phrases in dialogues.</li>
+    <li>Certain structures should be learned first. The plural, for example, will probably be acquired before the possessive in English.</li>
+    <li>Do not refer to the L1 when teaching the L2.</li>
+  </ol>
+</div>
+
+<!-- 4.5 -->
+<div class="section-rule" id="s45">
+  <span class="sec-num">4.5</span>
+  <h2>Information Processing / Cognitive Approach</h2>
+</div>
+
+<p>The 
+<span class="gap-wrap"><input class="gap" data-answer="information processing approach" data-answers="information processing approach|cognitive approach|cognitivism" placeholder="…" spellcheck="false"><span class="hint-tip">Also called cognitive approach or cognitivism; applies mental processing concepts to SLA</span></span>, also referred to more generally as a cognitive approach, or cognitivism, is a major perspective that largely developed out of the discipline of cognitive psychology in the 1950s. Applied to second language acquisition, this approach emphasizes that the mental processes used for interpreting experience are also involved in the acquisition and use of a second language. Therefore, while the UG approach specifies that there is a separate language faculty, the information processing approach assumes that the same mental faculties used for general problem solving and other cognitive activities underlie language use.</p>
+
+<p>A basic premise of this approach is that the mind is limited in terms of its 
+<span class="gap-wrap"><input class="gap" data-answer="capacity" data-answers="capacity" placeholder="…" spellcheck="false"><span class="hint-tip">The mind is limited in this — a key premise of the information processing approach</span></span> and this has important effects on the learning process. Mental processes occur in real time so that there are limits to what the mind is able to do at any given time. The SLA process is therefore viewed as affected in important ways by 
+<span class="gap-wrap"><input class="gap" data-answer="attention, memory, and processing limitations" data-answers="attention, memory, and processing limitations|attention memory processing" placeholder="…" spellcheck="false"><span class="hint-tip">Three mental factors that the information processing view sees as constraining SLA</span></span>.</p>
+
+<p>One important distinction in this approach is between 
+<span class="gap-wrap"><input class="gap" data-answer="controlled processing" data-answers="controlled processing" placeholder="…" spellcheck="false"><span class="hint-tip">Slow, effortful, attention-demanding processing — characteristic of new skill learning</span></span> and 
+<span class="gap-wrap"><input class="gap" data-answer="automatic processing" data-answers="automatic processing|automatization" placeholder="…" spellcheck="false"><span class="hint-tip">Rapid, effortless processing that takes over as a skill becomes practiced</span></span>. Controlled processing characterizes new skill learning; it is relatively slow, requires attention, and is limited by short-term memory constraints. Over time, and through practice and training, a skill can come to be performed rapidly and with little effort, and automatic processing takes over. This increased automatization of processing skills results in increased fluency and greater comprehension on the part of the L2 learner.</p>
+
+<p>Related to controlled and automatic processing are the terms 
+<span class="gap-wrap"><input class="gap" data-answer="declarative knowledge" data-answers="declarative knowledge" placeholder="…" spellcheck="false"><span class="hint-tip">Knowing <em>that</em> something is the case, e.g., knowing a grammar rule — contrasted with procedural knowledge</span></span> and 
+<span class="gap-wrap"><input class="gap" data-answer="procedural knowledge" data-answers="procedural knowledge" placeholder="…" spellcheck="false"><span class="hint-tip">Knowing <em>how</em> to do something without conscious reflection — underlies automatic performance</span></span>. Declarative knowledge consists of what the learner explicitly knows, as knowing the grammar rule that you need to add an "s" to a noun to form the plural in English. Procedural knowledge is knowing how to do something without having conscious awareness, as being able to produce L2 sentences without conscious reflection on what needs to be done first, second, etc., and is thought to underlie automatic performance. Traditional information processing views suggest that declarative knowledge precedes procedural knowledge.</p>
+
+<!-- Figure 4.3 -->
+<figure class="figure-wrap">
+  <figcaption><strong>Figure 4.3</strong> Atkinson and Shiffren's information processing model (1968). © Elsevier.</figcaption>
+  <svg viewBox="0 0 560 140" xmlns="http://www.w3.org/2000/svg" font-family="'Source Serif 4', Georgia, serif" font-size="11">
+    <rect x="10" y="55" width="110" height="32" rx="4" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <text x="65" y="68" text-anchor="middle" fill="#1a5236" font-weight="600">Incoming</text>
+    <text x="65" y="81" text-anchor="middle" fill="#1a5236">information</text>
+    <rect x="160" y="45" width="110" height="52" rx="4" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="215" y="62" text-anchor="middle" fill="#1a5236" font-weight="600">Short-term</text>
+    <text x="215" y="76" text-anchor="middle" fill="#1a5236">memory</text>
+    <text x="215" y="90" text-anchor="middle" fill="#1a5236">storage</text>
+    <rect x="320" y="45" width="110" height="52" rx="4" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="375" y="62" text-anchor="middle" fill="#1a5236" font-weight="600">Long-term</text>
+    <text x="375" y="76" text-anchor="middle" fill="#1a5236">memory</text>
+    <text x="375" y="90" text-anchor="middle" fill="#1a5236">storage</text>
+    <!-- Transfer arrows -->
+    <line x1="120" y1="71" x2="158" y2="71" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#a1)"/>
+    <text x="139" y="64" text-anchor="middle" fill="#5c5248" font-size="9">Transfer</text>
+    <line x1="270" y1="71" x2="318" y2="71" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#a1)"/>
+    <text x="294" y="64" text-anchor="middle" fill="#5c5248" font-size="9">Transfer</text>
+    <!-- Rehearsal arc -->
+    <path d="M200 45 Q215 15 230 45" fill="none" stroke="#c1440e" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <text x="215" y="12" text-anchor="middle" fill="#c1440e" font-size="9">Rehearsal</text>
+    <!-- Decay -->
+    <line x1="215" y1="97" x2="215" y2="125" stroke="#c9b99a" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="215" y="135" text-anchor="middle" fill="#5c5248" font-size="9">Displacement (Decay)</text>
+    <defs>
+      <marker id="a1" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#2d6a4f"/></marker>
+    </defs>
+  </svg>
+</figure>
+
+<!-- 4.6 -->
+<div class="section-rule" id="s46">
+  <span class="sec-num">4.6</span>
+  <h2>Processing-Related Hypotheses</h2>
+</div>
+
+<p>Several hypotheses related to the information processing/cognitivist perspective have been proposed which offer distinct views on the role of input and the learner's interaction with that input in second language acquisition. We will take a look at a few of these views in this section.</p>
+
+<h3 class="sub-section" id="s461">4.6.1 The Interaction Hypothesis</h3>
+
+<p>An influential view largely articulated by applied linguist Michael Long (1983; 1996), but which is related to similar views voiced by other scholars (Gass, 1997; Hatch, 1978), the 
+<span class="gap-wrap"><input class="gap" data-answer="Interaction Hypothesis" data-answers="Interaction Hypothesis" placeholder="…" spellcheck="false"><span class="hint-tip">Long's hypothesis emphasising the role of conversational interaction in making input comprehensible and promoting acquisition</span></span> emphasizes the important role of conversational interaction in second language acquisition. This view suggests that the modifications occurring during interactions between conversational partners contribute to comprehension, in particular when 
+<span class="gap-wrap"><input class="gap" data-answer="communication breaks down" data-answers="communication breaks down|communication breakdown" placeholder="…" spellcheck="false"><span class="hint-tip">The Interaction Hypothesis focuses especially on modifications that occur when this happens</span></span>. While this perspective shares Krashen's emphasis on comprehensible input, it goes beyond arguing for simple exposure to input, by stressing the important role played by the learner's interaction with that input. Long argued that modified interaction is the necessary mechanism for making language comprehensible. The Interaction Hypothesis therefore proposes that interactional modifications make input comprehensible, ultimately enabling acquisition. Long (1983, p. 151) pointed out: "Native speakers modify not just their speech with non-native speakers, but various features of the interactional structures of their conversations with them."</p>
+
+<p>Native speakers do in fact modify their speech in sustained conversation with non-native speakers. Although it is less used in current literature, the term "
+<span class="gap-wrap"><input class="gap" data-answer="foreigner talk" data-answers="foreigner talk" placeholder="…" spellcheck="false"><span class="hint-tip">Ferguson's (1971) term for the simplified language native speakers use with non-native speakers</span></span>" (Ferguson, 1971) has been used to refer to the modified language often used by native speakers in conversations with non-native speakers. Long's emphasis on modified interaction refers to both linguistic simplifications and conversational modifications. Some types of modified interactions include: elaboration, slower speech rate, gestures, contextual cues, comprehension checks, requests for clarification, 
+<span class="gap-wrap"><input class="gap" data-answer="recasts" data-answers="recasts|recast" placeholder="…" spellcheck="false"><span class="hint-tip">Rephrasing a learner's incorrect utterance in correct form — e.g., "Oh, you bought a sandwich"</span></span> (rephrasing an incorrect utterance correctly as when a learner says "I buy sandwich" and the instructor follows up with "Oh, you bought a sandwich"), self-repetition, and paraphrasing.</p>
+
+<div class="dialogue">
+  <p>NNS: How have increasing food costs changed your eating habits?</p>
+  <p>NS: Oh, rising costs we've cut back on the more expensive things. Gone to cheaper foods.</p>
+  <p>NNS: Pardon me?</p>
+  <p>NS: We've gone to cheaper foods.</p>
+  <p style="font-size:0.82rem; color:#5c5248; margin-top:0.6rem;">(Gass &amp; Varonis, 1985, p. 51)</p>
+</div>
+
+<p>Long (1996) put particular emphasis on how modified interaction contributes to acquisition and underlined the importance of 
+<span class="gap-wrap"><input class="gap" data-answer="corrective feedback" data-answers="corrective feedback" placeholder="…" spellcheck="false"><span class="hint-tip">Long stressed this type of feedback during interaction as particularly important for acquisition</span></span> during interaction. The phrase 
+<span class="gap-wrap"><input class="gap" data-answer="negotiation for meaning" data-answers="negotiation for meaning|negotiation of meaning" placeholder="…" spellcheck="false"><span class="hint-tip">Long's term for the interactive process through which speakers adjust language until understanding is achieved</span></span> (or negotiation of meaning) is used for what is considered to be the opportunity for language development. Long (1996, p. 418) defines negotiation for meaning as:</p>
+
+<blockquote>The process in which, in an effort to communicate, learners and competent speakers provide and interpret signals of their own and their interlocutor's perceived comprehension, thus provoking adjustments to linguistic form, conversational structure, message content, or all three, until an acceptable level of understanding is achieved.</blockquote>
+
+<p>Long (1996, p. 414) further explains how 
+<span class="gap-wrap"><input class="gap" data-answer="negative feedback" data-answers="negative feedback" placeholder="…" spellcheck="false"><span class="hint-tip">Long's term for drawing attention to a learner's incorrect utterances — facilitates acquisition</span></span>, i.e., drawing attention in some way to learner's incorrect utterances, contributes to second language acquisition. As Long points out, the negative feedback that learners receive during negotiation helps draw attention to linguistic aspects not yet fully acquired by the learner. Learners benefit from interaction when they "notice the gap" (Schmidt &amp; Frota, 1986) between the way they express their thoughts in the target language and the way a native speaker does so.</p>
+
+<p>There is also evidence that L2 learners can benefit from conversational interaction with other L2 learners as well. In a study of conversational interaction between ESL learners (Long &amp; Porter, 1985), 12 adult ESL learners—both intermediate and advanced—and six adult native English speakers served as participants. Learners were found to talk more with other learners than with native speakers. Furthermore, when the number of grammatical and vocabulary errors and false starts were compared, there was no significant difference between situations when learners were matched with other learners or with native speakers. The authors of this study concluded that learners themselves offer genuine communicative practice, including 
+<span class="gap-wrap"><input class="gap" data-answer="negotiation of meaning" data-answers="negotiation of meaning|negotiation for meaning" placeholder="…" spellcheck="false"><span class="hint-tip">The interactive process of adjusting speech to achieve mutual understanding</span></span>.</p>
+
+<h3 class="sub-section" id="s462">4.6.2 Comprehensible Output Hypothesis</h3>
+
+<p>The 
+<span class="gap-wrap"><input class="gap" data-answer="Comprehensible Output Hypothesis" data-answers="Comprehensible Output Hypothesis" placeholder="…" spellcheck="false"><span class="hint-tip">Swain's hypothesis that producing the L2 (not just receiving input) is essential to developing proficiency</span></span>, originally influenced by cognitivist views, was primarily articulated by applied linguist Merrill Swain (e.g., 1985). This hypothesis suggests that having to communicate in the target language actually contributes to improvement: "producing the target language may be the trigger that forces the learner to pay attention to the means of expression needed in order to successfully convey his or her own intended meaning" (Swain, 1985, p. 249).</p>
+
+<p>Swain looked at data from English L1 children enrolled in 
+<span class="gap-wrap"><input class="gap" data-answer="French immersion programs" data-answers="French immersion programs|immersion programs" placeholder="…" spellcheck="false"><span class="hint-tip">Swain studied L1 English children in these Canadian educational programs where instruction is delivered in the L2</span></span> in Canada who had little or no contact with the target language outside of school. She found that despite seven years of schooling, the Grade 6 immersion students differed notably from native speakers and that this was "particularly evident in those aspects of communicative performance which demand the use of grammatical knowledge" (Swain, 1985, p. 245). Swain argues that comprehensible input alone is not sufficient to ensure full L2 proficiency and suggests that what was missing from the immersion classrooms she studied were opportunities for 
+<span class="gap-wrap"><input class="gap" data-answer="comprehensible output" data-answers="comprehensible output" placeholder="…" spellcheck="false"><span class="hint-tip">Swain argued that opportunities to produce this were missing from immersion classrooms</span></span>.</p>
+
+<p>This hypothesis suggests that the demands of producing comprehensible output "push" learners ahead in their development. In contrast to Krashen's views described earlier in this chapter, which put all the emphasis on input, learner output is given an essential role and is thought to enhance fluency and lead to greater 
+<span class="gap-wrap"><input class="gap" data-answer="automaticity" data-answers="automaticity|automatization" placeholder="…" spellcheck="false"><span class="hint-tip">Greater fluency and reduced processing effort — a benefit of producing output</span></span>. Another benefit is that producing output can help the learner analyze grammatical aspects of the target language, as the learner attempts to structure his or her thoughts. Output also serves to draw attention to 
+<span class="gap-wrap"><input class="gap" data-answer="gaps in the learner's L2" data-answers="gaps in the learner's L2|gaps|gaps in the learner's knowledge" placeholder="…" spellcheck="false"><span class="hint-tip">Producing output helps learners notice these — areas where their L2 knowledge is incomplete</span></span>: the challenge of having to put thoughts into concrete words and sentences helps the learner to realize where there is room for improvement in his or her L2 abilities. Another cited benefit of output is that it elicits relevant input.</p>
+
+<h3 class="sub-section" id="s463">4.6.3 The Noticing Hypothesis</h3>
+
+<p>The Noticing Hypothesis, formulated by applied linguist Richard Schmidt (e.g., Schmidt, 1990; 2001), was largely influenced by the information processing view of second language acquisition. An important distinction that underlies the Noticing Hypothesis is related to the differences among input, 
+<span class="gap-wrap"><input class="gap" data-answer="intake" data-answers="intake" placeholder="…" spellcheck="false"><span class="hint-tip">Schmidt's term for "that part of the input that the learner notices" — between input and output</span></span>, and output. Input normally refers to the language to which the learner is exposed; as, for example, when the learner listens to the teacher in a classroom who is speaking in the target language. But input is not identical to intake. Since learners do not necessarily register all of the input to which they are exposed, a further distinction is necessary: intake is "that part of the input that the learner notices" (Schmidt, 1990, p. 139). There are many reasons why the input might not be noticed or registered: for example, lack of attention, incomprehension, and 
+<span class="gap-wrap"><input class="gap" data-answer="cognitive overload" data-answers="cognitive overload" placeholder="…" spellcheck="false"><span class="hint-tip">When processing demands exceed the learner's capacity — prevents noticing of input</span></span>.</p>
+
+<p>Schmidt formulated the Noticing Hypothesis based on the experience he had in following the L2 progress of "Wes" (a pseudonym), a Japanese native speaker and an artist, who moved to live in Hawaii, where the main language spoken is English. Schmidt observed Wes over a three-year period, leading to 18 hours of recorded oral transcripts (Schmidt, 1983; 1984).</p>
+
+<p>The following are some samples of Wes's L2 utterances:</p>
+<ul class="examples-list">
+  <li>I like talk to people you know /</li>
+  <li>I'm always listen then start talk/</li>
+  <li>then listen/ always thinking my head/ then talk /</li>
+  <li>some people you know only just talk, talk, talk, talk</li>
+  <li>I'm never learning, I'm only just listen then talk.</li>
+  <li>Yesterday I'm go beach.</li>
+  <li>If you back to room, can I bring cigarette?</li>
+  <li>So tonight, Tim and me we are come back here early, we are apartment.</li>
+  <li>She's name is Izumi Ukimura, she's working is beautiful.</li>
+</ul>
+
+<p>Schmidt found the following examples where Wes appeared not to make any grammatical progress:</p>
+<ul class="examples-list">
+  <li>Excessive use of "–ing"</li>
+  <li>Past form only in very frequent irregular forms ("went", "saw")</li>
+  <li>Absence of "–ed" or correct past form, instead, use of adverbs to indicate past ("Yesterday I write letter.")</li>
+</ul>
+
+<p>Overall, Schmidt noted a general lack of sensitivity or attention to 
+<span class="gap-wrap"><input class="gap" data-answer="grammatical form" data-answers="grammatical form|form" placeholder="…" spellcheck="false"><span class="hint-tip">Wes lacked attention to this linguistic dimension, explaining his lack of morphological progress</span></span> in Wes's language. He points out that Wes's manifestly positive attitude toward using English, as well as his exposure to a facilitating environment, were evidently insufficient to allow him to make significant progress. He concluded that learners must also actively process the input.</p>
+
+<p>Schmidt's observations led him to formulate the "Noticing Hypothesis." According to Schmidt (1995, p. 20): "The noticing hypothesis states that what learners notice in the input is what becomes 
+<span class="gap-wrap"><input class="gap" data-answer="intake" data-answers="intake" placeholder="…" spellcheck="false"><span class="hint-tip">What noticed input becomes — the starting point for acquisition according to Schmidt</span></span> for learning." Noticing does not of itself result in acquisition, but it is the essential starting point. Therefore, from the Noticing Hypothesis viewpoint, L2 learners do not begin to acquire a language feature until they become 
+<span class="gap-wrap"><input class="gap" data-answer="aware of it in the input" data-answers="aware of it in the input|aware of it" placeholder="…" spellcheck="false"><span class="hint-tip">Acquisition only starts when learners become ___ — the core claim of the Noticing Hypothesis</span></span>.</p>
+
+<p>There are a number of different factors which lead to noticing (Schmidt, 1990):</p>
+<ul class="examples-list" style="font-style:normal;">
+  <li>Frequency</li>
+  <li>Perceptual salience (the noticeability of a feature)</li>
+  <li>Instructional strategies</li>
+  <li>Individual processing ability</li>
+  <li>Readiness to notice</li>
+  <li>Task demands (what the learner needs to accomplish using the target language)</li>
+</ul>
+
+<!-- Figure 4.4 -->
+<figure class="figure-wrap">
+  <figcaption><strong>Figure 4.4</strong> Influences upon noticing (Skehan, 1998, p. 49). © Oxford University Press.</figcaption>
+  <svg viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg" font-family="'Source Serif 4', Georgia, serif" font-size="11">
+    <rect x="5" y="65" width="90" height="30" rx="4" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <text x="50" y="84" text-anchor="middle" fill="#1a5236" font-weight="600">Instruction</text>
+    <rect x="130" y="40" width="90" height="55" rx="4" fill="#f5f1e8" stroke="#c9b99a" stroke-width="1.5"/>
+    <text x="175" y="58" text-anchor="middle" fill="#5c5248">Input</text>
+    <text x="175" y="72" text-anchor="middle" fill="#5c5248" font-size="9">• how frequent</text>
+    <text x="175" y="85" text-anchor="middle" fill="#5c5248" font-size="9">• noticeability</text>
+    <ellipse cx="300" cy="80" rx="45" ry="28" fill="#eef7f1" stroke="#52b788" stroke-width="2"/>
+    <text x="300" y="84" text-anchor="middle" fill="#1a5236" font-weight="600">Noticing</text>
+    <rect x="380" y="65" width="80" height="30" rx="4" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <text x="420" y="84" text-anchor="middle" fill="#1a5236" font-weight="600">Output</text>
+    <!-- Working memory / Long-term below -->
+    <rect x="245" y="120" width="110" height="30" rx="4" fill="#f5f1e8" stroke="#c9b99a" stroke-width="1"/>
+    <text x="300" y="133" text-anchor="middle" fill="#5c5248">Working memory</text>
+    <rect x="245" y="10" width="110" height="22" rx="4" fill="#f5f1e8" stroke="#c9b99a" stroke-width="1"/>
+    <text x="300" y="25" text-anchor="middle" fill="#5c5248">Long-term memory</text>
+    <!-- Arrows -->
+    <line x1="95" y1="80" x2="128" y2="80" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#b1)"/>
+    <line x1="220" y1="80" x2="252" y2="80" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#b1)"/>
+    <line x1="345" y1="80" x2="378" y2="80" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#b1)"/>
+    <line x1="300" y1="108" x2="300" y2="120" stroke="#c9b99a" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="300" y1="52" x2="300" y2="32" stroke="#c9b99a" stroke-width="1" stroke-dasharray="3,2"/>
+    <defs>
+      <marker id="b1" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#2d6a4f"/></marker>
+    </defs>
+  </svg>
+</figure>
+
+<p>Schmidt (2010, p. 725) makes a distinction between noticing as "a technical term limited to the conscious registration of attended specific instances of language," and a higher level of awareness ("understanding") that includes generalizations across instances which would characterize rule knowledge as well as 
+<span class="gap-wrap"><input class="gap" data-answer="metalinguistic awareness" data-answers="metalinguistic awareness" placeholder="…" spellcheck="false"><span class="hint-tip">Conscious knowledge about language structure; a higher level of awareness than noticing alone</span></span>. According to Schmidt (1990), awareness at the level of "noticing" is necessary for SLA, and awareness at the level of "understanding" is facilitative but not required.</p>
+
+<p>The Noticing Hypothesis is linked to the distinction between 
+<span class="gap-wrap"><input class="gap" data-answer="implicit and explicit learning" data-answers="implicit and explicit learning|implicit learning and explicit learning" placeholder="…" spellcheck="false"><span class="hint-tip">The Noticing Hypothesis connects to this distinction in SLA between learning with and without awareness</span></span> in SLA. We recall that Krashen made a similar, although less clearly explained distinction, between subconscious "acquisition" and conscious "learning." Implicit learning has been defined by DeKeyser (2003, p. 314) as "learning without awareness of what is being learned" as opposed to explicit learning, or learning with explicit awareness.</p>
+
+<p>Another important, but related, distinction is between 
+<span class="gap-wrap"><input class="gap" data-answer="implicit knowledge" data-answers="implicit knowledge" placeholder="…" spellcheck="false"><span class="hint-tip">L2 knowledge that underlies performance but of which the learner is not explicitly aware</span></span> and 
+<span class="gap-wrap"><input class="gap" data-answer="explicit knowledge" data-answers="explicit knowledge" placeholder="…" spellcheck="false"><span class="hint-tip">Conscious knowledge of vocabulary, grammar rules, etc.</span></span>. These terms refer to the results of the learning process. Rod Ellis (2009, p. 6) describes the distinctions between the two sets of concepts (implicit/explicit learning vs implicit/explicit knowledge).</p>
+
+<h3 class="sub-section" id="s464">4.6.4 Input Processing</h3>
+
+<p>Input processing (IP) is a view proposed by applied linguist Bill VanPatten (1996; 2004; 2007) which was also influenced by the information processing/cognitivist perspective. IP does not claim to be a model of language acquisition, but rather a model of how learners make 
+<span class="gap-wrap"><input class="gap" data-answer="form-meaning connections" data-answers="form-meaning connections|form meaning connections" placeholder="…" spellcheck="false"><span class="hint-tip">VanPatten's IP is specifically a model of how learners make these during comprehension</span></span> or, more precisely: "a model of what happens during comprehension that may subsequently affect or interact with other processes" (VanPatten, 2007, p. 115). VanPatten developed the IP model from certain basic assumptions:</p>
+
+<ul class="examples-list" style="font-style:normal;">
+  <li>Learners have limited processing capacity and cannot pay attention to form and meaning at the same time.</li>
+  <li>Learners tend to give priority to meaning. When the context in which they hear a sentence helps them make sense of it, they do not notice details of the language form.</li>
+</ul>
+
+<p>IP suggests a number of ways in which learners go about processing the L2. For example, one important principle is known as the "
+<span class="gap-wrap"><input class="gap" data-answer="Primacy of Content Words Principle" data-answers="Primacy of Content Words Principle" placeholder="…" spellcheck="false"><span class="hint-tip">VanPatten's IP principle stating that learners process lexical words before grammatical function words</span></span>," and it proposes that learners process content words in the input before anything else. For example, in a sentence like "The cat is sleeping" the learner will first process the lexical content words "cat" and "sleep," and not the function words and inflections "the," "is" and "–ing."</p>
+
+<p>A second important principle is "The First Noun Principle." This principle stipulates that learners are most likely to interpret the 
+<span class="gap-wrap"><input class="gap" data-answer="first noun or pronoun" data-answers="first noun or pronoun|first noun" placeholder="…" spellcheck="false"><span class="hint-tip">VanPatten's First Noun Principle: learners treat this element as the subject of a sentence</span></span> in a sentence as the subject of that sentence. VanPatten points out (2007, p. 122) that this principle explains how it is that an English speaker will tend to misinterpret a Spanish sentence such as "Lo detesta Maria" (Maria hates him.) incorrectly as "He hates Maria" in which the pronoun "lo" is misinterpreted as the subject.</p>
+
+<!-- Figure 4.5 -->
+<figure class="figure-wrap">
+  <figcaption><strong>Figure 4.5</strong> Where Input Processing (IP) fits into an acquisition scheme (from VanPatten, 2007, p. 117). © Taylor &amp; Francis.</figcaption>
+  <svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg" font-family="'Source Serif 4', Georgia, serif" font-size="11">
+    <rect x="5" y="45" width="70" height="30" rx="4" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <text x="40" y="64" text-anchor="middle" fill="#1a5236" font-weight="600">Input</text>
+    <rect x="115" y="35" width="120" height="50" rx="4" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="175" y="55" text-anchor="middle" fill="#1a5236" font-weight="600">Input processing</text>
+    <text x="175" y="72" text-anchor="middle" fill="#1a5236" font-size="9">(form-meaning connections)</text>
+    <rect x="275" y="10" width="120" height="40" rx="4" fill="#f5f1e8" stroke="#c9b99a" stroke-width="1.2"/>
+    <text x="335" y="25" text-anchor="middle" fill="#5c5248" font-size="9">Other processes &amp;</text>
+    <text x="335" y="40" text-anchor="middle" fill="#5c5248" font-size="9">mechanisms (e.g., UG)</text>
+    <rect x="275" y="70" width="120" height="40" rx="4" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="335" y="86" text-anchor="middle" fill="#1a5236" font-size="9">The learner's internal</text>
+    <text x="335" y="100" text-anchor="middle" fill="#1a5236" font-size="9">grammar (developing system)</text>
+    <line x1="75" y1="60" x2="113" y2="60" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#c1)"/>
+    <line x1="235" y1="50" x2="273" y2="35" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#c1)"/>
+    <line x1="235" y1="70" x2="273" y2="85" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#c1)"/>
+    <defs>
+      <marker id="c1" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#2d6a4f"/></marker>
+    </defs>
+  </svg>
+</figure>
+
+<!-- 4.7 -->
+<div class="section-rule" id="s47">
+  <span class="sec-num">4.7</span>
+  <h2>Emergentism and Usage-Based Approaches</h2>
+</div>
+
+<p>As indicated in Chapter 2, another set of views that has grown out of the general discipline of cognitive science has been inspired by the scientific tradition known as 
+<span class="gap-wrap"><input class="gap" data-answer="emergentism" data-answers="emergentism" placeholder="…" spellcheck="false"><span class="hint-tip">The view that language phenomena are best explained by reference to more basic non-linguistic factors and their interaction</span></span>. O'Grady (2010, p. 274) traces the roots of this tradition back to the nineteenth-century British philosopher John Stuart Mill's proposal that a system can have properties that amount to more than the sum of its parts.</p>
+
+<p>In this perspective, learning emerges out of use or practice. With reference to language, emergentism proposes: "The phenomena of language are best explained by reference to more basic non-linguistic (i.e., 'non-grammatical') factors and their interaction—physiology, perception, processing, working memory, pragmatics, social interaction, properties of the input, the learning mechanisms, and so on." (O'Grady, 2008, p. 448).</p>
+
+<p>Another term used in connection with a similar view about how learning occurs is 
+<span class="gap-wrap"><input class="gap" data-answer="usage-based" data-answers="usage-based" placeholder="…" spellcheck="false"><span class="hint-tip">The term for approaches holding that linguistic competence emerges from real communicative events and stored memories of utterances</span></span>. By "usage-based" it is meant that: ". . . we learn constructions by engaging in communication. Thus an individual's creative linguistic competence emerges from the combination of two things: the memories of all the utterances encountered in communicative situations and the induction of regularities in those utterances based on 
+<span class="gap-wrap"><input class="gap" data-answer="frequency" data-answers="frequency" placeholder="…" spellcheck="false"><span class="hint-tip">A key factor in usage-based learning — the more often a pattern is encountered, the stronger its representation</span></span>." (Ellis, 2007, p. 78).</p>
+
+<h3 class="sub-section" id="s471">4.7.1 Connectionism</h3>
+
+<p>Stemming from emergentist and usage-based perspectives, 
+<span class="gap-wrap"><input class="gap" data-answer="connectionism" data-answers="connectionism" placeholder="…" spellcheck="false"><span class="hint-tip">A computational/emergentist approach proposing artificial neural networks to model language learning</span></span> attempts to explain L2 learning without reference to an innate language faculty as formulated by those in the UG school of thought. In this view, the role of internal processing is emphasized, proposing that exposure to linguistic input is crucial in allowing 
+<span class="gap-wrap"><input class="gap" data-answer="generalizations to emerge" data-answers="generalizations to emerge|generalizations" placeholder="…" spellcheck="false"><span class="hint-tip">In connectionism, repeated exposure to input allows these to emerge without innate grammar rules</span></span>. In what is considered a computational approach, SLA connectionists describe learning as data processing, with language structures being the data. Connectionists propose artificial 
+<span class="gap-wrap"><input class="gap" data-answer="neural networks" data-answers="neural networks|neural network" placeholder="…" spellcheck="false"><span class="hint-tip">Connectionism models learning using these, somewhat similar to the human brain structure</span></span> somewhat similar to the human brain structure, to model learning behavior. These neural networks are made up of units, such as the verb "go" in English, and a weighting system that gauges the strength of connections between units. The more the learner is exposed to certain patterns, the greater the strength of connections among certain units.</p>
+
+<p>As another example, the more a language learner is exposed to regular plural "–s" endings to mark the plural form in English (e.g., "cats," "cars," "books") the more likely it is that the learner will produce nouns with the "–s" ending to mark plural; this can also account for 
+<span class="gap-wrap"><input class="gap" data-answer="overgeneralizing" data-answers="overgeneralizing|overgeneralization" placeholder="…" spellcheck="false"><span class="hint-tip">Producing "mouses" instead of "mice" is an example of ___</span></span> such as when a final "–s" (or –ez sound) is attached to "mouse" instead of producing the correct irregular plural form "mice."</p>
+
+<!-- Figure 4.6 -->
+<figure class="figure-wrap">
+  <figcaption><strong>Figure 4.6</strong> Illustration of network of neuron-like units and links in connectionist model of language processing. Information flows from input to output units. Redrawn from Onnis, Christiansen, &amp; Chater (2006). © Elsevier.</figcaption>
+  <svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" font-family="'Source Serif 4', Georgia, serif" font-size="11">
+    <!-- Input nodes -->
+    <circle cx="60" cy="60" r="14" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <circle cx="60" cy="100" r="14" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <circle cx="60" cy="140" r="14" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <text x="60" y="178" text-anchor="middle" fill="#1a5236" font-weight="600">Input units</text>
+    <!-- Hidden nodes -->
+    <circle cx="170" cy="75" r="14" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <circle cx="170" cy="125" r="14" fill="#eef7f1" stroke="#52b788" stroke-width="1.5"/>
+    <text x="170" y="178" text-anchor="middle" fill="#1a5236">Hidden units</text>
+    <!-- Output nodes -->
+    <circle cx="280" cy="75" r="14" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <circle cx="280" cy="125" r="14" fill="#d8f3dc" stroke="#2d6a4f" stroke-width="1.5"/>
+    <text x="280" y="178" text-anchor="middle" fill="#1a5236" font-weight="600">Output units</text>
+    <!-- Connections -->
+    <line x1="74" y1="65" x2="156" y2="72" stroke="#c9b99a" stroke-width="1"/>
+    <line x1="74" y1="68" x2="156" y2="120" stroke="#c9b99a" stroke-width="1"/>
+    <line x1="74" y1="100" x2="156" y2="78" stroke="#c9b99a" stroke-width="1"/>
+    <line x1="74" y1="102" x2="156" y2="123" stroke="#c9b99a" stroke-width="1"/>
+    <line x1="74" y1="135" x2="156" y2="76" stroke="#c9b99a" stroke-width="1"/>
+    <line x1="74" y1="138" x2="156" y2="128" stroke="#c9b99a" stroke-width="1"/>
+    <line x1="184" y1="75" x2="266" y2="75" stroke="#52b788" stroke-width="1.2"/>
+    <line x1="184" y1="80" x2="266" y2="122" stroke="#52b788" stroke-width="1.2"/>
+    <line x1="184" y1="122" x2="266" y2="78" stroke="#52b788" stroke-width="1.2"/>
+    <line x1="184" y1="125" x2="266" y2="125" stroke="#52b788" stroke-width="1.2"/>
+  </svg>
+</figure>
+
+<h3 class="sub-section" id="s472">4.7.2 Cognitive Linguistics</h3>
+
+<p>Another emergentist-inspired and usage-based approach that is becoming better known within the area of SLA is 
+<span class="gap-wrap"><input class="gap" data-answer="cognitive linguistics" data-answers="cognitive linguistics|CL" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CL; sees meaning as central to language and language as inseparable from cognition</span></span>. Cognitive linguistics (CL) as a distinct discipline is relatively recent, as the first journal devoted to its study, <em>Cognitive Linguistics</em>, appeared only in 1990.</p>
+
+<p>This approach sees meaning as central to language, in contrast to the UG view that gives priority to the analysis of syntax. For the cognitive linguist, ". . . language, communication, and cognition . . . are mutually inextricable" (Ellis &amp; Robinson, 2008, p. 3) and "language is a reflection of general 
+<span class="gap-wrap"><input class="gap" data-answer="cognitive processes" data-answers="cognitive processes" placeholder="…" spellcheck="false"><span class="hint-tip">CL argues language reflects these general mental processes — not a separate faculty</span></span>" (Tyler, 2008, p. 459). Cognitive linguists exploring SLA therefore emphasize the importance of taking into account the learner's other cognitive abilities, and his or her interactions with the world. An emphasis is placed on the close links between 
+<span class="gap-wrap"><input class="gap" data-answer="form and meaning" data-answers="form and meaning" placeholder="…" spellcheck="false"><span class="hint-tip">CL places special emphasis on the close links between these two aspects of language</span></span>, and the ways in which forms express meaning are given detailed examination.</p>
+
+<div class="practice-box">
+  <h4>Language learning in practice: Cognitive linguistics and language teaching</h4>
+  <p>Janda (2010, p. 23) explains how CL has been successfully applied to teaching the complex Russian case system of inflectional endings on nouns: "In studying the meanings of Russian cases, learners are asked to build upon their everyday experiences (of orientation, forces, and movement along a path, for example), and to use metaphor to extend spatial concepts to other domains such as time and states of being . . . The strategy for learning Russian aspect ['aspect' refers to how an event is viewed with respect to time; for instance, English progressive aspect is usually indicated by '–ing' on verbs: 'They are texting me now'] is similar, asking learners to rely upon their 'sandbox' knowledge of how various kinds of physical matter behave and interact."</p>
+</div>
+
+<h3 class="sub-section" id="s473">4.7.3 Language as a Complex Adaptive System</h3>
+
+<p>Another perspective within the emergentism framework is the view that language is fundamentally a 
+<span class="gap-wrap"><input class="gap" data-answer="complex adaptive system" data-answers="complex adaptive system|CAS" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated CAS; language is acquired through combined influences of social interaction and cognitive processes</span></span> (CAS) and is acquired and developed through the combined influences of social interaction and cognitive processes (e.g., Ellis &amp; Larsen-Freeman, 2009). This view highlights the fact that language has, first and foremost, a social function: it allows us to communicate with each other. The CAS perspective proposes that our ". . . patterns of use strongly affect how language is acquired, is structured, is organized in cognition, and changes over time" (Becker, et al., 2009, p. 2) and that these ". . . processes of language acquisition, use, and change . . . are facets of the same system" (p. 2).</p>
+
+<p>In applying this approach to L2 learning, we can note that multiple factors interact in this process: L1 influence, L2 overgeneralization, amount of exposure as well as receptivity to input, 
+<span class="gap-wrap"><input class="gap" data-answer="individual differences" data-answers="individual differences" placeholder="…" spellcheck="false"><span class="hint-tip">Age, aptitude, motivation etc. — the CAS approach acknowledges these as multiple interacting influences on L2 learning</span></span> such as age, aptitude, motivation, etc.</p>
+
+<!-- 4.8 -->
+<div class="section-rule" id="s48">
+  <span class="sec-num">4.8</span>
+  <h2>The Sociocultural Approach</h2>
+</div>
+
+<p>Social constructivism is a theoretical viewpoint that emphasizes social interaction as the source for the construction of knowledge systems. A social constructivist approach to L2 learning, commonly identified as a sociocultural approach in the field of second language acquisition, or 
+<span class="gap-wrap"><input class="gap" data-answer="sociocultural theory" data-answers="sociocultural theory|SCT" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated SCT; the view that social interaction is necessary for L2 development</span></span> (SCT), has been articulated by some L2 researchers. Many of the concepts in this approach are based on the writings of Lev Vygotsky (1896–1934), a Russian psychologist and social constructivist. Vygotsky pointed out the fundamental role that social interaction plays in the general learning process. A central concept in the sociocultural approach is the notion of "
+<span class="gap-wrap"><input class="gap" data-answer="mediation" data-answers="mediation" placeholder="…" spellcheck="false"><span class="hint-tip">Vygotsky's concept of how language serves as a "cultural tool" connecting us to others and the world</span></span>." Vygotsky proposed that language is one of the basic means, or "cultural tools," by which we "mediate" or connect with others and with the physical world. Another important concept in this approach is "
+<span class="gap-wrap"><input class="gap" data-answer="internalization" data-answers="internalization|internalisation" placeholder="…" spellcheck="false"><span class="hint-tip">The process by which individuals interiorise knowledge acquired through social interactions</span></span>," which refers to the process by which individuals interiorize knowledge acquired through their social interactions.</p>
+
+<p>Another important Vygotskian concept is what he called the 
+<span class="gap-wrap"><input class="gap" data-answer="zone of proximal development" data-answers="zone of proximal development|ZPD" placeholder="…" spellcheck="false"><span class="hint-tip">Abbreviated ZPD; the distance between what a learner can do alone vs. with expert help</span></span> (ZPD):</p>
+
+<blockquote>ZPD: The distance between the actual developmental level as determined by independent problem solving and the level of potential development as determined through problem solving under adult guidance, or in collaboration with more capable peers. (Vygotsky, 1978, p. 86)</blockquote>
+
+<p>The ZPD is therefore the Vygotskian concept of the difference between what a learner can do without help and what he or she can do with help. In SLA, the definition of the ZPD has been reformulated as: "The distance between the actual developmental level as determined by individual linguistic production, and the level of potential development as determined through language produced 
+<span class="gap-wrap"><input class="gap" data-answer="collaboratively" data-answers="collaboratively" placeholder="…" spellcheck="false"><span class="hint-tip">In SCT, development occurs when language is produced ___, with a teacher or more proficient peer</span></span> with a teacher or peer." (Ohta, 2001, p. 9)</p>
+
+<p>As learners internalize parts of the target language, they are said to become "
+<span class="gap-wrap"><input class="gap" data-answer="self-regulated" data-answers="self-regulated|self regulated" placeholder="…" spellcheck="false"><span class="hint-tip">In SCT, mastering aspects of the language makes the learner this (as opposed to "other-regulated")</span></span>" (as opposed to "other-regulated"), a key term in SCT referring to having mastered certain aspects of the language.</p>
+
+<p>Another important concept in SCT is 
+<span class="gap-wrap"><input class="gap" data-answer="scaffolding" data-answers="scaffolding|scaffolding instruction" placeholder="…" spellcheck="false"><span class="hint-tip">The support structures provided by teachers or more capable peers to help learners reach the next stage</span></span>. Scaffolding is critical as it is one of the principal factors helping learners to advance their L2 development within the ZPD. Scaffolding instruction refers to the "role of teachers and others in supporting the learner's development and providing support structures to get to that next stage or level" (Raymond, 2000, p. 176). One way in which teacher scaffolding is provided to the L2 learner is through 
+<span class="gap-wrap"><input class="gap" data-answer="verbal feedback" data-answers="verbal feedback" placeholder="…" spellcheck="false"><span class="hint-tip">One form of teacher scaffolding — using questions and responses to prompt the learner</span></span>, as when the instructor uses questions to prompt the learner to clarify statements.</p>
+
+<p>Learners can also "scaffold" each other. Gagné and Parks (2013) found that young francophone learners (approximately 11–12 years of age) in an intensive Grade 6 ESL class in Quebec actively provided scaffolding to each other as they carried out various cooperative tasks. They note that 73% of the scaffolding events resulted in successful interactions, such that errors were corrected. This research also confirms other findings (Guk &amp; Kellogg, 2007) that the type of scaffolding found among 
+<span class="gap-wrap"><input class="gap" data-answer="peers" data-answers="peers" placeholder="…" spellcheck="false"><span class="hint-tip">SCT research shows that ___-to-___ scaffolding differs from teacher-learner scaffolding</span></span> differs from that found between the teacher and learners.</p>
+
+<div class="dialogue">
+  <p style="font-size:0.82rem; color:#5c5248; margin-bottom:0.4rem;">(Foster &amp; Ohta, 2005, p. 422 — three English-speaking adult learners of Japanese)</p>
+  <p><strong>Learner 1:</strong> . . . Ii kazoku dattara ii desu. Moshi kazoku ga dame dattara. (. . . If you have a good family then it's a good thing. But if you have a bad family.)</p>
+  <p><strong>Learner 2:</strong> dame desu (then it's no good)</p>
+  <p><strong>Learner 3:</strong> Un (yeah)</p>
+  <p><strong>Learner 1:</strong> Exactly desu. (Exactly . . .)</p>
+  <p><strong>Learner 2:</strong> Oh. Ee aa kazoku no yoo na (.) Does that work? Depending on family?</p>
+  <p><strong>Learner 3:</strong> Yotei? Yote? Kazoku kazoku ni yoote. (Learner 3 attempts to say "Kazoku ni yotte"—Depending on the family—but mispronounces the verb.)</p>
+  <p><strong>Learner 1:</strong> Kazoku ni yotte. (Depending on the family—correct)</p>
+  <p><strong>Learner 2:</strong> Kazoku ni yotte (Depending on the family.)</p>
+</div>
+
+<p>Another important feature of SCT is the acknowledgement that learning takes place in a specific social and cultural context. Issues surrounding the relationships among language, society, culture, and 
+<span class="gap-wrap"><input class="gap" data-answer="identity" data-answers="identity" placeholder="…" spellcheck="false"><span class="hint-tip">SCT emphasises language, society, culture, and this as central research concerns</span></span> are therefore at the forefront of research. In contrast to other approaches, such as a cognitivist view that studies how the individual acquires, processes, and retains information, the socioculturalist argues that the language learner cannot be studied apart from the 
+<span class="gap-wrap"><input class="gap" data-answer="social and cultural context" data-answers="social and cultural context" placeholder="…" spellcheck="false"><span class="hint-tip">SCT insists that learners cannot be studied apart from this broader environment</span></span> in which he or she is embedded.</p>
+
+<!-- 4.9 -->
+<div class="section-rule" id="s49">
+  <span class="sec-num">4.9</span>
+  <h2>Summing Up</h2>
+</div>
+
+<p>We have seen that second language acquisition has been explored from a number of varied theoretical perspectives, ranging from behaviorist views which influenced the CA approach, to more cognitively oriented views such as the EA approach, and more recently, in terms of the influential Monitor Model. It has also been examined from the UG perspective, highlighting the role of innate structures, and from the information processing view that sees language learning as similar to other cognitive tasks carried out within a capacity-limited system. Other prominent views include the Interaction Hypothesis, a view emphasizing conversational interaction and 
+<span class="gap-wrap"><input class="gap" data-answer="negotiation of meaning" data-answers="negotiation of meaning|negotiation for meaning" placeholder="…" spellcheck="false"><span class="hint-tip">Long's Interaction Hypothesis places great weight on this interactive process</span></span>; the Comprehensible Output Hypothesis, which proposed a central role for learner output in L2 development; the Noticing Hypothesis, a perspective making the important distinction between 
+<span class="gap-wrap"><input class="gap" data-answer="input and intake" data-answers="input and intake" placeholder="…" spellcheck="false"><span class="hint-tip">The Noticing Hypothesis distinguishes these two key concepts (what learners receive vs. what they register)</span></span>, along with pointing out the critical role played by attention; and IP, which draws attention to the centrality of form-meaning connections. An emergentist, usage-based framework such as connectionism places an emphasis on 
+<span class="gap-wrap"><input class="gap" data-answer="frequency of associations" data-answers="frequency of associations|frequency" placeholder="…" spellcheck="false"><span class="hint-tip">Connectionism highlights this property of linguistic units as driving language learning</span></span> among linguistic units. CL emphasizes the close links between the physical world, cognition, and language structures. The view of language as a CAS acknowledges the multiple influences on language acquisition and development. The importance of social influences and 
+<span class="gap-wrap"><input class="gap" data-answer="collaborative interaction" data-answers="collaborative interaction|collaboration" placeholder="…" spellcheck="false"><span class="hint-tip">The sociocultural approach highlights this as a major element of L2 acquisition</span></span> in L2 acquisition have been highlighted as major elements of the sociocultural approach.</p>
+
+<!-- KEY CONCEPTS -->
+<div class="section-rule"><h2>Key Concepts</h2></div>
+<ul class="key-concepts" style="list-style: disc; padding-left:1.4rem;">
+  <li>Contrastive analysis approach</li><li>Contrastive Analysis Hypothesis</li><li>Cross-linguistic influence (CLI)</li><li>Error analysis</li><li>Interlanguage</li><li>Developmental errors</li><li>Monitor Model or Input Hypothesis</li><li>Acquisition-learning Hypothesis</li><li>Comprehensible Input Hypothesis</li><li>The Natural Order Hypothesis</li><li>Affective Filter Hypothesis</li><li>Output</li><li>Language acquisition device</li><li>Parameters</li><li>Information processing (or cognitive) approach, cognitivism</li><li>Controlled processing</li><li>Automatic processing</li><li>Declarative knowledge</li><li>Procedural knowledge</li><li>The Interaction Hypothesis</li><li>Recasts</li><li>Negotiation for meaning</li><li>Negative feedback</li><li>Comprehensible Output Hypothesis</li><li>The Noticing Hypothesis</li><li>Noticing</li><li>Intake</li><li>Perceptual salience</li><li>Implicit learning</li><li>Explicit learning</li><li>Implicit knowledge</li><li>Explicit knowledge</li><li>Input Processing</li><li>Usage-based</li><li>Cognitive linguistics</li><li>Complex adaptive system</li><li>Sociocultural theory (SCT)</li><li>Zone of proximal development</li><li>Scaffolding</li>
+</ul>
+
+<!-- SELF-ASSESSMENT -->
+<div class="section-rule"><h2>Self-Assessment Questions</h2></div>
+<div class="assessment">
+<ol>
+  <li>The CA approach developed out of which of the following schools of thought in psychology?
+    <ol type="a"><li>cognitive psychology</li><li>behaviorism</li><li>interactionism</li><li>cognitive science.</li></ol>
+  </li>
+  <li>All of the following hypotheses are part of Krashen's Monitor Model except:
+    <ol type="a"><li>acquisition-learning hypothesis</li><li>monitor hypothesis</li><li>connectionist hypothesis</li><li>affective filter hypothesis.</li></ol>
+  </li>
+  <li>All of the following classroom activities would be consistent with the Monitor Model except:
+    <ol type="a"><li>a silent period</li><li>pattern practice grammatical drills</li><li>students' creating dialogues</li><li>exposure to the language through reading.</li></ol>
+  </li>
+  <li>Which of the following theoretical approaches emphasizes language as a distinct mental faculty?
+    <ol type="a"><li>Universal Grammar</li><li>information processing</li><li>contrastive analysis</li><li>connectionism.</li></ol>
+  </li>
+  <li>The approach associated with an emphasis on interactions with others as a necessary component for language development is:
+    <ol type="a"><li>connectionism</li><li>information processing</li><li>sociocultural</li><li>Monitor Model.</li></ol>
+  </li>
+  <li>Neural networks are highlighted in which one of the following approaches?
+    <ol type="a"><li>behaviorist</li><li>Monitor Model</li><li>connectionism</li><li>Universal Grammar.</li></ol>
+  </li>
+</ol>
+</div>
+
+<!-- DISCUSSION QUESTIONS -->
+<div class="section-rule"><h2>Discussion Questions</h2></div>
+<ol style="padding-left:1.5rem; line-height:1.8;">
+  <li>Do you think language lab or classroom drills and repetitions have any usefulness in learning an L2? And if so, if what ways? If not, why not?</li>
+  <li>Try to remember and describe a grammatical rule you learned in the classroom or from a book when studying a second or foreign language. To what extent do you think the rule was useful when you needed to carry out conversations in that language? Does your experience support Krashen's distinction between "acquisition" and "learning"?</li>
+  <li>Do you agree with Gregg's critique of Krashen's Monitor Model when he states: "The other ideas, or 'hypotheses' of the 'theory', are either truisms—you need comprehensible input to acquire a language . . . or vague and incoherent claims, like his i + 1 nonsense."? Discuss the reasons why you agree or disagree with his critique.</li>
+  <li>Do you consider it necessary to notice a target language linguistic feature in order for it to become "intake" and ultimately to be learned? Can you think of examples from your own L2 learning experiences when noticing led to learning? Can you think of instances when you believe you learned an aspect of the L2, without prior noticing?</li>
+</ol>
+
+<!-- EXERCISES -->
+<div class="section-rule"><h2>Exercises / Project Ideas</h2></div>
+<ol style="padding-left:1.5rem; line-height:1.8;">
+  <li>With reference to two languages you know, carry out a CA of simple sentences. From your analysis, and based on the CAH, what structures would you predict L2 learners would have the most difficulty learning and what structures would be easiest?</li>
+  <li>Following the provided example in the table, attempt an EA of the four sentences following the table, produced by ESL learners whose first language is Spanish. If you have some knowledge of Spanish, attempt to identify the source of the error (interlingual or intralingual).
+    <p style="margin-top:0.5rem; font-size:0.88rem; font-style:italic;">Sentences: (1) They throwed the ball. (2) She no have car. (3) Is nice to go home. (4) I have hungry.</p>
+  </li>
+  <li>Ask an L2 learner whose L1 and L2 are somewhat familiar to you, to write an essay (approx. 25 sentences) about a topic of his/her choosing in the L2. Analyze the errors by means of an error taxonomy such as suggested in Exercise 2. Calculate the proportion of each type of error, interlingual and intralingual. Which type is most frequent?</li>
+  <li>The IP approach suggests that learners tend to focus on meaning in the input. Do you agree with this view? Can you identify circumstances when a learner might first focus on grammatical aspects of the input?</li>
+  <li>How important do you think it is for L2 learners to produce the target language, i.e., to produce comprehensible output? Do you have any experience with learning an L2 in circumstances where there were not ample opportunities to produce the language? To what extent do you think the lack of opportunities affected your L2 development?</li>
+</ol>
+
+<table style="margin-top:1rem;">
+  <caption>Error Analysis Example Table</caption>
+  <tr><th>Error identification</th><th>Grammatical subsystem</th><th>Description</th><th>Explanation: error source</th></tr>
+  <tr><td>The teacher goed out.</td><td>morphology</td><td>substitution of wrong past tense form</td><td>intralingual</td></tr>
+  <tr><td>She drove a car blue.</td><td>syntax</td><td>wrong word order</td><td>interlingual</td></tr>
+</table>
+
+<!-- FURTHER READING -->
+<div class="section-rule"><h2>Further Reading and Viewing</h2></div>
+<div class="references">
+  <p>Gregg, K. (2003). SLA theory: construction and assessment. In C.J. Doughty, &amp; M.H. Long (Eds.), <em>The handbook of second language acquisition</em> (pp. 831–865). Oxford: Blackwell. <em>Advanced discussion of the state of theory construction in SLA.</em></p>
+  <p>Krashen, S. (1985). <em>The input hypothesis: Issues and implications.</em> Longman. <em>Krashen's description of the various components that make up the Monitor Model.</em></p>
+  <p>Lado, R. (1957). <em>Linguistics across cultures: Applied linguistics for language teachers.</em> Ann Arbor: The University of Michigan Press.</p>
+  <p>Lantolf, J.P., &amp; Poehner, M.E. (Eds.) (2008). <em>Sociocultural theory and the teaching of second languages.</em> London: Equinox.</p>
+  <p>Robinson, P., &amp; Ellis, N.C. (Eds.) (2008). <em>Handbook of cognitive linguistics and second language acquisition.</em> New York: Routledge.</p>
+  <p>Skehan, P. (1998). <em>A cognitive approach to language learning.</em> Oxford: Oxford University Press.</p>
+  <p>White, L. (2003). <em>Second language acquisition and universal grammar.</em> Cambridge: CUP.</p>
+</div>
+
+</main>
+
+<!-- SIDEBAR -->
+<aside class="sidebar-col">
+  <div class="def-card">
+    <strong>contrastive analysis (CA)</strong>
+    Comparison of the linguistic structures of two or more languages, to determine their similarities and differences. The CA approach used CA as tool for L2 teaching.
+  </div>
+  <div class="def-card">
+    <strong>Contrastive Analysis Hypothesis (CAH)</strong>
+    This predicts that where there are similarities between the two languages, the learner will acquire L2 structures with ease; where there are differences, the learner will have difficulty.
+  </div>
+  <div class="def-card">
+    <strong>cross-linguistic influence (CLI)</strong>
+    Instances of phonological, lexical, grammatical, or other aspects of transfer from one language to another.
+  </div>
+  <div class="def-card">
+    <strong>Error Analysis (EA)</strong>
+    An approach to L2 acquisition research involving the description and classification of errors to gain insight into the learner's current underlying knowledge of the L2 system.
+  </div>
+  <div class="def-card">
+    <strong>interlanguage (IL)</strong>
+    A term for the language produced by a learner that differs in systematic ways from that of a native speaker.
+  </div>
+  <div class="def-card">
+    <strong>Monitor Model</strong>
+    Krashen's model based on the concept that learners have two systems (acquisition and learning) and that the learned system acts as a monitor (editor) of the acquired system.
+  </div>
+  <div class="def-card">
+    <strong>Comprehensible Input Hypothesis</strong>
+    A Monitor Model hypothesis stating that the one most effective way to increase L2 competence is by exposure to "comprehensible input" (one level beyond the learner's current level, i + 1).
+  </div>
+  <div class="def-card">
+    <strong>Affective Filter Hypothesis</strong>
+    A hypothesis suggesting that an affective filter can block access to language acquisition under certain conditions, such as when the learner is stressed or anxious.
+  </div>
+  <div class="def-card">
+    <strong>information processing approach</strong>
+    Stemming from cognitive psychology, this approach emphasizes that the mental processes used for interpreting experience are also involved in the acquisition and use of a second language.
+  </div>
+  <div class="def-card">
+    <strong>declarative knowledge</strong>
+    Knowledge that something is the case, as in knowing a grammatical rule.
+  </div>
+  <div class="def-card">
+    <strong>procedural knowledge</strong>
+    The knowledge of how to do something; underlies automatic performance.
+  </div>
+  <div class="def-card">
+    <strong>Interaction Hypothesis</strong>
+    A hypothesis proposed by Long (1983) predicting that interactional modification makes input comprehensible; comprehensible input promotes acquisition; therefore, interactional modification promotes acquisition.
+  </div>
+  <div class="def-card">
+    <strong>recasts</strong>
+    Rephrasing an L2 learner's incorrect utterance correctly.
+  </div>
+  <div class="def-card">
+    <strong>negotiation for meaning</strong>
+    Process in which learners and competent speakers interact in various ways, making adjustments in their speech until understanding is achieved.
+  </div>
+  <div class="def-card">
+    <strong>Comprehensible Output Hypothesis</strong>
+    Swain (1985) proposed that having to produce the L2 encourages the learner to attend to the language and thereby improve proficiency.
+  </div>
+  <div class="def-card">
+    <strong>Noticing Hypothesis</strong>
+    Proposed by Schmidt (1995), it states that what learners notice in the input is what becomes intake for learning.
+  </div>
+  <div class="def-card">
+    <strong>intake</strong>
+    The part of the input that the learner notices.
+  </div>
+  <div class="def-card">
+    <strong>implicit / explicit learning</strong>
+    Implicit: learning without awareness. Explicit: learning with explicit awareness of what is being learned.
+  </div>
+  <div class="def-card">
+    <strong>input processing (IP)</strong>
+    Model proposed by VanPatten on how learners make form-meaning connections: learners have limited processing capacity so give priority to meaning.
+  </div>
+  <div class="def-card">
+    <strong>usage-based</strong>
+    An approach emphasising the view that language constructions emerge from real communicative events.
+  </div>
+  <div class="def-card">
+    <strong>cognitive linguistics (CL)</strong>
+    An approach viewing meaning as central to language; language is seen as inextricably linked to cognition.
+  </div>
+  <div class="def-card">
+    <strong>complex adaptive system (CAS)</strong>
+    The view that language is acquired and developed through the combined influences of social interaction and cognitive processes.
+  </div>
+  <div class="def-card">
+    <strong>sociocultural theory (SCT)</strong>
+    Applied to SLA, refers to the view that social interaction is necessary for L2 development and learning needs to be examined in its social context.
+  </div>
+  <div class="def-card">
+    <strong>zone of proximal development (ZPD)</strong>
+    "The distance between the actual developmental level as determined by independent problem solving and the level of potential development as determined through problem solving under adult guidance . . ." (Vygotsky, 1978, p. 86)
+  </div>
+  <div class="def-card">
+    <strong>scaffolding</strong>
+    In a sociocultural approach, the role played by teachers, peers, and others in supporting the learner's development to get to a more advanced stage.
+  </div>
+</aside>
+
+</div><!-- /page-wrap -->
+
+<script>
+  // Normalise answers for comparison
+  function norm(s) {
+    return s.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[–—]/g, '-');
+  }
+
+  function checkGap(input) {
+    const raw = input.value.trim();
+    if (!raw) return;
+    const accepted = input.dataset.answers.split('|');
+    const correct = accepted.some(a => norm(raw) === norm(a));
+    input.classList.remove('correct', 'wrong');
+    input.classList.add(correct ? 'correct' : 'wrong');
+  }
+
+  function checkAll() {
+    const inputs = document.querySelectorAll('.gap');
+    let total = 0, right = 0;
+    inputs.forEach(input => {
+      if (input.value.trim()) {
+        checkGap(input);
+        total++;
+        if (input.classList.contains('correct')) right++;
+      } else {
+        total++;
+      }
+    });
+    const allTotal = inputs.length;
+    const badge = document.getElementById('scoreBadge');
+    badge.textContent = `Score: ${right} / ${allTotal} filled correctly`;
+    badge.classList.add('visible');
+  }
+
+  function showAll() {
+    document.querySelectorAll('.gap').forEach(input => {
+      const primary = input.dataset.answers.split('|')[0];
+      input.value = primary;
+      input.classList.remove('wrong');
+      input.classList.add('correct');
+    });
+    const badge = document.getElementById('scoreBadge');
+    badge.textContent = 'All answers revealed.';
+    badge.classList.add('visible');
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.gap').forEach(input => {
+      input.value = '';
+      input.classList.remove('correct', 'wrong');
+    });
+    const badge = document.getElementById('scoreBadge');
+    badge.classList.remove('visible');
+  }
+
+  // Live checking on Enter or blur
+  document.querySelectorAll('.gap').forEach(input => {
+    input.addEventListener('blur', () => { if (input.value.trim()) checkGap(input); });
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') { checkGap(input); input.blur(); } });
+  });
+</script>
+</body>
+</html>
