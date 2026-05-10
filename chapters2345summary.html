@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gap-Fill Exercise — SLA / TESOL Terminology (Chapters 2–5)</title>
+<style>
+  :root {
+    --bg: #f8f6f1;
+    --surface: #ffffff;
+    --ink: #1f1f1f;
+    --ink-soft: #555;
+    --ink-muted: #7a7a7a;
+    --border: #e5e2d8;
+    --border-strong: #d6d2c5;
+    --accent: #b85c2c;
+    --accent-soft: #fbeee5;
+    --correct: #1f8a5b;
+    --correct-soft: #e6f5ed;
+    --wrong: #c43d3d;
+    --wrong-soft: #fbeaea;
+    --hint: #8a6d2c;
+    --hint-soft: #fbf4dc;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Charter", "Iowan Old Style", "Source Serif Pro", Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+  header.intro {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  header.intro h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  header.intro p {
+    margin: 6px 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(248,246,241,0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    margin: 0 -28px 24px;
+    padding: 12px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .toolbar .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toolbar .progress {
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-bar {
+    width: 140px;
+    height: 6px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar > span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width .3s ease;
+  }
+  button.btn {
+    font: inherit;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  button.btn:hover { border-color: var(--accent); color: var(--accent); }
+  button.btn:active { transform: scale(0.98); }
+  button.btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  button.btn.primary:hover { background: #a04f24; border-color: #a04f24; color: #fff; }
+  button.btn.ghost { background: transparent; }
+
+  section.chapter {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 32px 30px;
+    margin: 0 0 28px;
+    box-shadow: var(--shadow);
+  }
+  h2, h3, h4, h5 {
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  h2 {
+    font-size: 24px;
+    margin: 4px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  h2 + h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-top: -8px;
+    color: var(--ink);
+    font-size: 22px;
+  }
+  h3 {
+    font-size: 19px;
+    margin: 22px 0 8px;
+    color: var(--ink);
+  }
+  h4 {
+    font-size: 17px;
+    margin: 18px 0 6px;
+    color: var(--ink);
+  }
+  h5 {
+    font-size: 15px;
+    margin: 14px 0 6px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-weight: 600;
+  }
+  p { margin: 10px 0; }
+  ul {
+    margin: 8px 0 14px;
+    padding-left: 22px;
+  }
+  ul li { margin: 6px 0; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 14px 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 15px;
+  }
+  table th, table td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table th {
+    background: #f1ede2;
+    font-weight: 600;
+  }
+  table tr:last-child td { border-bottom: none; }
+
+  /* Gap input styling */
+  .gap-wrap {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+    margin: 0 1px;
+  }
+  .gap-input {
+    font: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.95em;
+    width: 11ch;
+    padding: 2px 8px;
+    border: none;
+    border-bottom: 2px solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--ink);
+    border-radius: 4px 4px 0 0;
+    outline: none;
+    transition: all .15s ease;
+  }
+  .gap-input:focus {
+    background: #fff;
+    border-bottom-color: var(--accent);
+    box-shadow: 0 2px 0 var(--accent);
+  }
+  .gap-input.correct {
+    background: var(--correct-soft);
+    border-bottom-color: var(--correct);
+    color: var(--correct);
+    font-weight: 500;
+  }
+  .gap-input.wrong {
+    background: var(--wrong-soft);
+    border-bottom-color: var(--wrong);
+    color: var(--wrong);
+    font-weight: 500;
+  }
+  .gap-input.revealed {
+    background: var(--hint-soft);
+    border-bottom-color: var(--hint);
+    color: var(--hint);
+    font-weight: 500;
+    font-style: italic;
+  }
+  .gap-num {
+    font-size: 0.78em;
+    color: var(--ink-muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    vertical-align: super;
+  }
+  .gap-feedback {
+    display: inline-flex;
+    width: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  .gap-feedback.ok::before { content: "✓"; color: var(--correct); }
+  .gap-feedback.no::before { content: "✗"; color: var(--wrong); }
+  .gap-feedback.show::before { content: "★"; color: var(--hint); }
+
+  .summary {
+    display: none;
+    margin: 14px 0 8px;
+    padding: 12px 16px;
+    background: #f7f4ec;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  .summary.show { display: block; }
+  .summary strong { color: var(--accent); }
+
+  .chapter-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 6px 0 18px;
+    padding: 10px 14px;
+    background: #f7f4ec;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .chapter-toolbar .ch-stats { margin-left: auto; }
+
+  /* Print styles */
+  @media print {
+    body { background: white; }
+    .toolbar, .chapter-toolbar { display: none; }
+    section.chapter { box-shadow: none; border: none; padding: 0; margin-bottom: 16px; page-break-inside: avoid; }
+    .gap-input { background: transparent; border-bottom: 1px solid #999; }
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 20px 16px 60px; }
+    section.chapter { padding: 20px 18px; }
+    .toolbar { margin: 0 -16px 16px; padding: 10px 16px; }
+    h2 { font-size: 21px; }
+    h3 { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="intro">
+    <p><strong>Gap-Fill Exercise — SLA / TESOL Terminology</strong></p>
+<p><em>Summary of Chapters 2–5</em></p>
+<p><strong>Instructions: </strong>Each section contains ONE gap targeting an SLA/TESOL term or collocation. Fill in the missing word. Answer keys appear at the end of each chapter.</p>
+  </header>
+
+  <div class="toolbar" role="toolbar" aria-label="Exercise controls">
+    <div class="actions">
+      <button class="btn primary" id="btn-check-all" type="button">Check all answers</button>
+      <button class="btn" id="btn-reveal-all" type="button">Reveal all</button>
+      <button class="btn ghost" id="btn-reset-all" type="button">Reset</button>
+    </div>
+    <div class="progress" aria-live="polite">
+      <span id="score-text">0 / 55 correct</span>
+      <span class="progress-bar"><span id="score-bar"></span></span>
+    </div>
+  </div>
+
+  <div id="summary-top" class="summary" role="status" aria-live="polite"></div>
+
+  <section class="chapter" data-chapter="2">
+<div class="chapter-toolbar" data-chapter="2"><button class="btn btn-check-ch" type="button">Check Chapter 2</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 2</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 2</button><span class="ch-stats" data-chapter="2">0 / 11 correct</span></div>
+<h2>Chapter 2</h2>
+<h2>First Language Acquisition</h2>
+<h3>2.0 Chapter Overview</h3>
+<p>Understanding first language acquisition is fundamental to understanding second language <span class="gap-wrap" data-chapter="2" data-gap="1" data-answer="acquisition"><input type="text" class="gap-input" data-chapter="2" data-gap="1" aria-label="Chapter 2 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span>. The chapter describes L1 developmental stages, theoretical explanations, and how L2 acquisition differs from or mirrors L1 acquisition.</p>
+<h3>2.1 From Sound to Word</h3>
+<ul>
+<li>Babies are born unable to express language but communicate through crying, cooing, and gestures; by 12 months, many utter their first words.</li>
+
+
+<li>Infants appear &quot;prewired&quot; for language — many linguists argue innate structures explain the speed and universality of acquisition.</li>
+
+
+<li>Research shows infants prefer the human voice (especially the mother&#x27;s) as early as 3 days old, measurable via the High Amplitude Sucking (HAS) technique.</li>
+
+
+<li>Young infants can discriminate sounds from many languages (auditory <span class="gap-wrap" data-chapter="2" data-gap="2" data-answer="discrimination"><input type="text" class="gap-input" data-chapter="2" data-gap="2" aria-label="Chapter 2 gap 2" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(2)</span><span class="gap-feedback" aria-live="polite"></span></span>), but this ability narrows by 10–12 months to sounds used in their native language (Werker &amp; Tees, 1984).</li>
+
+
+<li>Babies worldwide pass through similar linguistic stages at similar ages, supporting the &quot;prewired&quot; argument.</li>
+
+
+<li>Babbling begins at 3–4 months; progresses from reduplicated (&quot;ba-ba-ba&quot;) to variegated (&quot;ba-da-ga&quot;) to jargon babbling by 8–12 months. Even deaf children of signing parents engage in manual babbling.</li>
+
+
+<li>The holophrastic (one-word) stage appears around age 1, with single words representing whole ideas.</li>
+
+
+<li>Early word errors include overextension (using &quot;dog&quot; for all animals) and underextension (using &quot;dog&quot; only for the family pet).</li>
+</ul>
+<h3>2.2 From Word to Sentence</h3>
+<ul>
+<li>At around 18 months / 50 words, children begin combining two words (e.g., &quot;mama juice&quot;), entering the two-word stage.</li>
+
+
+<li>A &quot;word spurt&quot; around 18 months sees rapid daily vocabulary growth, possibly due to fast <span class="gap-wrap" data-chapter="2" data-gap="3" data-answer="mapping"><input type="text" class="gap-input" data-chapter="2" data-gap="3" aria-label="Chapter 2 gap 3" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(3)</span><span class="gap-feedback" aria-live="polite"></span></span> (retaining words after minimal exposure).</li>
+
+
+<li>The telegraphic stage follows, with 2–4+ word strings that omit function words (articles, prepositions) but retain content words (nouns, verbs). Example: &quot;Baby Allison comb hair.&quot;</li>
+
+
+<li>Mean Length of Utterance (MLU) — morphemes per utterance — is used to measure grammatical development. Brown&#x27;s (1973) landmark study of Adam, Eve, and Sarah showed children acquire morphemes in a similar order but at different rates.</li>
+
+
+<li>Brown&#x27;s morpheme acquisition order: -ing → in/on → plural -s → possessive -s → the/a → past -ed → 3rd person -s → auxiliary &quot;be.&quot;</li>
+
+
+<li>Berko&#x27;s Wug Test (1958) proved children generalize rules to novel words (not just imitation), demonstrating underlying rule knowledge.</li>
+
+
+<li>Children show U-shaped learning with irregular forms: correct &quot;went&quot; → overgeneralized &quot;goed&quot; → correct &quot;went&quot; again.</li>
+
+
+<li>By age 5–6, most children have acquired complex syntax and nearly the full phonological system of their language.</li>
+</ul>
+<h3>2.3 Theoretical Views</h3>
+<p>The core debate is between <span class="gap-wrap" data-chapter="2" data-gap="4" data-answer="nativism"><input type="text" class="gap-input" data-chapter="2" data-gap="4" aria-label="Chapter 2 gap 4" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(4)</span><span class="gap-feedback" aria-live="polite"></span></span> (innate structures drive acquisition) and empiricism (environment is the primary driver).</p>
+<h4>2.3.1 Behaviorist View</h4>
+<ul>
+<li>B.F. Skinner viewed language as &quot;verbal behavior&quot; shaped by the environment.</li>
+
+
+<li>Comprehension = classical conditioning (word paired with object); production = operant <span class="gap-wrap" data-chapter="2" data-gap="5" data-answer="conditioning"><input type="text" class="gap-input" data-chapter="2" data-gap="5" aria-label="Chapter 2 gap 5" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(5)</span><span class="gap-feedback" aria-live="polite"></span></span> (rewarded responses are reinforced).</li>
+
+
+<li>Imitation plays a central role.</li>
+
+
+<li>Criticized by Chomsky (1959) and others: no evidence of systematic reinforcement; children produce novel forms (&quot;goed,&quot; &quot;soaky&quot;) never heard in their environment; imitation doesn&#x27;t account for syntax learning.</li>
+</ul>
+<h4>2.3.2 Universal Grammar (UG)</h4>
+<ul>
+<li>Chomsky&#x27;s view: humans possess an innate &quot;language faculty&quot; — a universal set of underlying principles (UG).</li>
+
+
+<li>The environment acts only as a trigger, not the primary cause of acquisition.</li>
+
+
+<li>The &quot;poverty of the <span class="gap-wrap" data-chapter="2" data-gap="6" data-answer="stimulus"><input type="text" class="gap-input" data-chapter="2" data-gap="6" aria-label="Chapter 2 gap 6" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(6)</span><span class="gap-feedback" aria-live="polite"></span></span>&quot; argument: input alone is too impoverished for children to induce all grammar rules — UG must fill the gap.</li>
+
+
+<li>Language is species-specific and unique to humans.</li>
+
+
+<li>Evidence: universal babbling stages, similar acquisition milestones across cultures, early sound discrimination ability.</li>
+</ul>
+<h4>2.3.3 Interactionist Approach</h4>
+<ul>
+<li>Acknowledges both innate structures and the environment, giving more weight to social interaction than UG does.</li>
+
+
+<li>Language is a communicative act shaped by interaction between the child and caregivers.</li>
+
+
+<li>Child-Directed <span class="gap-wrap" data-chapter="2" data-gap="7" data-answer="Speech"><input type="text" class="gap-input" data-chapter="2" data-gap="7" aria-label="Chapter 2 gap 7" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(7)</span><span class="gap-feedback" aria-live="polite"></span></span> (CDS) — shorter utterances, exaggerated intonation, repetition, heavy use of questions — is seen as facilitating acquisition.</li>
+
+
+<li>Children with more talkative mothers show faster vocabulary growth (Huttenlocher et al., 1991).</li>
+
+
+<li>Criticized: CDS is not universal across cultures (absent in Samoan society, per Ochs, 1985); no proven direct link between CDS complexity and language gains (Hoff-Ginsburg, 1986).</li>
+</ul>
+<h4>2.3.4 Emergentism: Connectionist Viewpoint</h4>
+<ul>
+<li>Language is not rule-based acquisition but the emergence of abilities through a neural <span class="gap-wrap" data-chapter="2" data-gap="8" data-answer="network"><input type="text" class="gap-input" data-chapter="2" data-gap="8" aria-label="Chapter 2 gap 8" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(8)</span><span class="gap-feedback" aria-live="polite"></span></span> of connections.</li>
+
+
+<li>Connectionism: language develops through exposure to input, building associations between sounds, words, and patterns; stronger associations = permanent acquisition.</li>
+
+
+<li>Rumelhart &amp; McClelland&#x27;s (1986) computer simulation successfully predicted U-shaped past tense learning.</li>
+
+
+<li>Criticized: unclear how non-linguistic contextual cues (tone, gestures) are accounted for; still in early stages of testing.</li>
+</ul>
+<h3>2.4 First Language vs Second Language Acquisition</h3>
+<h4>2.4.1 L1 vs L2 Acquisition — Contrasts</h4>
+<div class="table-wrap"><table><tr><th><strong>Dimension</strong></th><th><strong>L1</strong></th><th><strong>L2</strong></th></tr><tr><td><strong>Age</strong></td><td>Acquired in infancy alongside cognitive development</td><td>Acquired after key cognitive stages are complete</td></tr><tr><td><strong>Metalinguistic awareness</strong></td><td>Absent in young children</td><td>Present — L2 learners can reflect on and analyze language</td></tr><tr><td><strong>Existing linguistic system</strong></td><td>None</td><td>L1 available, causing transfer/<span class="gap-wrap" data-chapter="2" data-gap="9" data-answer="interference"><input type="text" class="gap-input" data-chapter="2" data-gap="9" aria-label="Chapter 2 gap 9" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(9)</span><span class="gap-feedback" aria-live="polite"></span></span></td></tr><tr><td><strong>Affective factors</strong></td><td>No anxiety; every word celebrated</td><td>Potential anxiety, frustration, alienation</td></tr><tr><td><strong>Social expectations</strong></td><td>Very low; errors welcomed</td><td>High; adults expected to communicate accurately</td></tr><tr><td><strong>Learning context</strong></td><td>Natural home environment</td><td>Often formal classroom instruction</td></tr><tr><td><strong>Exposure time</strong></td><td>Extensive, continuous immersion</td><td>Limited (sometimes as little as 1 hour/week)</td></tr><tr><td><strong>CDS</strong></td><td>Widely present and predictable</td><td>Not systematically present</td></tr><tr><td><strong>Skill sequence</strong></td><td>Listening/speaking → reading/writing</td><td>Often reversed, especially for adults</td></tr><tr><td><strong>Attainment</strong></td><td>Always results in full fluency</td><td>Rarely results in native-like proficiency, especially in pronunciation</td></tr></table></div>
+<p>A key finding: the age factor strongly affects pronunciation — native-like L2 pronunciation is increasingly unlikely when exposure begins after approximately ages 6–12.</p>
+<h4>2.4.2 L1 and L2 Acquisition — Parallels</h4>
+<ul>
+<li>Both require exposure to the target language.</li>
+
+
+<li>Both involve significant repetition of words and phrases.</li>
+
+
+<li>Both use formulaic <span class="gap-wrap" data-chapter="2" data-gap="10" data-answer="sequences"><input type="text" class="gap-input" data-chapter="2" data-gap="10" aria-label="Chapter 2 gap 10" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(10)</span><span class="gap-feedback" aria-live="polite"></span></span> (chunks like &quot;I don&#x27;t know&quot; or &quot;Comment ça va?&quot;) before breaking them into individual components.</li>
+
+
+<li>Both show comprehension exceeding production — learners understand more than they can say.</li>
+
+
+<li>Both follow systematic developmental patterns, including U-shaped learning and restructuring over time.</li>
+
+
+<li>Both exhibit overgeneralization errors (e.g., &quot;mouses&quot; for &quot;mice&quot; in L1; incorrect verb forms in L2).</li>
+
+
+<li>Both typically begin with oral skills before literacy, though L2 learners may deviate from this.</li>
+</ul>
+<h3>2.5 Summing Up</h3>
+<ul>
+<li>Innate structures best explain the speed and universality of L1 acquisition.</li>
+
+
+<li>Milestones: babbling (3–4 months) → first word (~12 months) → two-word stage (~18 months/50 words) → telegraphic stage → complex grammar by age 5–6.</li>
+
+
+<li>Brown (1973): children differ in rate of MLU development but acquire morphemes in a similar order.</li>
+
+
+<li>Typical L1 errors: overgeneralization, overextension, <span class="gap-wrap" data-chapter="2" data-gap="11" data-answer="underextension"><input type="text" class="gap-input" data-chapter="2" data-gap="11" aria-label="Chapter 2 gap 11" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(11)</span><span class="gap-feedback" aria-live="polite"></span></span>.</li>
+
+
+<li>L1 vs L2 differences are largely driven by age and cognitive development; L2 learners always have an existing L1 system available.</li>
+
+
+<li>Despite major differences, both L1 and L2 acquisition share similar processes, error patterns, and developmental strategies.</li>
+</ul>
+</section>
+
+<section class="chapter" data-chapter="3">
+<div class="chapter-toolbar" data-chapter="3"><button class="btn btn-check-ch" type="button">Check Chapter 3</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 3</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 3</button><span class="ch-stats" data-chapter="3">0 / 11 correct</span></div>
+<h2>Chapter 3</h2>
+<h2>Language Learning Contexts</h2>
+<h3>3.0 Chapter Overview</h3>
+<p>Language learning circumstances vary enormously — from full <span class="gap-wrap" data-chapter="3" data-gap="1" data-answer="immersion"><input type="text" class="gap-input" data-chapter="3" data-gap="1" aria-label="Chapter 3 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span> in a target language country to as little as one hour of classroom instruction per week. The chapter maps out the most common contexts in which people learn a new language.</p>
+<h3>3.1 Naturalistic Contexts</h3>
+<p>Naturalistic contexts involve real-world <span class="gap-wrap" data-chapter="3" data-gap="2" data-answer="exposure"><input type="text" class="gap-input" data-chapter="3" data-gap="2" aria-label="Chapter 3 gap 2" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(2)</span><span class="gap-feedback" aria-live="polite"></span></span> to a new language, whether by choice (study abroad) or necessity (immigration, conflict, poverty). Adults must navigate daily life in the new language; children may be enrolled in schools where all subjects are taught in it.</p>
+<h4>3.1.1 Immigration</h4>
+<p>Profile: Mila — Bosnian widow who immigrated to Chicago with her two sons during the 1990s conflict. Despite ESL courses, her accent and limited English led to employment discrimination and job loss.</p>
+<p>Key points:</p>
+<ul>
+<li>Immigration is one of the most common routes to naturalistic L2 exposure.</li>
+
+
+<li>Challenges go far beyond language: economic precariousness, credential non-recognition, time constraints, and social isolation all interfere with language development.</li>
+
+
+<li>Age of arrival matters: arrivals before the teenage years tend to achieve native-like <span class="gap-wrap" data-chapter="3" data-gap="3" data-answer="proficiency"><input type="text" class="gap-input" data-chapter="3" data-gap="3" aria-label="Chapter 3 gap 3" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(3)</span><span class="gap-feedback" aria-live="polite"></span></span>; those arriving after puberty rarely do, especially in pronunciation (Oyama, 1976). Age and the L2 are covered further in Chapter 7.</li>
+
+
+<li>Identity and power play a significant role (Norton, 2000; Norton Peirce, 1995): investing in the target language is tied to investing in one&#x27;s identity. Unequal power relations between immigrants and native speakers can limit practice opportunities and create feelings of inferiority.</li>
+
+
+<li>Recommendation: learners should critically reflect on their interactions with target language speakers to better understand social factors affecting their language use.</li>
+</ul>
+<h4>3.1.2 Study Abroad</h4>
+<p>Profile: Steve vs Julia — Both studied Mandarin in Beijing, but Steve actively engaged with native speakers and made clear progress, while Julia socialized mainly with fellow Americans and made little gain despite being in the same environment.</p>
+<p>Key points:</p>
+<ul>
+<li>Study abroad aims to approximate naturalistic immersion within an academic framework.</li>
+
+
+<li>Research shows mixed results: positive effects depend on type and intensity of contact with the target language, not just physical presence in the country.</li>
+
+
+<li>Positive outcomes include gains in oral fluency, willingness to communicate, and integrative <span class="gap-wrap" data-chapter="3" data-gap="4" data-answer="motivation"><input type="text" class="gap-input" data-chapter="3" data-gap="4" aria-label="Chapter 3 gap 4" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(4)</span><span class="gap-feedback" aria-live="polite"></span></span> (Hernandez, 2010; Isabelli-Garcia, 2003).</li>
+
+
+<li>Surprisingly, one study (Freed, Segalowitz, &amp; Dewey, 2004) found &quot;at home&quot; intensive immersion students outperformed study abroad students in oral fluency gains.</li>
+
+
+<li>Individual variation is significant; students&#x27; personal attitudes and engagement quality strongly shape outcomes (Kinginger, 2008).</li>
+
+
+<li>Simply being abroad is not enough — students must go beyond their &quot;comfort zone&quot; and interact with native speakers.</li>
+
+
+<li>Pre-departure preparation, including telecollaborative online exchanges, can help students build readiness for real-world interactions (Kinginger, 2011).</li>
+</ul>
+<h3>3.2 Instructed Learning</h3>
+<p>Instructed learning ranges from a few hours per week in a traditional classroom to intensive daily immersion in content-based <span class="gap-wrap" data-chapter="3" data-gap="5" data-answer="programs"><input type="text" class="gap-input" data-chapter="3" data-gap="5" aria-label="Chapter 3 gap 5" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(5)</span><span class="gap-feedback" aria-live="polite"></span></span>. Several distinct formats exist.</p>
+<h4>3.2.1 Traditional Classroom Instruction</h4>
+<p>Profile: Linda — Boston teacher attending one hour of Italian class per week at a community college. Despite months of study, she felt she had made little visible progress.</p>
+<p>Key points:</p>
+<ul>
+<li>Traditional classroom instruction provides very limited exposure — often just 1–2 hours per week — far less than L1 acquisition or immersion settings.</li>
+
+
+<li>In the US, two main elementary program types are distinguished:</li>
+
+
+<li>FLEX (Foreign Language Experience/Exploratory): general exposure to language and culture; proficiency is not the primary goal; aims to spark interest.</li>
+
+
+<li>FLES (Foreign Language in the <span class="gap-wrap" data-chapter="3" data-gap="6" data-answer="Elementary"><input type="text" class="gap-input" data-chapter="3" data-gap="6" aria-label="Chapter 3 gap 6" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(6)</span><span class="gap-feedback" aria-live="polite"></span></span> School): teaches all four skills (listening, speaking, reading, writing) with cultural components; sequences from oral to literacy skills.</li>
+
+
+<li>A 2008 US survey found foreign language instruction declined at elementary (31% → 25%) and middle school (75% → 58%) levels, while Spanish teaching grew and French/German declined.</li>
+</ul>
+<h4>3.2.2 Bilingual Education</h4>
+<p>Profile: Alberto — Born in California to Mexican immigrant parents, attended a transitional bilingual program from kindergarten. Spanish instruction decreased over time, resulting in weak literacy in both Spanish and English.</p>
+<p>Key points:</p>
+<ul>
+<li>Bilingual education = schooling in two languages, traditionally for minority language students (partly in L1, partly in majority language).</li>
+
+
+<li>Two main types:</li>
+
+
+<li>Transitional (early-exit): initial L1 instruction, transitioning to English; aims for English proficiency with less focus on maintaining the L1 → can lead to subtractive <span class="gap-wrap" data-chapter="3" data-gap="7" data-answer="bilingualism"><input type="text" class="gap-input" data-chapter="3" data-gap="7" aria-label="Chapter 3 gap 7" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(7)</span><span class="gap-feedback" aria-live="polite"></span></span> (majority language gained at expense of native language).</li>
+
+
+<li>Developmental (late-exit): sustained support for both languages throughout schooling → more likely to produce bilingual proficiency.</li>
+
+
+<li>Research consistently favors developmental programs: greater L1 support correlates with higher L2 academic achievement (Ramirez, 1992; Collier, 1992; Thomas &amp; Collier, 2002).</li>
+
+
+<li>Thomas &amp; Collier (2002): after 4–7 years of bilingual education, students outperformed peers in all-English schools across all subjects. The most important factor was amount of L1 instruction.</li>
+
+
+<li>Key finding: supporting the home language does NOT limit L2 development — it actually enhances it.</li>
+</ul>
+<h4>3.2.3 Immersion Instruction</h4>
+<p>Profile: Xia Mei — Hong Kong high school student in an English immersion program. Motivated but challenged, as her teachers provide little explicit language support for academic content.</p>
+<p>Key points:</p>
+<ul>
+<li>Immersion education: school subjects (science, history, etc.) taught through the L2, with some L1 instruction; requires approximately 50% of instruction in the L2 to qualify as immersion.</li>
+
+
+<li>Formats vary: early vs late (when it starts), partial vs full (proportion of L2 use).</li>
+
+
+<li>Contact hours: early immersion ≈ 6,000–7,000 hours; late immersion ≈ 3,500; traditional L2 courses ≈ 1,000 hours.</li>
+
+
+<li>Canadian French immersion programs are the most studied; first launched in St. Lambert, Quebec (1965).</li>
+
+
+<li>Outcomes:</li>
+
+
+<li>L1 literacy may lag initially but catches up once L1 arts instruction begins.</li>
+
+
+<li>Academic achievement: immersion students perform equally to peers on standardized tests.</li>
+
+
+<li>French immersion students in Canada outperformed non-immersion peers in L1 reading in almost all provinces (Allen, 2004).</li>
+
+
+<li>Weakness: expressive skills (writing, speaking) lag behind native speakers, likely due to limited native speaker contact outside class.</li>
+
+
+<li>Overall, immersion students typically reach functional proficiency — able to use the language in interpersonal and academic contexts, even if not fully native-like.</li>
+
+
+<li>Related terms: Content Based Instruction (CBI) (general term); CLIL (Content and Language Integrated <span class="gap-wrap" data-chapter="3" data-gap="8" data-answer="Learning"><input type="text" class="gap-input" data-chapter="3" data-gap="8" aria-label="Chapter 3 gap 8" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(8)</span><span class="gap-feedback" aria-live="polite"></span></span>, common in Europe).</li>
+</ul>
+<h4>3.2.4 Dual Language Instruction</h4>
+<p>Key points:</p>
+<ul>
+<li>Also called: two-way immersion (TWI), bilingual immersion, dual language immersion, two-way bilingual education, etc.</li>
+
+
+<li>Defining feature: native speakers of both target languages share the same classroom (e.g., Spanish and English native speakers together).</li>
+
+
+<li>Ideal ratio: 50/50 split in instruction language; each language group must make up at least one-third of the class.</li>
+
+
+<li>Goal: mutual language learning, cross-cultural respect, and additive bilingualism for both groups.</li>
+
+
+<li>Examples in the US: English-Spanish (most common), English-Korean, English-Mandarin, English-Navajo. As of 2013, 372 TWI programs existed in 28 US states (CAL directory).</li>
+
+
+<li>First North American TWI program: Coral Way Elementary School, Miami (1960s), pairing Cuban Spanish speakers with English speakers.</li>
+
+
+<li>Outcomes:</li>
+
+
+<li>Students initially lag but catch up with peers after a few years; outperform peers after 4–7 years (Thomas &amp; Collier, 2002).</li>
+
+
+<li>Latino students in dual language programs outperform those in mainstream English-only classes (Lindholm-Leary &amp; Hernandez, 2011).</li>
+
+
+<li>Benefits beyond language: higher self-esteem, more positive attitudes toward other cultures and academic subjects.</li>
+
+
+<li>Promotes additive <span class="gap-wrap" data-chapter="3" data-gap="9" data-answer="bilingualism"><input type="text" class="gap-input" data-chapter="3" data-gap="9" aria-label="Chapter 3 gap 9" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(9)</span><span class="gap-feedback" aria-live="polite"></span></span> — a second language is added without harming the native language.</li>
+</ul>
+<h4>3.2.5 Heritage Language Instruction</h4>
+<p>Profile: Walid — Grew up speaking Lebanese Arabic at home but schooled in English; lacks Arabic literacy skills. Enrolled in a heritage Arabic course at community college where classmates showed a wide range of oral and literacy abilities.</p>
+<p>Key points:</p>
+<ul>
+<li>Heritage language: a language acquired at home where the dominant societal language (e.g., English in the US) is not the primary one; also called community, home, or ancestral language.</li>
+
+
+<li>The critical criterion: the heritage language was first acquired but incompletely developed due to a switch to the dominant language (Polinsky &amp; Kagan, 2007).</li>
+
+
+<li>Instruction formats: public school programs, community-organized after-school or weekend classes.</li>
+
+
+<li>Heritage learners show wide variation in oral fluency and literacy, depending on home language use.</li>
+
+
+<li>A key issue: some heritage speakers appear to have incomplete <span class="gap-wrap" data-chapter="3" data-gap="10" data-answer="acquisition"><input type="text" class="gap-input" data-chapter="3" data-gap="10" aria-label="Chapter 3 gap 10" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(10)</span><span class="gap-feedback" aria-live="polite"></span></span> of grammar (Silva-Corvalán, 1994, 2003); alternatively, Valdés (2005) suggests they may simply be acquiring a different dialect/variety of the language, requiring different instructional approaches than typical L2 learners.</li>
+
+
+<li>Research on heritage learner motivation (Comanaru &amp; Noels, 2009): heritage Chinese learners in Canada showed similar motivational profiles regardless of whether Chinese was their L1 or not.</li>
+</ul>
+<h3>3.3 Summing Up</h3>
+<ul>
+<li>Language learning outcomes vary enormously across contexts.</li>
+
+
+<li>Naturalistic settings (immigration, study abroad) generally provide richer, more varied language use opportunities than formal classrooms.</li>
+
+
+<li>However, naturalistic exposure alone does not guarantee success — quality and intensity of contact matter most.</li>
+
+
+<li>Each instructed context (traditional, bilingual, immersion, dual language, heritage) carries its own strengths, limitations, and research base.</li>
+
+
+<li>Learning context interacts with teaching methods (Chapter 5) and individual learner <span class="gap-wrap" data-chapter="3" data-gap="11" data-answer="differences"><input type="text" class="gap-input" data-chapter="3" data-gap="11" aria-label="Chapter 3 gap 11" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(11)</span><span class="gap-feedback" aria-live="polite"></span></span> (Chapters 7–8) to shape ultimate language outcomes.</li>
+</ul>
+</section>
+
+<section class="chapter" data-chapter="4">
+<div class="chapter-toolbar" data-chapter="4"><button class="btn btn-check-ch" type="button">Check Chapter 4</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 4</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 4</button><span class="ch-stats" data-chapter="4">0 / 16 correct</span></div>
+<h2>Chapter 4</h2>
+<h2>Theoretical Perspectives - Past and Present</h2>
+<h3>4.0 Chapter Overview</h3>
+<ul>
+<li>A theory explains why natural phenomena occur as they do</li>
+
+
+<li>Thomas Kuhn&#x27;s five criteria for a good theory: accurate, consistent, broad scope, simple, and fruitful</li>
+
+
+<li>A hypothesis is narrower than a theory — it predicts a specific phenomenon derived from a broader theoretical framework</li>
+
+
+<li>SLA theories have evolved significantly over time, from behaviorist-influenced views to cognitive, social, and <span class="gap-wrap" data-chapter="4" data-gap="1" data-answer="emergentist"><input type="text" class="gap-input" data-chapter="4" data-gap="1" aria-label="Chapter 4 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span> perspectives</li>
+</ul>
+<h3>4.1 Contrastive Analysis (CA)</h3>
+<ul>
+<li>Emerged in the 1950s–60s, rooted in structuralism and behaviorism (B.F. Skinner)</li>
+
+
+<li>L2 learning was seen as habit <span class="gap-wrap" data-chapter="4" data-gap="2" data-answer="formation"><input type="text" class="gap-input" data-chapter="4" data-gap="2" aria-label="Chapter 4 gap 2" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(2)</span><span class="gap-feedback" aria-live="polite"></span></span> through imitation, repetition, and reinforcement</li>
+
+
+<li>The Contrastive Analysis Hypothesis (CAH) claimed that L1 interference is the main obstacle to L2 learning</li>
+
+
+<li>Predicted that similar L1/L2 structures would be easy, different structures would be difficult</li>
+
+
+<li>Led to the &quot;hierarchy of difficulty&quot; (Stockwell et al., 1965) to rank learning challenges</li>
+
+
+<li>Gave rise to the Audiolingual Method (ALM): drills, pattern practice, and language labs</li>
+
+
+<li>Criticisms: subjective comparisons between languages; empirical studies failed to support predictions; learners sometimes struggled where languages were similar, not just different</li>
+
+
+<li>Eventually replaced by the softer concept of Cross-Linguistic Influence (CLI)</li>
+</ul>
+<h3>4.2 Error Analysis (EA)</h3>
+<ul>
+<li>Proposed by Pit Corder (1967) as a shift away from CA</li>
+
+
+<li>Argued that errors reveal how learners actively construct language, not just transfer L1 habits</li>
+
+
+<li>Introduced the concept of interlanguage (IL) — Selinker (1972): the learner&#x27;s developing linguistic system that differs systematically from native speaker <span class="gap-wrap" data-chapter="4" data-gap="3" data-answer="norms"><input type="text" class="gap-input" data-chapter="4" data-gap="3" aria-label="Chapter 4 gap 3" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(3)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+
+
+<li>EA involved 5 steps: collection → identification → description → explanation → evaluation of errors</li>
+
+
+<li>Two main error sources: interlingual (L1 transfer) and intralingual/developmental (e.g., overgeneralization like &quot;I goed&quot;)</li>
+
+
+<li>Led to recognition of learners&#x27; creative construction processes</li>
+
+
+<li>Influenced the shift to Communicative Language Teaching (CLT)</li>
+
+
+<li>Criticisms: focused too much on errors, ignoring correct production and avoidance strategies</li>
+</ul>
+<h3>4.3 Universal Grammar (UG)</h3>
+<ul>
+<li>Proposed by Noam Chomsky (1957): all human languages share underlying universal principles</li>
+
+
+<li>Language is innate (nativist view), not shaped purely by environment</li>
+
+
+<li>Key concept: competence (underlying knowledge) vs. <span class="gap-wrap" data-chapter="4" data-gap="4" data-answer="performance"><input type="text" class="gap-input" data-chapter="4" data-gap="4" aria-label="Chapter 4 gap 4" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(4)</span><span class="gap-feedback" aria-live="polite"></span></span> (actual use)</li>
+
+
+<li>The &quot;poverty of the stimulus&quot; argument: input alone cannot explain learners&#x27; abstract grammatical knowledge</li>
+
+
+<li>Three hypotheses on L2 access to UG:</li>
+
+
+<li>Full access: L2 learners retain direct access to UG, similar to L1 learners</li>
+
+
+<li>Indirect access: UG is available but filtered through L1 grammar</li>
+
+
+<li>No access: Adult L2 learners no longer access UG; rely on other learning mechanisms</li>
+
+
+<li>Later revised through the Minimalist Program, giving more weight to the lexicon</li>
+
+
+<li>Criticisms: ignores social context; abstracted away from real-world language use; limited direct classroom applications</li>
+</ul>
+<h3>4.4 The Monitor Model / Input Hypothesis</h3>
+<p>Developed by Stephen Krashen (mid-1970s); consists of 5 hypotheses:</p>
+<ul>
+<li>Acquisition-Learning Hypothesis: &quot;Acquired&quot; (subconscious) knowledge differs from &quot;learned&quot; (conscious) knowledge; learned knowledge cannot become acquired (non-interface position)</li>
+
+
+<li>Monitor Hypothesis: Learned knowledge acts only as an editor/monitor of output, under limited conditions (focus on form, time, rule knowledge)</li>
+
+
+<li>Natural Order Hypothesis: L2 morphemes are acquired in a fixed, predictable sequence (e.g., plural &quot;-s&quot; before third-person &quot;-s&quot;)</li>
+
+
+<li>Comprehensible Input Hypothesis (i+1): Learning occurs through input slightly beyond the learner&#x27;s current level</li>
+
+
+<li>Affective Filter Hypothesis: Emotional factors (anxiety, low motivation) can block access to the Language Acquisition <span class="gap-wrap" data-chapter="4" data-gap="5" data-answer="Device"><input type="text" class="gap-input" data-chapter="4" data-gap="5" aria-label="Chapter 4 gap 5" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(5)</span><span class="gap-feedback" aria-live="polite"></span></span> (LAD)</li>
+
+
+<li>Applied in the classroom as the Natural Approach (Krashen &amp; Terrell, 1983)</li>
+
+
+<li>Criticisms: vague definitions; no way to test acquisition vs. learning distinction; ignores the role of output; i+1 cannot be measured; affective filter is too vague</li>
+</ul>
+<h3>4.5 Information Processing / Cognitive Approach</h3>
+<ul>
+<li>Rooted in cognitive psychology (1950s); views language learning as similar to other cognitive tasks</li>
+
+
+<li>Emphasizes the role of attention, memory, and mental processing capacity</li>
+
+
+<li>Key distinctions:</li>
+
+
+<li>Controlled processing: slow, effortful, limited by short-term memory (early learning)</li>
+
+
+<li>Automatic processing: fast, unconscious, fluent (result of extensive practice)</li>
+
+
+<li>Declarative knowledge: knowing that (e.g., grammar rules)</li>
+
+
+<li>Procedural <span class="gap-wrap" data-chapter="4" data-gap="6" data-answer="knowledge"><input type="text" class="gap-input" data-chapter="4" data-gap="6" aria-label="Chapter 4 gap 6" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(6)</span><span class="gap-feedback" aria-live="polite"></span></span>: knowing how (automatic performance)</li>
+
+
+<li>Atkinson &amp; Shiffren&#x27;s model (1968): sensory input → short-term memory → long-term memory</li>
+
+
+<li>Criticisms: underestimates social context; relies heavily on controlled lab conditions</li>
+</ul>
+<h3>4.6 Processing-Related Hypotheses</h3>
+<h4>4.6.1 Interaction Hypothesis (Long, 1983; 1996)</h4>
+<ul>
+<li>Conversational interaction is crucial to SLA</li>
+
+
+<li>Modified interaction (simplifications, recasts, clarification requests, comprehension checks) makes input comprehensible and promotes acquisition</li>
+
+
+<li>Negotiation for <span class="gap-wrap" data-chapter="4" data-gap="7" data-answer="meaning"><input type="text" class="gap-input" data-chapter="4" data-gap="7" aria-label="Chapter 4 gap 7" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(7)</span><span class="gap-feedback" aria-live="polite"></span></span>: learners and speakers adjust communication until understanding is achieved</li>
+
+
+<li>Negative feedback draws learners&#x27; attention to gaps in their L2</li>
+
+
+<li>Evidence shows L2 learners also benefit from interacting with other L2 learners, not just native speakers</li>
+</ul>
+<h4>4.6.2 Comprehensible Output Hypothesis (Swain, 1985)</h4>
+<ul>
+<li>Producing the target language is not just a result of learning — it drives learning</li>
+
+
+<li>Output forces learners to notice gaps, test <span class="gap-wrap" data-chapter="4" data-gap="8" data-answer="hypotheses"><input type="text" class="gap-input" data-chapter="4" data-gap="8" aria-label="Chapter 4 gap 8" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(8)</span><span class="gap-feedback" aria-live="polite"></span></span>, and process grammar more deeply</li>
+
+
+<li>Evidence from French immersion students in Canada: despite extensive input, without opportunities to produce output, full proficiency was not achieved</li>
+
+
+<li>Benefits of output: increases fluency, automaticity, grammar analysis, and elicits useful input from interlocutors</li>
+</ul>
+<h4>4.6.3 Noticing Hypothesis (Schmidt, 1990; 1995)</h4>
+<ul>
+<li>Key distinction: input (what learners are exposed to) vs. <span class="gap-wrap" data-chapter="4" data-gap="9" data-answer="intake"><input type="text" class="gap-input" data-chapter="4" data-gap="9" aria-label="Chapter 4 gap 9" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(9)</span><span class="gap-feedback" aria-live="polite"></span></span> (what they actually notice and process)</li>
+
+
+<li>&quot;What learners notice in the input is what becomes intake for learning&quot;</li>
+
+
+<li>Based on Schmidt&#x27;s observation of &quot;Wes,&quot; a Japanese speaker in Hawaii who showed limited grammatical progress despite positive exposure</li>
+
+
+<li>Factors affecting noticing: frequency, perceptual salience, instruction, task demands, individual processing ability</li>
+
+
+<li>Debate remains on whether conscious awareness is always necessary for acquisition</li>
+
+
+<li>Related to the implicit vs. explicit learning distinction</li>
+</ul>
+<h4>4.6.4 Input Processing (VanPatten, 1996)</h4>
+<ul>
+<li>Learners have limited processing capacity and prioritize meaning over form</li>
+
+
+<li>Key principles:</li>
+
+
+<li>Primacy of Content Words: learners process content words (nouns, verbs) before function words or inflections</li>
+
+
+<li>First Noun Principle: the first noun/pronoun in a sentence is interpreted as the subject</li>
+
+
+<li>Applied to teaching through Processing <span class="gap-wrap" data-chapter="4" data-gap="10" data-answer="Instruction"><input type="text" class="gap-input" data-chapter="4" data-gap="10" aria-label="Chapter 4 gap 10" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(10)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+
+
+<li>Criticisms: limited explanatory adequacy for the full SLA process</li>
+</ul>
+<h3>4.7 Emergentism and Usage-Based Approaches</h3>
+<ul>
+<li>Language emerges from use, experience, and interaction — no separate innate language faculty needed</li>
+
+
+<li>Frequency of <span class="gap-wrap" data-chapter="4" data-gap="11" data-answer="exposure"><input type="text" class="gap-input" data-chapter="4" data-gap="11" aria-label="Chapter 4 gap 11" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(11)</span><span class="gap-feedback" aria-live="polite"></span></span> is a central factor in acquisition</li>
+</ul>
+<h4>4.7.1 Connectionism</h4>
+<ul>
+<li>Language learning modeled through artificial neural networks</li>
+
+
+<li>Strength of connections between linguistic units increases with repeated exposure</li>
+
+
+<li>Explains overgeneralization (e.g., &quot;mouses,&quot; &quot;goed&quot;) through associative <span class="gap-wrap" data-chapter="4" data-gap="12" data-answer="learning"><input type="text" class="gap-input" data-chapter="4" data-gap="12" aria-label="Chapter 4 gap 12" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(12)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+
+
+<li>Supported by re-analysis of morpheme order studies (Goldschneider &amp; DeKeyser, 2001): perceptual salience, frequency, and form-function reliability largely determined acquisition order</li>
+</ul>
+<h4>4.7.2 Cognitive Linguistics (CL)</h4>
+<ul>
+<li>Meaning is central to language; language is inseparable from cognition and real-world experience</li>
+
+
+<li>Emphasizes form-meaning <span class="gap-wrap" data-chapter="4" data-gap="13" data-answer="links"><input type="text" class="gap-input" data-chapter="4" data-gap="13" aria-label="Chapter 4 gap 13" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(13)</span><span class="gap-feedback" aria-live="polite"></span></span> and how physical/perceptual experience shapes language structure</li>
+
+
+<li>Applied to teaching, e.g., using spatial metaphors to teach Russian case endings or English aspect</li>
+</ul>
+<h4>4.7.3 Language as a Complex Adaptive System (CAS)</h4>
+<ul>
+<li>Language is shaped by the combined interaction of social, cognitive, and environmental factors</li>
+
+
+<li>Multiple influences (L1, input frequency, age, motivation, context) interact dynamically</li>
+
+
+<li>Recognizes the variability and adaptability of L2 <span class="gap-wrap" data-chapter="4" data-gap="14" data-answer="development"><input type="text" class="gap-input" data-chapter="4" data-gap="14" aria-label="Chapter 4 gap 14" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(14)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+</ul>
+<h3>4.8 The Sociocultural Approach</h3>
+<ul>
+<li>Based on Lev Vygotsky&#x27;s social constructivism: knowledge is constructed through social interaction</li>
+
+
+<li>Key concepts:</li>
+
+
+<li>Mediation: language is a cultural tool that connects us to others and the world</li>
+
+
+<li>Internalization: learners absorb knowledge from social interaction into their own thinking (e.g., private speech)</li>
+
+
+<li>Zone of Proximal <span class="gap-wrap" data-chapter="4" data-gap="15" data-answer="Development"><input type="text" class="gap-input" data-chapter="4" data-gap="15" aria-label="Chapter 4 gap 15" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(15)</span><span class="gap-feedback" aria-live="polite"></span></span> (ZPD): the gap between what a learner can do alone vs. with expert support</li>
+
+
+<li>Scaffolding: support provided by teachers or peers to help learners reach the next developmental level</li>
+
+
+<li>Learners advance through collaboration with more knowledgeable speakers within the ZPD</li>
+
+
+<li>Peer scaffolding is also effective (Gagné &amp; Parks, 2013; Foster &amp; Ohta, 2005)</li>
+
+
+<li>Criticisms: overemphasis on social construction; questioned whether all knowledge is socially derived</li>
+</ul>
+<h3>4.9 Summing Up</h3>
+<ul>
+<li>SLA has been examined through a wide and evolving range of theoretical <span class="gap-wrap" data-chapter="4" data-gap="16" data-answer="perspectives"><input type="text" class="gap-input" data-chapter="4" data-gap="16" aria-label="Chapter 4 gap 16" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(16)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+
+
+<li>From behaviorism → UG → cognitive/information processing → interaction-based → emergentist/usage-based → sociocultural approaches</li>
+
+
+<li>Each theory contributes unique insights but also faces limitations</li>
+
+
+<li>Ongoing research continues to refine and integrate these perspectives toward a more complete understanding of how languages are learned</li>
+</ul>
+</section>
+
+<section class="chapter" data-chapter="5">
+<div class="chapter-toolbar" data-chapter="5"><button class="btn btn-check-ch" type="button">Check Chapter 5</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 5</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 5</button><span class="ch-stats" data-chapter="5">0 / 17 correct</span></div>
+<h2>Chapter 5</h2>
+<h2>Teaching Approaches and Instructional Issues</h2>
+<h3>5.0 Chapter Overview</h3>
+<ul>
+<li>Theories about how languages are learned have influenced ideas about how to teach them, though the theory-pedagogy connection is debated</li>
+
+
+<li>Some theoreticians see little direct application of their theories; some practitioners feel methods arise from practice, not theory</li>
+
+
+<li>A more balanced view: theory can inform practice, and evidence from practice can refine theory</li>
+
+
+<li>Key terminology distinction: approach (theoretical view) → <span class="gap-wrap" data-chapter="5" data-gap="1" data-answer="method"><input type="text" class="gap-input" data-chapter="5" data-gap="1" aria-label="Chapter 5 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span> (set of procedures) → technique (specific classroom tool)</li>
+</ul>
+<h3>5.1 Historical and Current Perspectives on Language Teaching</h3>
+<h4>5.1.1 Language Teaching in Antiquity</h4>
+<ul>
+<li>Earliest known L2 teaching involved Greek and Latin across the Roman Empire</li>
+
+
+<li>The hermeneumata (earliest from AD 207): standardized texts with vocabulary <span class="gap-wrap" data-chapter="5" data-gap="2" data-answer="lists"><input type="text" class="gap-input" data-chapter="5" data-gap="2" aria-label="Chapter 5 gap 2" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(2)</span><span class="gap-feedback" aria-live="polite"></span></span>, dialogues, alphabets, and syllable tables</li>
+
+
+<li>Students learned vocabulary first, then grammar rules through reading instructive texts</li>
+
+
+<li>Colloquy (dialogues with prompting questions) was widely used through the 1800s to aid memorization</li>
+</ul>
+<h4>5.1.2 The Grammar Translation Method</h4>
+<ul>
+<li>Rooted in the Classical <span class="gap-wrap" data-chapter="5" data-gap="3" data-answer="Method"><input type="text" class="gap-input" data-chapter="5" data-gap="3" aria-label="Chapter 5 gap 3" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(3)</span><span class="gap-feedback" aria-live="polite"></span></span> (Middle Ages to 19th century)</li>
+
+
+<li>Goal: reading and writing in classical languages (Latin, Greek), not oral communication</li>
+
+
+<li>Key features: taught in L1; vocabulary lists; grammar rules; translation of texts; reading of classical works; little attention to pronunciation</li>
+
+
+<li>Spread from Prussia (Germany) in the late 18th century to schools worldwide</li>
+
+
+<li>Left a lasting legacy of grammar-explicit teaching and reading skills emphasis</li>
+
+
+<li>Criticized by Comenius, who advocated learning from authentic texts, not grammar rules</li>
+</ul>
+<h4>5.1.3 The Direct Method</h4>
+<ul>
+<li>Emerged late 19th–early 20th century as a reaction to the Grammar Translation Method</li>
+
+
+<li>Most associated with Maximilian Berlitz and the Berlitz language schools (founded 1878)</li>
+
+
+<li>Key principles: exclusive use of the target language; no explicit grammar instruction; teach basic vocabulary through dialogues, objects, and pictures; emphasis on oral <span class="gap-wrap" data-chapter="5" data-gap="4" data-answer="expression"><input type="text" class="gap-input" data-chapter="5" data-gap="4" aria-label="Chapter 5 gap 4" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(4)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+
+
+<li>Successful in small private classes with motivated learners; less effective in large public school classrooms with non-native-speaking teachers</li>
+
+
+<li>Recognized as the first method to gain widespread attention among language teaching specialists</li>
+</ul>
+<h4>5.1.4 The Audiolingual Method (ALM)</h4>
+<ul>
+<li>Developed mid-20th century; driven partly by WWII need to rapidly train language specialists</li>
+
+
+<li>Grounded in behaviorism (habit formation through stimulus-response) and structuralism</li>
+
+
+<li>Features: heavy use of language labs; repetitive pattern <span class="gap-wrap" data-chapter="5" data-gap="5" data-answer="drills"><input type="text" class="gap-input" data-chapter="5" data-gap="5" aria-label="Chapter 5 gap 5" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(5)</span><span class="gap-feedback" aria-live="polite"></span></span>; avoidance of errors; no explicit grammar instruction; emphasis on grammatical patterns over vocabulary</li>
+
+
+<li>Example: substitution drills where one word is changed at a time</li>
+
+
+<li>Shortcomings: failed to develop real conversational skills; criticized as behaviorism weakened; grew out of favor in the second half of the 20th century</li>
+</ul>
+<h4>5.1.5 Affective-Humanistic Approaches: Suggestopedia</h4>
+<ul>
+<li>Developed in the 1970s by Bulgarian psychotherapist Georgi Lozanov</li>
+
+
+<li>Aimed to &quot;liberate&quot; learners from anxiety; learning in a relaxed, comfortable, music-filled environment (preferably Baroque music)</li>
+
+
+<li>Used dialogues, role-playing, and other devices; learners sit in comfortable armchairs in dim lighting</li>
+
+
+<li>Claimed very high vocabulary <span class="gap-wrap" data-chapter="5" data-gap="6" data-answer="retention"><input type="text" class="gap-input" data-chapter="5" data-gap="6" aria-label="Chapter 5 gap 6" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(6)</span><span class="gap-feedback" aria-live="polite"></span></span> rates (~90% after ~100 hours)</li>
+
+
+<li>Limitations: exaggerated claims, lack of supporting evidence, practical difficulties; never adopted on a large scale</li>
+</ul>
+<h4>5.1.6 Total Physical Response (TPR)</h4>
+<ul>
+<li>Developed in the 1960s by psychologist James Asher</li>
+
+
+<li>Based on the L1 acquisition sequence: children listen first, speak later</li>
+
+
+<li>Learners respond to teacher commands through physical <span class="gap-wrap" data-chapter="5" data-gap="7" data-answer="actions"><input type="text" class="gap-input" data-chapter="5" data-gap="7" aria-label="Chapter 5 gap 7" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(7)</span><span class="gap-feedback" aria-live="polite"></span></span>; no pressure to speak until ready</li>
+
+
+<li>Aims to reduce stress; mainly targets beginning learners</li>
+
+
+<li>Primarily used as a supplement to other approaches; limited experimental support</li>
+</ul>
+<h4>5.1.7 Communicative Language Teaching (CLT)</h4>
+<ul>
+<li>Rose to prominence in the 1970s–1980s in reaction to the ALM&#x27;s failure to develop real communicative competence</li>
+
+
+<li>Influenced by cognitive views rejecting behaviorism and by the concept of communicative <span class="gap-wrap" data-chapter="5" data-gap="8" data-answer="competence"><input type="text" class="gap-input" data-chapter="5" data-gap="8" aria-label="Chapter 5 gap 8" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(8)</span><span class="gap-feedback" aria-live="polite"></span></span> (Hymes, 1972)</li>
+
+
+<li>Key features: focus on all components of communicative competence; authentic, meaningful language use; fluency and accuracy are complementary; use of authentic materials; unrehearsed, interactive tasks</li>
+
+
+<li>Allows learners more freedom to express themselves meaningfully</li>
+
+
+<li>Diverse in application; lacks specific methodological guidelines; remains dominant in classrooms today</li>
+</ul>
+<h4>5.1.8 Task-Based Language Teaching (TBLT)</h4>
+<ul>
+<li>Grew out of CLT; addresses perceived weaknesses of CLT (especially lack of grammatical accuracy)</li>
+
+
+<li>Rooted in experiential <span class="gap-wrap" data-chapter="5" data-gap="9" data-answer="learning"><input type="text" class="gap-input" data-chapter="5" data-gap="9" aria-label="Chapter 5 gap 9" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(9)</span><span class="gap-feedback" aria-live="polite"></span></span> theory (Dewey, Kolb): learners must fully engage to benefit</li>
+
+
+<li>A task is defined as an activity where: meaning is primary; there is a real-world communication problem; completion is the goal; assessment is based on outcome</li>
+
+
+<li>Closely linked to Interaction Hypothesis, Noticing Hypothesis, and the role of output</li>
+
+
+<li>Instructor acts as a guide, not a solution-provider</li>
+
+
+<li>Research on task features is expanding; growing in popularity alongside CLT</li>
+</ul>
+<h4>5.1.9 Postmethod Perspective</h4>
+<ul>
+<li>Proposed by applied linguist Kumaravadivelu (1994, 2012)</li>
+
+
+<li>Argues that no single &quot;best method&quot; exists; methods are based on idealized, context-free concepts</li>
+
+
+<li>Three operating principles to replace &quot;method&quot;:</li>
+
+
+<li>Particularity: sensitivity to specific teaching context</li>
+
+
+<li>Practicality: teachers develop theory from their own classroom practice</li>
+
+
+<li>Possibility: awareness of sociopolitical forces; empowerment of teachers and students</li>
+
+
+<li>Teachers should be &quot;reflective <span class="gap-wrap" data-chapter="5" data-gap="10" data-answer="practitioners"><input type="text" class="gap-input" data-chapter="5" data-gap="10" aria-label="Chapter 5 gap 10" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(10)</span><span class="gap-feedback" aria-live="polite"></span></span>&quot; who adapt creatively to their context, not just follow pre-set instructions</li>
+
+
+<li>A relatively recent and still-developing perspective</li>
+</ul>
+<h3>5.2 Classroom Instructional Issues</h3>
+<h4>5.2.1 Focus on Form</h4>
+<ul>
+<li>Emerged from the question of whether meaning-based CLT classrooms need to explicitly address grammatical form</li>
+
+
+<li>Focus on form (FFI): drawing attention to linguistic form within a meaning-based <span class="gap-wrap" data-chapter="5" data-gap="11" data-answer="context"><input type="text" class="gap-input" data-chapter="5" data-gap="11" aria-label="Chapter 5 gap 11" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(11)</span><span class="gap-feedback" aria-live="polite"></span></span> — incidental, reactive (e.g., pointing out &quot;homework&quot; has no plural)</li>
+
+
+<li>Focus on forms: traditional approach — isolating and drilling formal grammar features outside of meaningful context</li>
+
+
+<li>Research (e.g., Mackey, 2006) supports FFI: learners who received form-focused feedback noticed more; one measure showed that noticing led to greater learning of question forms</li>
+</ul>
+<h5><em>5.2.1.1 Input Enhancement and Input Flooding</em></h5>
+<ul>
+<li>Input enhancement (Sharwood Smith, 1991): visually highlighting forms in texts (bold, underlining, capitalization) to draw learners&#x27; attention</li>
+
+
+<li>Evidence is mixed; more communicatively meaningful forms (e.g., present perfect) respond better than low-salience forms (e.g., possessive determiners)</li>
+
+
+<li>Input <span class="gap-wrap" data-chapter="5" data-gap="12" data-answer="flooding"><input type="text" class="gap-input" data-chapter="5" data-gap="12" aria-label="Chapter 5 gap 12" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(12)</span><span class="gap-feedback" aria-live="polite"></span></span>: exposing learners to very large quantities of a target form in the input</li>
+
+
+<li>May improve recognition, but not always production; ineffective where L1 interference is strong — explicit negative feedback may be needed</li>
+
+
+<li>Combined with enhancement, may cause overuse of the target form</li>
+</ul>
+<h5><em>5.2.1.2 Processing Instruction (PI)</em></h5>
+<ul>
+<li>Developed by VanPatten (1996, 2004); applies the Input Processing model to pedagogy</li>
+
+
+<li>Intervenes at the input stage rather than at output; forces learners to rely on form to understand meaning</li>
+
+
+<li>Three main features: (1) explicit information about the target structure; (2) explicit information about processing strategies; (3) structured input activities requiring form-meaning <span class="gap-wrap" data-chapter="5" data-gap="13" data-answer="connections"><input type="text" class="gap-input" data-chapter="5" data-gap="13" aria-label="Chapter 5 gap 13" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(13)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+
+
+<li>Two activity types: referential (right/wrong answer; must attend to form) and affective (personal opinion; reinforces form-meaning connections)</li>
+
+
+<li>Evidence for effectiveness: experimental group using PI outperformed traditional instruction group in comprehension tasks (VanPatten &amp; Cadierno, 1993)</li>
+</ul>
+<h4>5.2.2 Corrective Feedback</h4>
+<ul>
+<li>Closely linked to Long&#x27;s Interaction Hypothesis; debate centers on what type of corrective feedback is most useful</li>
+
+
+<li>Feedback can be explicit (overtly correcting the error) or implicit (e.g., recasts)</li>
+
+
+<li>Recasts (most common teacher feedback type): reformulating a student&#x27;s incorrect utterance correctly without drawing attention to the error</li>
+
+
+<li>Lyster &amp; Ranta (1997): recasts were most frequent but least effective — largely ignored by learners; low rates of uptake and repair</li>
+
+
+<li>More effective for phonological errors; negotiation of form more effective for grammar/lexical errors</li>
+
+
+<li>However, Mackey &amp; Philp (1998): recasts can be effective for advanced learners and effects may appear over a longer timeframe</li>
+
+
+<li>Uptake: the learner&#x27;s immediate response following teacher feedback; can include &quot;repair&quot; (self-<span class="gap-wrap" data-chapter="5" data-gap="14" data-answer="correction"><input type="text" class="gap-input" data-chapter="5" data-gap="14" aria-label="Chapter 5 gap 14" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(14)</span><span class="gap-feedback" aria-live="polite"></span></span>)</li>
+
+
+<li>Making recasts more explicit (e.g., stressing the corrected part) may increase their effectiveness</li>
+</ul>
+<h4>5.2.3 L1 Use in the Classroom</h4>
+<ul>
+<li>Historically, many approaches (especially the Direct Method) banned all L1 use; more recent communicative approaches prioritize target language use</li>
+
+
+<li>Growing evidence that some L1 use can be beneficial:</li>
+
+
+<li>Can highlight cross-linguistic contrasts and develop metalinguistic <span class="gap-wrap" data-chapter="5" data-gap="15" data-answer="awareness"><input type="text" class="gap-input" data-chapter="5" data-gap="15" aria-label="Chapter 5 gap 15" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(15)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+
+
+<li>Helps validate students&#x27; linguistic identity, especially in minority-language contexts</li>
+
+
+<li>Explicit translation can serve as a bridge between familiar and new linguistic knowledge</li>
+
+
+<li>Moore (2002): L1 use triggered productive metalinguistic discussions in the classroom</li>
+
+
+<li>Cook (2010): argues strongly for translation in language teaching (TILT) — monolingual instruction ignores learners&#x27; real needs; translation builds on existing knowledge</li>
+
+
+<li>L2 vocabulary research (Laufer &amp; Girsai, 2008): contrastive analysis and translation group outperformed meaning-focused and form-focused groups</li>
+</ul>
+<h4>5.2.4 Technology and Language Learning</h4>
+<ul>
+<li>Computer-Assisted Language Learning (CALL): use of computers and digital resources in L2 learning</li>
+
+
+<li>Software programs for grammar, reading comprehension, pronunciation, vocabulary</li>
+
+
+<li>Online dictionaries, search engines for grammatical accuracy checking, videos in target language</li>
+
+
+<li>Promotes learner <span class="gap-wrap" data-chapter="5" data-gap="16" data-answer="autonomy"><input type="text" class="gap-input" data-chapter="5" data-gap="16" aria-label="Chapter 5 gap 16" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(16)</span><span class="gap-feedback" aria-live="polite"></span></span></li>
+
+
+<li>Computer-Mediated Communication (CMC): email, instant messaging, video chat, social media</li>
+
+
+<li>Provides global access to conversational partners</li>
+
+
+<li>Can be used synchronously (simultaneous online exchange) or asynchronously (different times)</li>
+
+
+<li>Benefits: non-threatening, instantaneous global contact, natural language use</li>
+
+
+<li>Challenges: time zones, unequal access to technology, potential for misunderstandings, unpredictable contact maintenance</li>
+
+
+<li>Classroom applications: digital portfolios, blogs, tandem exchanges with native speakers</li>
+</ul>
+<h3>5.3 Summing Up</h3>
+<ul>
+<li>L2 teaching methods have evolved from grammar drills and translation to communicative, meaning-based <span class="gap-wrap" data-chapter="5" data-gap="17" data-answer="approaches"><input type="text" class="gap-input" data-chapter="5" data-gap="17" aria-label="Chapter 5 gap 17" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(17)</span><span class="gap-feedback" aria-live="polite"></span></span>, and now toward a postmethod view</li>
+
+
+<li>Classroom issues such as focus on form, corrective feedback, L1 use, and technology remain active areas of debate and research</li>
+
+
+<li>No single method has proven universally effective; the field continues to develop through interplay between theory, research, and practice</li>
+</ul>
+</section>
+</div>
+
+<script>
+  const ANSWERS = {"2": {"1": "acquisition", "2": "discrimination", "3": "mapping", "4": "nativism", "5": "conditioning", "6": "stimulus", "7": "Speech", "8": "network", "9": "interference", "10": "sequences", "11": "underextension"}, "3": {"1": "immersion", "2": "exposure", "3": "proficiency", "4": "motivation", "5": "programs", "6": "Elementary", "7": "bilingualism", "8": "Learning", "9": "bilingualism", "10": "acquisition", "11": "differences"}, "4": {"1": "emergentist", "2": "formation", "3": "norms", "4": "performance", "5": "Device", "6": "knowledge", "7": "meaning", "8": "hypotheses", "9": "intake", "10": "Instruction", "11": "exposure", "12": "learning", "13": "links", "14": "development", "15": "Development", "16": "perspectives"}, "5": {"1": "method", "2": "lists", "3": "Method", "4": "expression", "5": "drills", "6": "retention", "7": "actions", "8": "competence", "9": "learning", "10": "practitioners", "11": "context", "12": "flooding", "13": "connections", "14": "correction", "15": "awareness", "16": "autonomy", "17": "approaches"}};
+  const CHAPTER_META = [[2, 11], [3, 11], [4, 16], [5, 17]];
+  const TOTAL = 55;
+
+  function normalize(s) {
+    return (s || "").trim().toLowerCase().replace(/\s+/g, " ");
+  }
+
+  function inputs() {
+    return Array.from(document.querySelectorAll(".gap-input"));
+  }
+
+  function checkOne(input, opts = {}) {
+    const c = input.dataset.chapter;
+    const g = input.dataset.gap;
+    const correct = ANSWERS[c][g];
+    const fb = input.parentElement.querySelector(".gap-feedback");
+    input.classList.remove("correct", "wrong", "revealed");
+    fb.classList.remove("ok", "no", "show");
+
+    const val = input.value;
+    if (!val.trim() && !opts.silent) {
+      // empty: leave neutral unless we're in "check all" mode
+      if (opts.markEmptyAsWrong) {
+        input.classList.add("wrong");
+        fb.classList.add("no");
+      }
+      return { state: "empty", correct: false };
+    }
+    if (normalize(val) === normalize(correct)) {
+      input.classList.add("correct");
+      fb.classList.add("ok");
+      return { state: "correct", correct: true };
+    } else if (val.trim()) {
+      input.classList.add("wrong");
+      fb.classList.add("no");
+      return { state: "wrong", correct: false };
+    }
+    return { state: "empty", correct: false };
+  }
+
+  function revealOne(input) {
+    const c = input.dataset.chapter;
+    const g = input.dataset.gap;
+    input.value = ANSWERS[c][g];
+    input.classList.remove("correct", "wrong");
+    input.classList.add("revealed");
+    const fb = input.parentElement.querySelector(".gap-feedback");
+    fb.classList.remove("ok", "no");
+    fb.classList.add("show");
+  }
+
+  function resetOne(input) {
+    input.value = "";
+    input.classList.remove("correct", "wrong", "revealed");
+    const fb = input.parentElement.querySelector(".gap-feedback");
+    fb.classList.remove("ok", "no", "show");
+  }
+
+  function updateScore() {
+    const all = inputs();
+    let correct = 0, attempted = 0;
+    all.forEach(i => {
+      if (i.classList.contains("correct")) correct++;
+      if (i.value.trim()) attempted++;
+    });
+    document.getElementById("score-text").textContent = correct + " / " + TOTAL + " correct";
+    document.getElementById("score-bar").style.width = (correct / TOTAL * 100) + "%";
+
+    // Per-chapter stats
+    document.querySelectorAll(".ch-stats").forEach(el => {
+      const ch = el.dataset.chapter;
+      const chInputs = all.filter(i => i.dataset.chapter === ch);
+      const chCorrect = chInputs.filter(i => i.classList.contains("correct")).length;
+      el.textContent = chCorrect + " / " + chInputs.length + " correct";
+    });
+  }
+
+  function showSummary(correct, total, wrongCount, emptyCount) {
+    const el = document.getElementById("summary-top");
+    let msg = "<strong>" + correct + " / " + total + " correct.</strong> ";
+    if (wrongCount === 0 && emptyCount === 0) {
+      msg += "Perfect — every gap filled correctly.";
+    } else {
+      if (wrongCount > 0) msg += wrongCount + " incorrect. ";
+      if (emptyCount > 0) msg += emptyCount + " unanswered. ";
+      msg += "Try again, or use \"Reveal all\" to see every answer.";
+    }
+    el.innerHTML = msg;
+    el.classList.add("show");
+    el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Per-input live feedback on blur
+    inputs().forEach(input => {
+      input.addEventListener("input", () => {
+        // remove status classes when user resumes typing
+        if (input.classList.contains("revealed") || input.classList.contains("correct") || input.classList.contains("wrong")) {
+          input.classList.remove("revealed", "correct", "wrong");
+          const fb = input.parentElement.querySelector(".gap-feedback");
+          fb.classList.remove("ok", "no", "show");
+          updateScore();
+        }
+      });
+      input.addEventListener("blur", () => {
+        if (input.value.trim()) {
+          checkOne(input);
+          updateScore();
+        }
+      });
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          checkOne(input);
+          updateScore();
+          // jump to next input
+          const all = inputs();
+          const idx = all.indexOf(input);
+          if (idx >= 0 && idx + 1 < all.length) all[idx + 1].focus();
+        }
+      });
+    });
+
+    document.getElementById("btn-check-all").addEventListener("click", () => {
+      let correct = 0, wrong = 0, empty = 0;
+      inputs().forEach(i => {
+        const r = checkOne(i, { markEmptyAsWrong: false });
+        if (r.state === "correct") correct++;
+        else if (r.state === "wrong") wrong++;
+        else if (r.state === "empty") empty++;
+      });
+      updateScore();
+      showSummary(correct, TOTAL, wrong, empty);
+    });
+
+    document.getElementById("btn-reveal-all").addEventListener("click", () => {
+      if (!confirm("Reveal every answer? Your current entries will be replaced.")) return;
+      inputs().forEach(revealOne);
+      updateScore();
+      const el = document.getElementById("summary-top");
+      el.innerHTML = "<strong>All answers revealed.</strong> Click Reset to start over.";
+      el.classList.add("show");
+    });
+
+    document.getElementById("btn-reset-all").addEventListener("click", () => {
+      if (!confirm("Clear all answers and feedback?")) return;
+      inputs().forEach(resetOne);
+      document.getElementById("summary-top").classList.remove("show");
+      updateScore();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Per-chapter buttons
+    document.querySelectorAll(".chapter-toolbar").forEach(tb => {
+      const ch = tb.dataset.chapter;
+      tb.querySelector(".btn-check-ch").addEventListener("click", () => {
+        const chInputs = inputs().filter(i => i.dataset.chapter === ch);
+        chInputs.forEach(i => checkOne(i));
+        updateScore();
+      });
+      tb.querySelector(".btn-reveal-ch").addEventListener("click", () => {
+        if (!confirm("Reveal answers for Chapter " + ch + "?")) return;
+        inputs().filter(i => i.dataset.chapter === ch).forEach(revealOne);
+        updateScore();
+      });
+      tb.querySelector(".btn-reset-ch").addEventListener("click", () => {
+        if (!confirm("Reset Chapter " + ch + "?")) return;
+        inputs().filter(i => i.dataset.chapter === ch).forEach(resetOne);
+        updateScore();
+      });
+    });
+
+    updateScore();
+  });
+</script>
+</body>
+</html>
