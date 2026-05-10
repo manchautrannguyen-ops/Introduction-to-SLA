@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gap-Fill Exercise — SLA / TESOL Terminology (Chapters 6–10)</title>
+<style>
+  :root {
+    --bg: #f8f6f1;
+    --surface: #ffffff;
+    --ink: #1f1f1f;
+    --ink-soft: #555;
+    --ink-muted: #7a7a7a;
+    --border: #e5e2d8;
+    --border-strong: #d6d2c5;
+    --accent: #b85c2c;
+    --accent-soft: #fbeee5;
+    --correct: #1f8a5b;
+    --correct-soft: #e6f5ed;
+    --wrong: #c43d3d;
+    --wrong-soft: #fbeaea;
+    --hint: #8a6d2c;
+    --hint-soft: #fbf4dc;
+    --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Charter", "Iowan Old Style", "Source Serif Pro", Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+  header.intro {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  header.intro h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  header.intro p {
+    margin: 6px 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+  }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(248,246,241,0.92);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    margin: 0 -28px 24px;
+    padding: 12px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .toolbar .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toolbar .progress {
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-bar {
+    width: 140px;
+    height: 6px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar > span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width .3s ease;
+  }
+  button.btn {
+    font: inherit;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  button.btn:hover { border-color: var(--accent); color: var(--accent); }
+  button.btn:active { transform: scale(0.98); }
+  button.btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  button.btn.primary:hover { background: #a04f24; border-color: #a04f24; color: #fff; }
+  button.btn.ghost { background: transparent; }
+
+  section.chapter {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 32px 30px;
+    margin: 0 0 28px;
+    box-shadow: var(--shadow);
+  }
+  h2, h3, h4, h5 {
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  h2 {
+    font-size: 24px;
+    margin: 4px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  h2 + h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-top: -8px;
+    color: var(--ink);
+    font-size: 22px;
+  }
+  h3 {
+    font-size: 19px;
+    margin: 22px 0 8px;
+    color: var(--ink);
+  }
+  h4 {
+    font-size: 17px;
+    margin: 18px 0 6px;
+    color: var(--ink);
+  }
+  h5 {
+    font-size: 15px;
+    margin: 14px 0 6px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-weight: 600;
+  }
+  p { margin: 10px 0; }
+  ul {
+    margin: 8px 0 14px;
+    padding-left: 22px;
+  }
+  ul li { margin: 6px 0; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 14px 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 15px;
+  }
+  table th, table td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table th {
+    background: #f1ede2;
+    font-weight: 600;
+  }
+  table tr:last-child td { border-bottom: none; }
+
+  /* Gap input styling */
+  .gap-wrap {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+    margin: 0 1px;
+  }
+  .gap-input {
+    font: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.95em;
+    width: 11ch;
+    padding: 2px 8px;
+    border: none;
+    border-bottom: 2px solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--ink);
+    border-radius: 4px 4px 0 0;
+    outline: none;
+    transition: all .15s ease;
+  }
+  .gap-input:focus {
+    background: #fff;
+    border-bottom-color: var(--accent);
+    box-shadow: 0 2px 0 var(--accent);
+  }
+  .gap-input.correct {
+    background: var(--correct-soft);
+    border-bottom-color: var(--correct);
+    color: var(--correct);
+    font-weight: 500;
+  }
+  .gap-input.wrong {
+    background: var(--wrong-soft);
+    border-bottom-color: var(--wrong);
+    color: var(--wrong);
+    font-weight: 500;
+  }
+  .gap-input.revealed {
+    background: var(--hint-soft);
+    border-bottom-color: var(--hint);
+    color: var(--hint);
+    font-weight: 500;
+    font-style: italic;
+  }
+  .gap-num {
+    font-size: 0.78em;
+    color: var(--ink-muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    vertical-align: super;
+  }
+  .gap-feedback {
+    display: inline-flex;
+    width: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+  .gap-feedback.ok::before { content: "✓"; color: var(--correct); }
+  .gap-feedback.no::before { content: "✗"; color: var(--wrong); }
+  .gap-feedback.show::before { content: "★"; color: var(--hint); }
+
+  .summary {
+    display: none;
+    margin: 14px 0 8px;
+    padding: 12px 16px;
+    background: #f7f4ec;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  .summary.show { display: block; }
+  .summary strong { color: var(--accent); }
+
+  .chapter-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 6px 0 18px;
+    padding: 10px 14px;
+    background: #f7f4ec;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .chapter-toolbar .ch-stats { margin-left: auto; }
+
+  /* Print styles */
+  @media print {
+    body { background: white; }
+    .toolbar, .chapter-toolbar { display: none; }
+    section.chapter { box-shadow: none; border: none; padding: 0; margin-bottom: 16px; page-break-inside: avoid; }
+    .gap-input { background: transparent; border-bottom: 1px solid #999; }
+  }
+
+  @media (max-width: 640px) {
+    .page { padding: 20px 16px 60px; }
+    section.chapter { padding: 20px 18px; }
+    .toolbar { margin: 0 -16px 16px; padding: 10px 16px; }
+    h2 { font-size: 21px; }
+    h3 { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="intro">
+    <p><strong>Gap-Fill Exercise — SLA / TESOL Terminology</strong></p>
+<p><em>Summary of Chapters 6–10</em></p>
+<p><strong>Instructions: </strong>Each section contains ONE gap targeting an SLA/TESOL term or collocation. Fill in the missing word. Answer keys appear at the end of each chapter.</p>
+  </header>
+
+  <div class="toolbar" role="toolbar" aria-label="Exercise controls">
+    <div class="actions">
+      <button class="btn primary" id="btn-check-all" type="button">Check all answers</button>
+      <button class="btn" id="btn-reveal-all" type="button">Reveal all</button>
+      <button class="btn ghost" id="btn-reset-all" type="button">Reset</button>
+    </div>
+    <div class="progress" aria-live="polite">
+      <span id="score-text">0 / 41 correct</span>
+      <span class="progress-bar"><span id="score-bar"></span></span>
+    </div>
+  </div>
+
+  <div id="summary-top" class="summary" role="status" aria-live="polite"></div>
+
+  <section class="chapter" data-chapter="6">
+<div class="chapter-toolbar" data-chapter="6"><button class="btn btn-check-ch" type="button">Check Chapter 6</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 6</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 6</button><span class="ch-stats" data-chapter="6">0 / 17 correct</span></div>
+<h2>Chapter 6</h2>
+<h2>Second Language Development</h2>
+<h3>6.0 Chapter Overview</h3>
+<p>L2 <span class="gap-wrap" data-chapter="6" data-gap="1" data-answer="development"><input type="text" class="gap-input" data-chapter="6" data-gap="1" aria-label="Chapter 6 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span> is shaped by a number of identifiable processes and influences. Understanding these helps explain both the systematic patterns and the errors that characterize learner language across all linguistic sub-areas.</p>
+<h3>6.1 Common Processes and Influences</h3>
+<h4>6.1.1 Cross-Linguistic Influence (Transfer)</h4>
+<ul>
+<li>Defined as the influence resulting from similarities and differences between the target language and any previously acquired language (Odlin, 1989).</li>
+
+
+<li>Affects all linguistic subsystems: phonology, morphology, syntax, semantics, pragmatics, and orthography.</li>
+
+
+<li>Now commonly called Cross-Linguistic Influence (CLI), which can affect both comprehension and production.</li>
+
+
+<li>Two directions:</li>
+
+
+<li>Positive transfer: L1 similarity facilitates L2 acquisition (e.g., learners whose L1 has articles acquire English articles faster).</li>
+
+
+<li>Negative transfer (<span class="gap-wrap" data-chapter="6" data-gap="2" data-answer="interference"><input type="text" class="gap-input" data-chapter="6" data-gap="2" aria-label="Chapter 6 gap 2" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(2)</span><span class="gap-feedback" aria-live="polite"></span></span>): L1 differences cause L2 errors (e.g., Finnish speakers omitting prepositions in English due to L1 absence of similar prepositions).</li>
+
+
+<li>Typologically similar languages lead to more transfer (Ringbom, 1987).</li>
+
+
+<li>Transfer is influenced by: L1–L2 similarity, learner&#x27;s proficiency level, literacy in L1.</li>
+
+
+<li>Not fully predictable — learners sometimes avoid transferring even structures that would work correctly in the L2.</li>
+</ul>
+<h4>6.1.2 Overgeneralization</h4>
+<ul>
+<li>Learners over-apply target language rules beyond their proper scope.</li>
+
+
+<li>Example: &quot;I eated&quot; (applying regular past -ed to an irregular verb).</li>
+
+
+<li>A specific type — overregularization — is particularly common in verb <span class="gap-wrap" data-chapter="6" data-gap="3" data-answer="morphology"><input type="text" class="gap-input" data-chapter="6" data-gap="3" aria-label="Chapter 6 gap 3" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(3)</span><span class="gap-feedback" aria-live="polite"></span></span>.</li>
+
+
+<li>Proves learners have internalized rules and are actively using them, not merely imitating input.</li>
+
+
+<li>Parallels overgeneralization found in L1 acquisition (see Chapter 2).</li>
+</ul>
+<h4>6.1.3 Markedness</h4>
+<ul>
+<li>Markedness = the idea that some linguistic features are more natural/universal (unmarked) while others are rarer or more complex (marked).</li>
+
+
+<li>Example: voiceless <span class="gap-wrap" data-chapter="6" data-gap="4" data-answer="stops"><input type="text" class="gap-input" data-chapter="6" data-gap="4" aria-label="Chapter 6 gap 4" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(4)</span><span class="gap-feedback" aria-live="polite"></span></span> (p, t, k) = unmarked; voiced stops (b, d, g) = more marked.</li>
+
+
+<li>Markedness Differential Hypothesis (MDH) (Eckman, 1977): difficulty in L2 is predictable not just by difference from L1, but by how marked the target feature is relative to the L1.</li>
+
+
+<li>Features that differ from L1 AND are more marked → difficult.</li>
+
+
+<li>Features that differ from L1 but are NOT more marked → not necessarily difficult.</li>
+
+
+<li>General principle: if a language has a marked structure, it will also have the unmarked equivalent. Learners acquire unmarked features more easily than marked ones.</li>
+</ul>
+<h4>6.1.4 Developmental Sequences</h4>
+<ul>
+<li>L2 learners follow fixed, predictable stages of development regardless of L1 background, though L1 can exert some influence.</li>
+
+
+<li>Example: English negation development in Spanish L1 learners (Cancino et al., 1978):</li>
+
+
+<li>&quot;No V&quot; (No go)</li>
+
+
+<li>&quot;Don&#x27;t V&quot; (unanalyzed)</li>
+
+
+<li>Aux-neg (he didn&#x27;t go)</li>
+
+
+<li>Similar patterns found in German L2 negation development.</li>
+
+
+<li>Suggests universal developmental constraints are at work beyond just L1 <span class="gap-wrap" data-chapter="6" data-gap="5" data-answer="transfer"><input type="text" class="gap-input" data-chapter="6" data-gap="5" aria-label="Chapter 6 gap 5" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(5)</span><span class="gap-feedback" aria-live="polite"></span></span>.</li>
+</ul>
+<h4>6.1.5 Formulaic Sequences</h4>
+<ul>
+<li>Formulaic sequences = prefabricated chunks stored and retrieved as whole units (Wray, 2000): &quot;I don&#x27;t know,&quot; &quot;Wait a minute,&quot; &quot;What&#x27;s that?&quot;</li>
+
+
+<li>Serve as building blocks in L2 development; allow learners to express complex ideas before mastering the underlying grammar.</li>
+
+
+<li>Help reduce cognitive processing <span class="gap-wrap" data-chapter="6" data-gap="6" data-answer="load"><input type="text" class="gap-input" data-chapter="6" data-gap="6" aria-label="Chapter 6 gap 6" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(6)</span><span class="gap-feedback" aria-live="polite"></span></span>, freeing attention for other aspects of language learning.</li>
+
+
+<li>Increased use of formulaic language is linked to improved L2 fluency (Boers et al., 2006; McGuire, 2009).</li>
+
+
+<li>Adult L2 learners of Swedish used formulaic expressions containing structures beyond their current mastery — suggesting formulas help learners bootstrap into more complex language (Bolander, 1989).</li>
+
+
+<li>The Lexical Approach (Lewis, 1997) builds on this insight by teaching vocabulary, collocations, and fixed expressions rather than grammar rules.</li>
+</ul>
+<h4>6.1.6 Fossilization</h4>
+<ul>
+<li>Fossilization (Selinker, 1972): certain non-native-like forms become permanently fixed in a learner&#x27;s <span class="gap-wrap" data-chapter="6" data-gap="7" data-answer="interlanguage"><input type="text" class="gap-input" data-chapter="6" data-gap="7" aria-label="Chapter 6 gap 7" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(7)</span><span class="gap-feedback" aria-live="polite"></span></span> despite instruction and exposure.</li>
+
+
+<li>Example: Mila omitting English articles (&quot;You can use black cup&quot;) because articles are absent in her native Bosnian — even after years in the US.</li>
+
+
+<li>Common fossilized features: non-target-like pronunciation (e.g., &quot;th&quot; → &quot;t&quot; or &quot;z&quot;), non-count noun pluralization (&quot;homeworks&quot;).</li>
+
+
+<li>Not all researchers accept permanent fossilization — Long (2003) suggests the term &quot;stabilization&quot; as an alternative, since learners may eventually correct fossilized forms.</li>
+</ul>
+<h4>6.1.7 Avoidance</h4>
+<ul>
+<li>Learners sometimes avoid structures perceived as difficult rather than risk producing errors.</li>
+
+
+<li>Example: Xia Mei avoiding English relative clauses, splitting complex sentences into two simpler ones.</li>
+
+
+<li>A key limitation of Error Analysis — errors don&#x27;t reveal what learners are systematically avoiding.</li>
+
+
+<li>Schachter (1974): Japanese and Chinese learners made fewer relative <span class="gap-wrap" data-chapter="6" data-gap="8" data-answer="clause"><input type="text" class="gap-input" data-chapter="6" data-gap="8" aria-label="Chapter 6 gap 8" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(8)</span><span class="gap-feedback" aria-live="polite"></span></span> errors than Arabic/Farsi learners, but only because they used them far less often — their L1 structures relative clauses very differently from English.</li>
+</ul>
+<h3>6.2 L2 Development Across Linguistic Sub-Areas</h3>
+<h4>6.2.1 Phonology</h4>
+<ul>
+<li>Pronunciation is the most difficult area to master and the most obvious indicator of non-native competence (&quot;foreign accent&quot;).</li>
+
+
+<li>L1 acts as a &quot;phonological <span class="gap-wrap" data-chapter="6" data-gap="9" data-answer="sieve"><input type="text" class="gap-input" data-chapter="6" data-gap="9" aria-label="Chapter 6 gap 9" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(9)</span><span class="gap-feedback" aria-live="polite"></span></span>&quot; (Trubetzkoy) — new sounds are filtered through existing L1 categories.</li>
+
+
+<li>Key distinction: perception vs production — L2 perception is generally more accurate than production, though exceptions exist (some learners produce sounds they cannot reliably perceive).</li>
+
+
+<li>Speech Learning Model (SLM) (Flege, 1995): sounds similar to L1 sounds are harder to acquire than entirely new sounds, because learners map L2 sounds onto existing L1 categories. New sounds trigger creation of new phonetic categories.</li>
+
+
+<li>Markedness also applies to phonology: unmarked sounds (e.g., voiceless stops word-finally) easier to acquire than marked equivalents (e.g., voiced stops word-finally).</li>
+
+
+<li>L2 learner strategies when encountering difficult sounds: epenthesis (inserting a vowel), deletion, or feature change (devoicing).</li>
+</ul>
+<h4>6.2.2 Vocabulary</h4>
+<ul>
+<li>Vocabulary is essential: &quot;Without vocabulary nothing can be conveyed&quot; (Wilkins, 1972).</li>
+
+
+<li>Challenges include: segmenting continuous speech into words, the vast size of language vocabulary (~54,000 word families in English; ~20,000 known by university graduates).</li>
+
+
+<li>Practical targets:</li>
+
+
+<li>1,000 most frequent words ≈ 90% of spoken conversations.</li>
+
+
+<li>~2,000 word families needed for 80% text comprehension.</li>
+
+
+<li>~8,000–9,000 word families needed for 98% text comprehension (required for adequate reading).</li>
+
+
+<li>Learning a new word from reading context requires knowing ~95% of surrounding words (Nation, 2001).</li>
+
+
+<li>Receptive <span class="gap-wrap" data-chapter="6" data-gap="10" data-answer="knowledge"><input type="text" class="gap-input" data-chapter="6" data-gap="10" aria-label="Chapter 6 gap 10" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(10)</span><span class="gap-feedback" aria-live="polite"></span></span> (recognizing words) develops before productive knowledge (actively using words); productive learning takes longer and decays faster.</li>
+
+
+<li>Knowing a word requires: meaning, written and spoken form, grammatical behavior, collocations, register, associations, and frequency (Nation, 1990) — not all acquired simultaneously.</li>
+
+
+<li>First step in L2 word acquisition: mapping L2 words to L1 translation equivalents; but idiomatic use requires building L2-specific semantic structures (Jiang, 2004).</li>
+
+
+<li>Cognates (words sharing form/meaning across languages, e.g., &quot;chair&quot;/&quot;chaise&quot;) are acquired faster and recognized more quickly.</li>
+
+
+<li>Factors delaying word acquisition: difficult pronunciation, length, grammatical/morphological complexity, multiple or metaphorical meanings.</li>
+</ul>
+<h4>6.2.3 Grammatical Development</h4>
+<h5><em>6.2.3.1 Morphology</em></h5>
+<ul>
+<li>Following Brown&#x27;s (1973) L1 morpheme study (Chapter 2), researchers found L2 learners from different L1 backgrounds acquire English grammatical morphemes in a similar — but not identical — order to L1 acquirers.</li>
+
+
+<li>L2 English morpheme acquisition order (Krashen, 1977):</li>
+
+
+<li>-ing, plural -s, copula &quot;be&quot;</li>
+
+
+<li>Auxiliary &quot;be,&quot; a/the</li>
+
+
+<li>Irregular past</li>
+
+
+<li>Regular past -ed, 3rd person -s, possessive -s</li>
+
+
+<li>Goldschneider &amp; DeKeyser&#x27;s (2001) meta-analysis confirmed this order, attributing it to: perceptual <span class="gap-wrap" data-chapter="6" data-gap="11" data-answer="saliency"><input type="text" class="gap-input" data-chapter="6" data-gap="11" aria-label="Chapter 6 gap 11" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(11)</span><span class="gap-feedback" aria-live="polite"></span></span>, semantic complexity, morphophonological regularity, syntactic category, and frequency.</li>
+
+
+<li>Important caution: accuracy order across learners may not equal acquisition order within a single learner over time.</li>
+</ul>
+<h5><em>6.2.3.2 Syntax</em></h5>
+<ul>
+<li>Multidimensional Model (Meisel, Clahsen &amp; Pienemann, 1981): from studying 45 immigrant workers learning German, five fixed stages of word-order development were identified:</li>
+</ul>
+<div class="table-wrap"><table><tr><th><strong>Stage</strong></th><th><strong>Feature</strong></th><th><strong>Example</strong></th></tr><tr><td>1</td><td>Canonical SVO order</td><td>&quot;Die Kinder spielen mit dem Ball.&quot;</td></tr><tr><td>2</td><td>Adverb fronting (no inversion)</td><td>&quot;Da Kinder spielen.&quot;</td></tr><tr><td>3</td><td>Verb/particle separation</td><td>&quot;Alle kinder muss die pause machen.&quot;</td></tr><tr><td>4</td><td>Inversion</td><td>&quot;Dann hat sie wieder die knoch gebringt.&quot;</td></tr><tr><td>5</td><td>Verb-final subordinate clause</td><td>&quot;Er sagte, dass er nach hause kommt.&quot;</td></tr></table></div>
+<ul>
+<li>Processability <span class="gap-wrap" data-chapter="6" data-gap="12" data-answer="Theory"><input type="text" class="gap-input" data-chapter="6" data-gap="12" aria-label="Chapter 6 gap 12" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(12)</span><span class="gap-feedback" aria-live="polite"></span></span> (Pienemann, 1998): stages emerge in order because each requires increasingly greater cognitive processing load.</li>
+
+
+<li>Teachability Hypothesis (Pienemann, 1988): instruction only succeeds when a learner is cognitively ready — teaching a structure one stage beyond the learner&#x27;s current level works; teaching across multiple stages does not.</li>
+</ul>
+<h5><em>6.2.3.3 English L2 Question Development</em></h5>
+<ul>
+<li>Five developmental <span class="gap-wrap" data-chapter="6" data-gap="13" data-answer="stages"><input type="text" class="gap-input" data-chapter="6" data-gap="13" aria-label="Chapter 6 gap 13" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(13)</span><span class="gap-feedback" aria-live="polite"></span></span> identified (Johnston, 1985; Pienemann et al., 1988) across Vietnamese and Polish L1 learners:</li>
+</ul>
+<div class="table-wrap"><table><tr><th><strong>Stage</strong></th><th><strong>Example</strong></th></tr><tr><td>1</td><td>Single words/formulae: &quot;Yes?&quot;</td></tr><tr><td>2</td><td>SVO + rising intonation: &quot;You like Chinese food?&quot;</td></tr><tr><td>3</td><td>Do-fronting: &quot;Do he work?&quot;</td></tr><tr><td>4a</td><td>Yes/no inversion: &quot;Have you car?&quot;</td></tr><tr><td>4b</td><td>Wh + copula inversion: &quot;Where is my purse?&quot;</td></tr><tr><td>5</td><td>Auxiliary inversion: &quot;Did he not understand?&quot;</td></tr></table></div>
+<ul>
+<li>Cross-L1 similarity in stages provides further evidence that developmental sequences are universal, not L1-specific.</li>
+</ul>
+<h4>6.2.4 Sociolinguistic Variation and Pragmatics</h4>
+<ul>
+<li>L2 learners&#x27; sociolinguistic patterns (regional, informal, age-appropriate speech) often diverge significantly from native speakers.</li>
+
+
+<li>Example: French immersion students severely underused the informal &quot;on&quot; (for &quot;we&quot;) vs native French Canadian speakers who use it almost exclusively.</li>
+
+
+<li>More advanced learners show more native-like sociolinguistic choices (van Compernolle &amp; Williams, 2009).</li>
+
+
+<li>Pragmatics = how context and social situation determine language choices and their effects on interlocutors (speech <span class="gap-wrap" data-chapter="6" data-gap="14" data-answer="acts"><input type="text" class="gap-input" data-chapter="6" data-gap="14" aria-label="Chapter 6 gap 14" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(14)</span><span class="gap-feedback" aria-live="polite"></span></span>, requests, politeness, forms of address).</li>
+
+
+<li>Interlanguage Pragmatics (ILP) = the study of how L2 learners comprehend, produce, and develop pragmatic functions in the L2.</li>
+
+
+<li>Pragmatic features vary greatly across cultures; transfer from L1 pragmatic norms can lead to miscommunication.</li>
+
+
+<li>Some pragmatic distinctions are acquired late in both L1 and L2 (Kasper &amp; Schmidt, 1996).</li>
+
+
+<li>Five-stage developmental model for requests (Kasper &amp; Rose, 2002):</li>
+
+
+<li>Pre-basic: &quot;Stamps please.&quot;</li>
+
+
+<li>Formulaic: &quot;I want stamps.&quot;</li>
+
+
+<li>Unpacking formulas productively: &quot;Can you give me stamps?&quot;</li>
+
+
+<li>More complex/indirect: &quot;Could I have some stamps?&quot;</li>
+
+
+<li>Fine-tuning: &quot;I would like to buy some stamps please.&quot;</li>
+
+
+<li>EFL learners in classrooms detect grammatical errors more readily than pragmatic ones; ESL learners in naturalistic settings show the opposite pattern (Bardovi-Harlig &amp; Dörnyei, 1998).</li>
+</ul>
+<h4>6.2.5 Reading</h4>
+<ul>
+<li>L2 reading involves both bottom-up <span class="gap-wrap" data-chapter="6" data-gap="15" data-answer="processing"><input type="text" class="gap-input" data-chapter="6" data-gap="15" aria-label="Chapter 6 gap 15" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(15)</span><span class="gap-feedback" aria-live="polite"></span></span> (letter/word recognition, syntax) and top-down processing (comprehension, semantic interpretation).</li>
+
+
+<li>Word recognition is central: readers fixate on ~80% of content words and ~40% of function words.</li>
+
+
+<li>Interdependence Hypothesis (Cummins, 1981): L1 reading proficiency transfers to L2 reading — strong L1 literacy supports L2 literacy development, provided a minimum L1 threshold is reached.</li>
+
+
+<li>However, L2 proficiency (vocabulary, morphosyntax, listening comprehension) is equally or more important than L1 reading skill for L2 reading success (Alderson, 2000; Droop &amp; Verhoeven, 2003).</li>
+
+
+<li>Strong L2 vocabulary knowledge (≈8,000 word families for 98% text coverage) is particularly critical.</li>
+
+
+<li>Script differences matter: moving between similar alphabetic systems (English–Spanish) is easier than between very different systems (English–Mandarin logographs).</li>
+
+
+<li>Emerging consensus: both L1 reading skill AND L2 proficiency contribute to L2 reading, but L2 input exposure is the strongest overall influence (Koda, 2011).</li>
+
+
+<li>Key principles for teaching L2 reading (Grabe, 2011) include: extensive practice, varied materials, pre/during/post-reading activities, building word recognition, vocabulary, comprehension strategies, reading fluency, and motivation.</li>
+</ul>
+<h3>6.3 Investigating Learner Language: Language Corpora</h3>
+<ul>
+<li>Language <span class="gap-wrap" data-chapter="6" data-gap="16" data-answer="corpora"><input type="text" class="gap-input" data-chapter="6" data-gap="16" aria-label="Chapter 6 gap 16" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(16)</span><span class="gap-feedback" aria-live="polite"></span></span> = large computerized datasets of authentic learner language, enabling pattern and frequency analysis.</li>
+
+
+<li>Key L2 corpora: ICLE (written), LINDSEI (spoken, advanced learners), French Learner Language Oral Corpora.</li>
+
+
+<li>Corpora allow researchers to: identify common errors by proficiency/L1 group, trace formulaic language use, and re-examine developmental patterns longitudinally.</li>
+
+
+<li>Corpus research generally confirms morpheme acquisition orders but also reveals significant individual variation (Housen, 2002).</li>
+</ul>
+<h3>6.4 Summing Up</h3>
+<p>L2 development is shaped by cross-linguistic <span class="gap-wrap" data-chapter="6" data-gap="17" data-answer="influence"><input type="text" class="gap-input" data-chapter="6" data-gap="17" aria-label="Chapter 6 gap 17" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(17)</span><span class="gap-feedback" aria-live="polite"></span></span>, overgeneralization, markedness, developmental sequences, formulaic sequences, fossilization, and avoidance. These factors affect all linguistic sub-areas — phonology, vocabulary, grammar, sociolinguistics, pragmatics, and reading — in complex, interacting ways. Language corpora are increasingly valuable tools for investigating learner language systematically.</p>
+</section>
+
+<section class="chapter" data-chapter="7">
+<div class="chapter-toolbar" data-chapter="7"><button class="btn btn-check-ch" type="button">Check Chapter 7</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 7</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 7</button><span class="ch-stats" data-chapter="7">0 / 6 correct</span></div>
+<h2>Chapter 7</h2>
+<h2>The Age Factor</h2>
+<h3>7.0 Chapter Overview</h3>
+<ul>
+<li>Age is one of the most debated topics in SLA research.</li>
+
+
+<li>Widely held belief: the earlier one begins learning an L2, the greater the ultimate <span class="gap-wrap" data-chapter="7" data-gap="1" data-answer="proficiency"><input type="text" class="gap-input" data-chapter="7" data-gap="1" aria-label="Chapter 7 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span>.</li>
+
+
+<li>Common assumption: beyond a certain age, native-like proficiency cannot be achieved.</li>
+
+
+<li>Chapter goal: examine what research reveals about the role of age and synthesize findings across studies.</li>
+</ul>
+<h3>7.1 The Critical Period Hypothesis (CPH)</h3>
+<p>Key Terms &amp; Definitions</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Critical Period</td><td>A window of time during which certain behaviors/skills are acquired with speed and ease, without external intervention</td></tr><tr><td>Imprinting</td><td>Rapid learning in a young animal that begins to model behavior on an adult; e.g., ducklings follow moving objects seen 9–21 hours after hatching</td></tr><tr><td>Critical Period Hypothesis (CPH)</td><td>The view that there is a limited developmental period during which native-like L1 or L2 acquisition is possible; after which, ability declines</td></tr><tr><td>Lateralization</td><td>The process by which cognitive functions (especially language) become localized to one hemisphere of the brain (typically the left)</td></tr></table></div>
+<p>Historical Development of the CPH</p>
+<ul>
+<li>Penfield &amp; Roberts (1959): First proposed a critical period for language; set its end at ~9 years of age, citing &quot;cognitive inflexibility&quot; and loss of brain plasticity.</li>
+
+
+<li>Lenneberg (1967): Brought major attention to CPH in Biological Foundations of Language; set onset at ~2 years and end at puberty (~13 years); noted that after puberty, foreign language learning requires &quot;conscious and labored effort&quot; and accents are difficult to overcome.</li>
+
+
+<li>Birdsong (1999): Summarized CPH as stating that native-like acquisition is possible only within a limited developmental window; once passed, language-learning ability declines.</li>
+
+
+<li>Long (1993): Clarified that CPH does not claim adults cannot reach high proficiency — only that they cannot reach native speaker levels.</li>
+</ul>
+<p>Proposed Explanations for the CPH</p>
+<ul>
+<li>Cerebral <span class="gap-wrap" data-chapter="7" data-gap="2" data-answer="lateralization"><input type="text" class="gap-input" data-chapter="7" data-gap="2" aria-label="Chapter 7 gap 2" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(2)</span><span class="gap-feedback" aria-live="polite"></span></span> (Lenneberg): Language functions lateralize to the left hemisphere; once complete (around puberty), flexibility is lost. However, Krashen (1973) argued lateralization is complete much earlier than puberty.</li>
+
+
+<li>Genetic &quot;use it or lose it&quot; (Pinker, 1994): Language acquisition circuitry is dismantled after use, since maintaining it has a cost.</li>
+
+
+<li>&quot;Use it or keep it&quot; (Bever, 1981): If the acquisition skill is not exercised by continuous L2 learning, it is lost; early L2 acquisition can delay the critical period.</li>
+
+
+<li>Connectionist view (Elman et al., 1996): Learning itself creates an impediment to further learning — not due to a mechanism change but as a consequence of learning.</li>
+
+
+<li>&quot;Less is more&quot; hypothesis (Newport, 1988): Children&#x27;s limited cognitive capacity forces them to attend to small, meaningful linguistic units (morphemes, words), which benefits acquisition. Adults store larger, less precisely registered chunks.</li>
+</ul>
+<p>Alternative to CPH</p>
+<ul>
+<li>Speech Learning Model / SLM (Flege, 1995): L1 acquisition mechanisms remain intact in L2 learners; differences in L2 success are due to input quality/quantity and continued L1 exposure. Key finding: L1 phonological categories stabilize between ages 5–7, affecting new L2 category formation. Sounds very similar to an L1 sound are not perceived as new, leading to &quot;merged&quot; L1–L2 categories and non-native production.</li>
+</ul>
+<h3>7.2 Abnormal Instances: Children Raised in Isolation</h3>
+<p>Key Term</p>
+<ul>
+<li>Feral <span class="gap-wrap" data-chapter="7" data-gap="3" data-answer="child"><input type="text" class="gap-input" data-chapter="7" data-gap="3" aria-label="Chapter 7 gap 3" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(3)</span><span class="gap-feedback" aria-live="polite"></span></span>: A child who grew up deprived of normal human interaction and language exposure.</li>
+</ul>
+<p>Case Studies</p>
+<ul>
+<li>Victor of Aveyron (1797, France): A ~12-year-old boy found after apparent abandonment; unable to learn to speak despite efforts. Confounds: possible autism, psychological/emotional trauma. Depicted in Truffaut&#x27;s film The Wild Child.</li>
+
+
+<li>Genie (1970, Los Angeles): Found at age 13 after being isolated and restrained from ~18 months to nearly 14 years. After rescue, she acquired some vocabulary and basic word order, but syntax and morphology remained severely limited (telegraphic speech: &quot;eat cookie&quot;). Confounds: psychological trauma and possible cognitive deficits make it impossible to attribute failure solely to missing the critical period. One speculation: left hemisphere atrophy prevented normal grammatical processing.</li>
+
+
+<li>Significance: These cases offer partial support for the CPH but cannot be taken as definitive evidence due to complicating factors.</li>
+</ul>
+<p>Curtiss (linguist working with Genie): Reflected that Genie&#x27;s limited language still allowed her to encode concepts, share feelings, and interact with her world — and questioned whether grammar is ultimately what matters most for human connection.</p>
+<h3>7.3 Empirical Studies</h3>
+<p>Introductory Learner Profiles</p>
+<ul>
+<li>Walid (heritage Arabic speaker, Detroit): Exposed to Arabic at home and English at school from early childhood; passes as a native speaker in both Arabic and English — illustrating the advantage of early bilingual exposure.</li>
+
+
+<li>Mila&#x27;s sons, Mirko &amp; Dragan (immigrated from Eastern Europe in their teens): Retained native-like Bosnian; spoke English with a noticeable foreign accent even after years of US residence — unlike younger community members who arrived before their teens and passed as native English speakers.</li>
+</ul>
+<p>Key Findings Across Linguistic Areas</p>
+<ul>
+<li>Pronunciation/phonology: Most clearly affected by age of acquisition; widely accepted that post-childhood learners carry a detectable non-native accent.</li>
+
+
+<li>Grammar/morphosyntax: Also affected, though with some variation across studies.</li>
+
+
+<li>Vocabulary: Relatively immune to age-of-acquisition effects.</li>
+
+
+<li>Different CPH age limits may apply to different linguistic domains.</li>
+</ul>
+<p>Key Terms</p>
+<ul>
+<li>Age of Arrival (AoA) / Age of Onset (AO): Age when a learner first receives substantial L2 exposure; AO is sometimes preferred as a more precise measure.</li>
+
+
+<li>Length of Residence (LOR): Duration of time spent in the L2 environment.</li>
+</ul>
+<p>Research Studies</p>
+<p>Oyama (1976) — Pronunciation</p>
+<ul>
+<li>Participants: 60 Italian immigrants in the US; AoA 6–20 years; LOR 5–18 years.</li>
+
+
+<li>Tasks: Reading a short text and telling an anecdote; rated by native speaker judges.</li>
+
+
+<li>Results: Earliest arrivals (AoA 6–10) performed like native speakers; those arriving after 12 had detectable accents. No effect for LOR.</li>
+
+
+<li>Conclusion: Supports CPH for pronunciation.</li>
+</ul>
+<p>Snow &amp; Hoefnagel-Höhle (1978) — Multiple Linguistic Skills</p>
+<ul>
+<li>Participants: 96 English L1 speakers learning Dutch in the Netherlands; three age groups: adults, adolescents (12–15), children (8–10).</li>
+
+
+<li>Tasks: Pronunciation, morphology, imitation, translation; tested at 3, 6, and 9–10 months.</li>
+
+
+<li>Results: Adolescents and adults outperformed children at 3 months; children caught up by 10 months.</li>
+
+
+<li>Conclusion: Adults have an early speed advantage (partly due to greater metalinguistic awareness); children may match or surpass older learners in ultimate <span class="gap-wrap" data-chapter="7" data-gap="4" data-answer="attainment"><input type="text" class="gap-input" data-chapter="7" data-gap="4" aria-label="Chapter 7 gap 4" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(4)</span><span class="gap-feedback" aria-live="polite"></span></span>. Distinguishes speed of learning vs. ultimate attainment.</li>
+</ul>
+<p>Flege, Munro &amp; Mackay (1995) — Pronunciation</p>
+<ul>
+<li>Participants: 240 Italian immigrants in Ontario (LOR 15+ years); 24 native English controls.</li>
+
+
+<li>Task: Reading 5 simple English sentences; native evaluators judged presence of foreign accent.</li>
+
+
+<li>Results: No sharp threshold; instead, a gradual deterioration in native-like ratings as AoA increased (see Figure 7.2).</li>
+
+
+<li>Conclusion: Does not support a sudden &quot;cut-off&quot;; challenges strict CPH interpretation.</li>
+
+
+<li>Follow-up (Flege, 2012): Re-recorded 160 original participants; ~⅓ had regressed in pronunciation, ~14% slightly improved. Greater English use with native speakers correlated with improvement. Coined: &quot;you are what you eat, phonetically&quot; — input quantity and quality may be the most important factor in L2 speech learning.</li>
+</ul>
+<p>Bongaerts et al. (1997) — Pronunciation in Advanced Learners</p>
+<ul>
+<li>Three studies; Dutch L1 learners of English (Study 2) and French (Study 3); AO 12+.</li>
+
+
+<li>Tasks: Reading isolated sentences and frames tasks; rated by native speaker judges.</li>
+
+
+<li>Results: Study 2 — 5/11 advanced learners rated as native speakers on some tasks. Study 3 — 3/9 passed as native-like across all tasks; some native speakers were rated as non-native.</li>
+
+
+<li>Explanation for success: High motivation, intensive L2 input, and systematic training in L2 sound perception/production.</li>
+
+
+<li>Conclusion: Offers evidence that CPH effects are not universal, though methodological limitations exist (isolated sentences may be easier than natural speech).</li>
+</ul>
+<p>Patkowski (1980) — Grammar</p>
+<ul>
+<li>Participants: 67 educated immigrants to the US (various L1s); AO 5–50 years; LOR 6–61 years; compared to 15 American-born controls.</li>
+
+
+<li>Task: Native ESL teachers rated grammatical ability from 5-minute oral transcript samples (0–5 scale).</li>
+
+
+<li>Results: Marked differences between pre-puberty (avg. AO 8.6) and post-puberty (avg. AO 27.1) groups; no effect for instruction or practice variables.</li>
+
+
+<li>Conclusion: Supports an age effect (cutoff ~15 years) for native-like grammatical competence.</li>
+</ul>
+<p>Johnson &amp; Newport (1989) — Grammaticality Judgments</p>
+<ul>
+<li>Participants: 46 native Chinese/Korean speakers at US universities; LOR 5+ years; 23 native English controls.</li>
+
+
+<li>Task: 276-item grammaticality judgment test covering 12 morphosyntactic rules (listened and judged grammaticality).</li>
+
+
+<li>Results: Strong correlation (−.87) between AoA and performance for arrivals aged 3–15; low correlation (−.16) for arrivals aged 17–39. Those arriving 3–7 performed like native speakers. Arriving at 20 gave no advantage over arriving at 30. Decline was gradual, not abrupt (see Figure 7.4).</li>
+
+
+<li>Conclusion: Supports CPH, but suggests decline begins before 15 and continues gradually. Adults can still learn, but less efficiently with high individual variation.</li>
+
+
+<li>Weaknesses: LOR may have been insufficient for some; some test items were too obviously ungrammatical, potentially inflating scores.</li>
+</ul>
+<p>Birdsong &amp; Molis (2001) — Replication of Johnson &amp; Newport</p>
+<ul>
+<li>Participants: 61 Spanish L1 learners of English; AoA 3–39 years; LOR 10+ years.</li>
+
+
+<li>Results: No significant AoA correlation for arrivals under 16; marked effect for late learners. Decline continued across the lifespan (unlike Johnson &amp; Newport&#x27;s findings).</li>
+
+
+<li>Conclusion: Challenges the idea of a well-defined critical window; the continuing decline counters strict CPH.</li>
+</ul>
+<p>Abrahamsson &amp; Hyltenstam (2009) — Comprehensive Proficiency Testing</p>
+<ul>
+<li>Participants: 195 Spanish L1–Swedish L2 bilinguals.</li>
+
+
+<li>Tasks: 10 cognitively demanding measures — speech production/perception, grammaticality judgments, formulaic language.</li>
+
+
+<li>Results: No late learners (AO 13–19) passed as native-like on all measures; only 3 of 31 early learners (AO before 12) did so, despite 25/31 passing the initial global speech evaluation. No effect for LOR.</li>
+
+
+<li>Coined term: &quot;Non-perceivable non-nativeness&quot; — subtle but real divergence from native norms, undetected in casual evaluation but revealed by demanding tests.</li>
+
+
+<li>Conclusion: Most studies overestimate early learners&#x27; attainment due to insufficiently demanding tasks. The probability of a late learner achieving native-like command across all linguistic domains is &quot;close to zero.&quot;</li>
+</ul>
+<p>Summary Table of Key Studies (Table 7.1)</p>
+<div class="table-wrap"><table><tr><th><strong>Researcher(s)</strong></th><th><strong>Year</strong></th><th><strong>Focus</strong></th><th><strong>Participants</strong></th><th><strong>Key Finding</strong></th></tr><tr><td>Oyama</td><td>1976</td><td>Pronunciation</td><td>60 Italian immigrants</td><td>Early AoA (6–10) → native-like; after 12 → detectable accent</td></tr><tr><td>Snow &amp; Hoefnagel-Höhle</td><td>1978</td><td>Pronunciation, morphology</td><td>96 English L1, learning Dutch</td><td>Adults faster early; children caught up by 10 months</td></tr><tr><td>Patkowski</td><td>1980</td><td>Grammar</td><td>67 immigrants, various L1s</td><td>AoA under 15 → native-like grammar</td></tr><tr><td>Johnson &amp; Newport</td><td>1989</td><td>Grammaticality judgments</td><td>46 Chinese/Korean L1</td><td>Earlier AoA → better L2; gradual decline</td></tr><tr><td>Flege, Munro &amp; Mackay</td><td>1995</td><td>Pronunciation</td><td>240 Italian immigrants</td><td>Gradual, not abrupt, decline across AoA</td></tr><tr><td>Bongaerts et al.</td><td>1997</td><td>Pronunciation</td><td>Dutch L1, advanced English/French</td><td>Some late learners pass as native; not universal</td></tr><tr><td>Abrahamsson &amp; Hyltenstam</td><td>2009</td><td>10 proficiency measures</td><td>195 Spanish L1–Swedish L2</td><td>No late learner fully native-like; early learners rarely so</td></tr></table></div>
+<h3>7.4 Exceptional Cases</h3>
+<ul>
+<li>Post-puberty learners who achieve very high L2 proficiency are rare but documented.</li>
+</ul>
+<p>Julie (Ioup et al., 1994)</p>
+<ul>
+<li>British woman; began learning Egyptian Arabic at age 21 (naturalistic, no formal instruction); examined after 26 years in Egypt.</li>
+
+
+<li>Results: 7/13 native judges rated her speech as native-like; near-native on grammatical/translation tasks. However, ~half of judges did not consider her native-like, and she did not score 100% on morphosyntactic tasks.</li>
+
+
+<li>Conclusion: Remarkable, but not irrefutable evidence against CPH; may reflect exceptional language <span class="gap-wrap" data-chapter="7" data-gap="5" data-answer="aptitude"><input type="text" class="gap-input" data-chapter="7" data-gap="5" aria-label="Chapter 7 gap 5" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(5)</span><span class="gap-feedback" aria-live="polite"></span></span> (discussed in Chapter 8).</li>
+</ul>
+<p>Joseph Conrad</p>
+<ul>
+<li>Native Polish speaker; learned English as an adult (after age 17), as a third language (after French); renowned English-language author of Heart of Darkness.</li>
+
+
+<li>&quot;The Joseph Conrad Phenomenon&quot;: Term used when an L2 learner achieves flawless morphosyntactic/lexical skill while retaining a native accent in speech.</li>
+
+
+<li>Reality check: Conrad&#x27;s speech was heavily Polish-accented (noted by Ford Madox Ford). His written English also showed non-native features (inverted adjective placement, misused prepositions, etc.) that required substantial editing by his editor, Edward Garnett.</li>
+
+
+<li>Conrad himself wrote that English &quot;remained a foreign language&quot; requiring &quot;formidable effort.&quot;</li>
+
+
+<li>Conclusion: The &quot;phenomenon&quot; named after him is somewhat ironic — Conrad was skilled but not truly native-like in either speaking or writing.</li>
+</ul>
+<h3>7.5 Summing Up</h3>
+<ul>
+<li>Research strongly supports that L2 learners who begin after early childhood rarely achieve native-like pronunciation or morphosyntactic mastery.</li>
+
+
+<li>Some post-puberty learners receive native speaker ratings on certain tasks — but more demanding tests typically reveal subtle differences.</li>
+
+
+<li>There is no consensus on whether a strict critical &quot;cut-off&quot; exists or whether decline is gradual across the lifespan.</li>
+
+
+<li>The appropriate benchmark of native-speaker-like ability is itself questioned: in bilinguals, two languages inevitably influence each other, so native monolingual norms may not be the most valid standard.</li>
+
+
+<li>Next chapter (Chapter 8) examines other individual learner <span class="gap-wrap" data-chapter="7" data-gap="6" data-answer="differences"><input type="text" class="gap-input" data-chapter="7" data-gap="6" aria-label="Chapter 7 gap 6" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(6)</span><span class="gap-feedback" aria-live="polite"></span></span> beyond age.</li>
+</ul>
+</section>
+
+<section class="chapter" data-chapter="8">
+<div class="chapter-toolbar" data-chapter="8"><button class="btn btn-check-ch" type="button">Check Chapter 8</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 8</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 8</button><span class="ch-stats" data-chapter="8">0 / 8 correct</span></div>
+<h2>Chapter 8</h2>
+<h2>Individual Differences</h2>
+<h3>8.0 Chapter Overview</h3>
+<ul>
+<li>Individual difference (ID) factors studied in SLA include: intelligence, aptitude, attitudes, motivation, personality, learning style, cognitive style, and learning strategies.</li>
+
+
+<li>Some IDs have strong links to L2 outcomes; others do not.</li>
+
+
+<li>Key challenges: ID factors interact with each other; they are difficult to measure objectively (often rely on self-<span class="gap-wrap" data-chapter="8" data-gap="1" data-answer="reports"><input type="text" class="gap-input" data-chapter="8" data-gap="1" aria-label="Chapter 8 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span> or tests of disputed validity); definitions vary across researchers.</li>
+</ul>
+<h3>8.1 Intelligence</h3>
+<p>Key Terms &amp; Definitions</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Intelligence</td><td>Hypothesized general factor underlying the ability to adapt to the environment; often operationalized via IQ tests emphasizing academic skills</td></tr><tr><td>CALP (Cognitive/Academic Language Proficiency)</td><td>Skills requiring abstract language abilities (analysis, synthesis) useful for academic tasks</td></tr><tr><td>BICS (Basic Interpersonal Communicative Skills)</td><td>Skills useful for face-to-face personal communication and conversation</td></tr></table></div>
+<p>Views of Intelligence</p>
+<ul>
+<li>Spearman&#x27;s &quot;g&quot; factor: A single general ability underlying performance on all cognitive tasks; basis for traditional IQ testing.</li>
+
+
+<li>Gardner&#x27;s Multiple <span class="gap-wrap" data-chapter="8" data-gap="2" data-answer="Intelligences"><input type="text" class="gap-input" data-chapter="8" data-gap="2" aria-label="Chapter 8 gap 2" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(2)</span><span class="gap-feedback" aria-live="polite"></span></span> (1983; 1999): Nine types — mathematical-logical, verbal-linguistic, musical-rhythmic, bodily-kinesthetic, interpersonal, intrapersonal, visual-spatial, naturalist, and existential. Widely appealing in education. Critics (e.g., Sternberg) argue Gardner confuses &quot;talent&quot; with &quot;intelligence.&quot;</li>
+
+
+<li>Sternberg&#x27;s Triarchic Theory (1985; 1988): Three components — componential (analytic thinking), experiential (creative thinking), and contextual (control over one&#x27;s environment).</li>
+</ul>
+<p>Key Study: Genesee (1976)</p>
+<ul>
+<li>Participants: English L1 children (grades 4, 7, 11) in Quebec learning French; enrolled in immersion or traditional programs.</li>
+
+
+<li>Tests: L2 reading, grammar, auditory comprehension, interpersonal communication, and IQ.</li>
+
+
+<li>Results: IQ correlated with reading, grammar, and math — but not with auditory comprehension or interpersonal communication.</li>
+
+
+<li>Interpretation (Cummins, 1979): IQ appears linked to CALP (academic skills) but not BICS (conversational skills). Traditional IQ may not predict everyday communicative L2 ability.</li>
+</ul>
+<h3>8.2 Language Learning Aptitude</h3>
+<p>Key Terms &amp; Definitions</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Aptitude</td><td>Basic abilities that facilitate L2 learning; controls rate of progress; varies between individuals</td></tr><tr><td>MLAT (Modern Language Aptitude Test)</td><td>Carroll &amp; Sapon&#x27;s (1959) test measuring phonetic coding ability, grammatical sensitivity, and rote memory</td></tr><tr><td>Working Memory (WM)</td><td>An active system for temporarily storing and manipulating information needed in complex cognitive tasks</td></tr><tr><td>Phonological Memory (PM)</td><td>Subsystem of WM responsible for temporary storage of acoustic/speech-based information</td></tr></table></div>
+<p>Defining Aptitude (Carroll, 1981) — Four Criteria</p>
+<ul>
+<li>Separate from general IQ and achievement</li>
+
+
+<li>Separate from motivation</li>
+
+
+<li>Stable, possibly innate</li>
+
+
+<li>Not a prerequisite for SLA, but enhances rate and ease of learning</li>
+</ul>
+<p>Learner Profile: Steve (Mandarin learner)</p>
+<ul>
+<li>Demonstrated rapid progress in replicating native-like utterances — illustrating high phonetic coding ability and grammatical sensitivity.</li>
+</ul>
+<p>The Modern Language Aptitude Test (MLAT)</p>
+<p>Developed to help the US Army identify rapid language learners. Measures three components via five subtests:</p>
+<div class="table-wrap"><table><tr><th><strong>Subtest</strong></th><th><strong>Component Measured</strong></th></tr><tr><td>Part 1: Number learning</td><td>Phonetic coding ability</td></tr><tr><td>Part 2: Phonetic script</td><td>Phonetic coding ability</td></tr><tr><td>Part 3: Spelling clues</td><td>Phonetic coding ability</td></tr><tr><td>Part 4: Words in sentences</td><td>Grammatical sensitivity</td></tr><tr><td>Part 5: Paired associates</td><td>Rote/associative memory</td></tr></table></div>
+<ul>
+<li>A fourth component — inductive language learning (inferring rules from input) — was identified by Carroll but not directly measured in the MLAT.</li>
+
+
+<li>MLAT scores account for approximately 20–35% of variance in L2 achievement.</li>
+
+
+<li>Skehan (1989; 1998) simplified aptitude to three core components: phonetic <span class="gap-wrap" data-chapter="8" data-gap="3" data-answer="coding"><input type="text" class="gap-input" data-chapter="8" data-gap="3" aria-label="Chapter 8 gap 3" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(3)</span><span class="gap-feedback" aria-live="polite"></span></span> ability, language analytic ability (combining grammatical sensitivity and inductive learning), and memory.</li>
+</ul>
+<p>L1 Skills and Aptitude</p>
+<ul>
+<li>Bristol Language Project (Wells, 1985; Skehan, 1986; 1989): Early L1 development (before age 5 — MLU, sentence complexity) correlated with language analytic aptitude scores in 13–14-year-old high school students.</li>
+
+
+<li>Sparks et al. (2009): L1 literacy skills in elementary school predicted L2 aptitude and proficiency in high school.</li>
+</ul>
+<p>Aptitude at Different Stages</p>
+<ul>
+<li>Winke (2005): MLAT components predicted L2 learning at beginning levels but not advanced levels (Mandarin learners).</li>
+
+
+<li>Harley &amp; Hart (1997): Aptitude played a role at both early and late immersion levels (grade 1 vs. grade 7 start).</li>
+
+
+<li>Robinson (2002): Traditional MLAT was validated for audiolingual classrooms; communicative classrooms may require aptitude measures emphasizing working memory for simultaneous attention to form and meaning.</li>
+</ul>
+<p>Working Memory (WM) and Language Learning</p>
+<ul>
+<li>WM = active mental workspace; limited total capacity; coordinates storage and processing of information.</li>
+
+
+<li>Central executive: Coordinates attention and manages other WM components; measured by reading span tasks.</li>
+
+
+<li>Studies (Harrington &amp; Sawyer, 1992; Miyake &amp; Friedman, 1998) link WM capacity to L2 proficiency.</li>
+
+
+<li>Phonological memory (PM): Stores acoustic/speech information for a few seconds; tested via nonword repetition tasks.</li>
+
+
+<li>PM linked to L2 vocabulary learning (Service, 1992; Cheung, 1996; French, 2006), grammar (Baddeley et al., 1998; French &amp; O&#x27;Brien, 2008), oral fluency (O&#x27;Brien et al., 2007), and general L2 proficiency (Hummel, 2009).</li>
+
+
+<li>PM effects may be strongest at beginning/intermediate levels; other factors may dominate for advanced learners.</li>
+</ul>
+<p>Classroom Implication: Teachers can support learners with lower WM by providing written input alongside oral input, chunking tasks into shorter segments, and potentially using WM training programs.</p>
+<p>Key Quote: &quot;Research makes it clear that in the long run language aptitude is probably the single best predictor of achievement in an L2.&quot; (Gardner &amp; MacIntyre, 1992, p. 215)</p>
+<h3>8.3 Attitudes and Motivation</h3>
+<p>Key Terms &amp; Definitions</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Attitude</td><td>Predisposition to respond evaluatively toward someone or something</td></tr><tr><td>Motivation</td><td>Effort + Desire to achieve a goal + Positive attitudes toward learning the language (Gardner, 1985)</td></tr><tr><td>AMTB</td><td>Attitude/Motivation Test Battery; developed by Gardner to measure motivation in L2 contexts</td></tr><tr><td>Intrinsic motivation</td><td>Internally rewarding motivation (feelings of competence, self-determination)</td></tr><tr><td>Extrinsic motivation</td><td>Motivation based on anticipated external reward (material or non-material)</td></tr><tr><td>Orientation</td><td>Overall aim, purpose, or goal underlying language learning activity</td></tr><tr><td>Integrative <span class="gap-wrap" data-chapter="8" data-gap="4" data-answer="orientation"><input type="text" class="gap-input" data-chapter="8" data-gap="4" aria-label="Chapter 8 gap 4" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(4)</span><span class="gap-feedback" aria-live="polite"></span></span></td><td>Desire to know more about and identify with the target language community</td></tr><tr><td>Instrumental orientation</td><td>Language learning driven by practical/external goals (career, grades)</td></tr></table></div>
+<p>Attitude Dimensions in L2 Learning</p>
+<ul>
+<li>Attitudes toward the L2 community and speakers</li>
+
+
+<li>Attitudes toward learning the target language</li>
+
+
+<li>Attitudes toward languages and language learning in general</li>
+</ul>
+<p>Gardner&#x27;s Socioeducational Model</p>
+<ul>
+<li>Attitudes serve as supports to the learner&#x27;s overall orientation → indirectly affect motivation → affect acquisition (see Figure 8.3).</li>
+
+
+<li>Gardner&#x27;s formula: Motivation = Effort + Desire + Attitudes toward learning</li>
+
+
+<li>Both integrative and instrumental orientations can be effective; integrative orientation may be especially important for long-term persistence.</li>
+</ul>
+<p>Table: Types of Motivation (adapted from Brown, 2007)</p>
+<div class="table-wrap"><table><tr><th></th><th><strong>Intrinsic</strong></th><th><strong>Extrinsic</strong></th></tr><tr><td>Integrative</td><td>Learner wants to integrate with L2 cultural group (e.g., immigration, marriage)</td><td>Someone else (e.g., parents) wants the learner to know the L2 for integrative reasons</td></tr><tr><td>Instrumental</td><td>Learner wants to achieve personal goals with L2 (e.g., career)</td><td>External agent (e.g., employer) requires L2 learning</td></tr></table></div>
+<p>Self-Determination Theory (Deci &amp; Ryan, 1985)</p>
+<ul>
+<li>Studies the interplay of internal vs. external motivation; applied to L2 learning via the Language Learning Orientations Scale (Noels et al., 2000).</li>
+</ul>
+<p>Process-Oriented View of Motivation (Dornyei &amp; Ottó, 1998; Dornyei, 2001) Three phases of motivation:</p>
+<ul>
+<li>Preactional / Choice motivation: Motivation is generated (goal-setting)</li>
+
+
+<li>Actional / Executive motivation: Motivation is maintained and protected (crucial for classroom learning)</li>
+
+
+<li>Postactional / Motivational retrospection: Learners evaluate their experience</li>
+</ul>
+<p>Dornyei&#x27;s L2 Motivational Self System (2005) Three dimensions:</p>
+<ul>
+<li>Ideal L2 self: The person one wishes to become as an L2 user — a powerful motivator when that ideal self includes being an L2 speaker</li>
+
+
+<li>Ought-to self: Characteristics one feels obligated to develop (closer to extrinsic/instrumental motivation)</li>
+
+
+<li>L2 learning experience: Motives arising from the specific learning context</li>
+</ul>
+<p>10 Commandments for Motivating Language Learners (Dornyei &amp; Csizér, 1998) Set a personal example; create a relaxed atmosphere; present tasks well; develop good relationships; build linguistic self-confidence; make classes interesting; promote learner autonomy; personalize learning; increase goal-orientedness; familiarize learners with the target culture.</p>
+<h3>8.4 Personality</h3>
+<p>Learner Profiles</p>
+<ul>
+<li>Xia Mei (Hong Kong immersion student): Extraverted, often first to volunteer; teachers linked her personality to rapid oral fluency gains.</li>
+
+
+<li>Mila (Bosnian immigrant): Introverted, rarely volunteered in ESL class; attributed her slower fluency but stronger grammar/reading to her shy personality.</li>
+</ul>
+<p>Personality Variables Studied in SLA Inhibition, risk-taking, anxiety, empathy, extraversion/<span class="gap-wrap" data-chapter="8" data-gap="5" data-answer="introversion"><input type="text" class="gap-input" data-chapter="8" data-gap="5" aria-label="Chapter 8 gap 5" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(5)</span><span class="gap-feedback" aria-live="polite"></span></span>.</p>
+<p>Measurement</p>
+<ul>
+<li>Myers-Briggs Type Indicator (MBTI): 16 personality types across four dimensions: Introversion/Extraversion, Intuition/Sensing, Thinking/Feeling, Judging/Perceiving.</li>
+
+
+<li>Big Five (Costa &amp; McCrae, 1985): Extraversion, Agreeableness, Conscientiousness, Neuroticism, Openness to experience.</li>
+
+
+<li>Eysenck&#x27;s Three Dimensions: Psychoticism (P), Extraversion (E), Neuroticism (N); proposed a biological/neurophysiological basis.</li>
+</ul>
+<p>Eysenck&#x27;s Arousal Theory and L2 Performance</p>
+<ul>
+<li>Introverts: chronically overaroused nervous systems → interferes with STM (oral production) but benefits LTM (grammar, writing).</li>
+
+
+<li>Extraverts: underaroused → full STM capacity → advantage in conversational/oral output; but may sacrifice accuracy for speed.</li>
+
+
+<li>Dewaele &amp; Furnham (1999): Confirmed extraverts are generally more fluent in both L1 and L2; possible speed/accuracy trade-off.</li>
+</ul>
+<p>Other Research Findings</p>
+<ul>
+<li>Strong (1983): &quot;Talkativeness&quot; in L1 (kindergarteners) linked to L2 oral proficiency.</li>
+
+
+<li>Carrell, Prince, &amp; Astika (1996): Introverts outperformed extraverts on vocabulary and course grades in EFL — possibly due to greater academic persistence.</li>
+
+
+<li>Verhoeven &amp; Vermeer (2002): &quot;Openness to experience&quot; and conscientiousness (Big Five) predicted L2 communicative competence.</li>
+</ul>
+<p>Overall: Personality effects are real but complex; they interact with age, learning context, and the specific linguistic skill being measured.</p>
+<h3>8.5 Learning Style and Cognitive Style</h3>
+<p>Key Terms &amp; Definitions</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Learning style</td><td>An individual&#x27;s natural, habitual, and preferred way of absorbing, processing, and retaining new information and skills</td></tr><tr><td>Cognitive style</td><td>A stable, internalized predisposition to process information in a characteristic manner</td></tr><tr><td>Field <span class="gap-wrap" data-chapter="8" data-gap="6" data-answer="Independence"><input type="text" class="gap-input" data-chapter="8" data-gap="6" aria-label="Chapter 8 gap 6" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(6)</span><span class="gap-feedback" aria-live="polite"></span></span> (FI)</td><td>Cognitive style: ability to perceive a part as distinct from its background; associated with analytic, rule-inferring ability</td></tr><tr><td>Field Dependence (FD)</td><td>Cognitive style: tendency to perceive a field as a whole; associated with a holistic, interpersonal orientation</td></tr></table></div>
+<p>Key Distinction</p>
+<ul>
+<li>Unlike abilities (which relate linearly to achievement), learning styles are bipolar — both poles offer advantages and disadvantages.</li>
+
+
+<li>Cognitive style is more stable and biological; learning style is more changeable and potentially trainable.</li>
+</ul>
+<p>Kolb&#x27;s Experiential Learning Styles (1976; 1984) Four styles based on preferences for concrete experience (CE), abstract conceptualization (AC), active experimentation (AE), or reflective observation (RO):</p>
+<div class="table-wrap"><table><tr><th><strong>Style</strong></th><th><strong>Preference</strong></th></tr><tr><td>Divergent</td><td>CE + RO</td></tr><tr><td>Assimilative</td><td>RO + AC</td></tr><tr><td>Convergent</td><td>AC + AE</td></tr><tr><td>Accommodative</td><td>AE + CE</td></tr></table></div>
+<ul>
+<li>Willing (1988): Applied Kolb&#x27;s model to adult migrants learning English in Australia; identified four styles: communicative, analytical, authority-oriented, and concrete.</li>
+</ul>
+<p>Perceptual Learning Style Preferences (Reid, 1987)</p>
+<ul>
+<li>Perceptual Learning Style Preference Questionnaire (PLSPQ): Identifies visual, auditive, kinesthetic, tactile, group, and individual preferences.</li>
+
+
+<li>Reid (1987): Many non-English speakers favored kinesthetic/tactile styles; no relationship found with L2 proficiency.</li>
+
+
+<li>Wang (1992): Found learning styles did correlate with EFL achievement in Chinese undergraduates.</li>
+</ul>
+<p>Critique of Learning Style Research Ellis (2008): &quot;Learning style&quot; is ill-defined, overlaps with affective and cognitive ID variables, and not enough progress has been made to confidently link it to L2 outcomes.</p>
+<p>Field Independence / Field Dependence (FI/FD)</p>
+<ul>
+<li>Originated from WWII pilot disorientation research (Witkin et al., 1962).</li>
+
+
+<li>FI: analytic, independent, able to separate figure from background — linked to grammar rule induction, interlanguage restructuring, formal rule learning.</li>
+
+
+<li>FD: holistic, other-oriented — potentially better at interpersonal/communicative functions.</li>
+
+
+<li>Measured by the EFT (Embedded Figures Test) or GEFT (group version).</li>
+</ul>
+<p>Research Findings on FI</p>
+<ul>
+<li>Genesee &amp; Hamayan (1980): FI correlated with general French L2 proficiency and auditory comprehension, but not oral production.</li>
+
+
+<li>Bialystok &amp; Frohlich (1978): No significant correlations found.</li>
+
+
+<li>Chapelle &amp; Roberts (1986): FI correlated with L2 proficiency at both start and end of school term.</li>
+</ul>
+<p>Critique of FI/FD Research</p>
+<ul>
+<li>EFT may measure non-verbal intelligence, not cognitive style — raising validity questions.</li>
+
+
+<li>Griffiths &amp; Sheen (1992): Extrapolating from geometric shape perception to linguistic rule induction is unjustified — the construct is &quot;remote and irrelevant&quot; to language learning.</li>
+
+
+<li>Witkin himself found little link between EFT and verbal learning.</li>
+</ul>
+<h3>8.6 Learning Strategies</h3>
+<p>Key Terms &amp; Definitions</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Learning strategies</td><td>Specific actions, behaviors, or techniques used — often consciously — to improve L2 learning progress</td></tr></table></div>
+<p>Learner Profile: Linda (Italian learner in Tuscany)</p>
+<ul>
+<li>Used vocabulary repetition (cognitive: rehearsal), deliberate practice with Italian speakers (socio-affective: cooperation), and self-motivated L2 media exposure (metacognitive: planning) — illustrating a range of strategy types.</li>
+</ul>
+<p>Key Classification: O&#x27;Malley &amp; Chamot (1990) — Three-Way Taxonomy</p>
+<div class="table-wrap"><table><tr><th><strong>Category</strong></th><th><strong>Description</strong></th><th><strong>Examples</strong></th></tr><tr><td>Metacognitive</td><td>Planning, monitoring, and evaluating one&#x27;s learning process</td><td>Selective attention, planning, monitoring, self-evaluation</td></tr><tr><td>Cognitive</td><td>Direct manipulation of learning material; specific to tasks</td><td>Rehearsal, organization, inferencing, summarizing, elaboration, transfer, imagery</td></tr><tr><td>Socio-affective</td><td>Interaction, cooperation, and managing emotional states</td><td>Cooperation, questioning for clarification, self-<span class="gap-wrap" data-chapter="8" data-gap="7" data-answer="talk"><input type="text" class="gap-input" data-chapter="8" data-gap="7" aria-label="Chapter 8 gap 7" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(7)</span><span class="gap-feedback" aria-live="polite"></span></span></td></tr></table></div>
+<p>Key Measurement Tool</p>
+<ul>
+<li>SILL (Strategy Inventory for Language Learning, Oxford 1990): Widely used self-report questionnaire; some debate over its validity (Tseng, Dornyei &amp; Schmidt, 2006).</li>
+</ul>
+<p>Research Findings</p>
+<ul>
+<li>Wong &amp; Nunan (2011): More effective ESL learners (Hong Kong) used interpersonal communication strategies; less effective learners depended more on teacher/course materials.</li>
+
+
+<li>Vann &amp; Abraham (1990): Variety of strategies alone is insufficient — strategies must be used appropriately.</li>
+
+
+<li>Gu (1996): Strategy instruction has not produced consistently positive results.</li>
+
+
+<li>Cohen (2011): A 10-week strategy instruction program with 55 intermediate ESL learners showed the experimental group outperformed the control group in speaking.</li>
+</ul>
+<p>Factors Moderating Strategy Effectiveness</p>
+<ul>
+<li>Age (children vs. adults), proficiency level, linguistic domain (reading vs. speaking), learning context (formal vs. informal), and individual personality all influence whether a strategy is beneficial.</li>
+</ul>
+<h3>8.7 Summing Up</h3>
+<ul>
+<li>Weak/inconsistent effects on overall L2 proficiency: IQ, learning style, cognitive style.</li>
+
+
+<li>Significant effects in specific contexts: Aptitude, motivation.</li>
+
+
+<li>Complex, context-dependent effects: Personality, learning strategies.</li>
+
+
+<li>Practical implication: Understanding IDs can help teachers adapt materials and methods to better match learner <span class="gap-wrap" data-chapter="8" data-gap="8" data-answer="profiles"><input type="text" class="gap-input" data-chapter="8" data-gap="8" aria-label="Chapter 8 gap 8" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(8)</span><span class="gap-feedback" aria-live="polite"></span></span>.</li>
+</ul>
+</section>
+
+<section class="chapter" data-chapter="9">
+<div class="chapter-toolbar" data-chapter="9"><button class="btn btn-check-ch" type="button">Check Chapter 9</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 9</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 9</button><span class="ch-stats" data-chapter="9">0 / 9 correct</span></div>
+<h2>Chapter 9</h2>
+<h2>Bilingualism</h2>
+<h3>9.0 Chapter Overview</h3>
+<ul>
+<li>Expands the book&#x27;s focus from sequential L2 learning to bilingual first language acquisition (BFLA): simultaneous <span class="gap-wrap" data-chapter="9" data-gap="1" data-answer="acquisition"><input type="text" class="gap-input" data-chapter="9" data-gap="1" aria-label="Chapter 9 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span> of two languages from birth or shortly after.</li>
+
+
+<li>Key questions: How does BFLA compare to SLA? How do bilinguals develop, represent, and process two languages? Does bilingualism affect cognition?</li>
+
+
+<li>Chapter covers: definitions of bilingualism, bilingual development (speech, vocabulary, grammar, mixed utterances), bilingual lexical representation and access, and cognitive effects.</li>
+</ul>
+<h3>9.1 Who Is a Bilingual? Definitions of Bilingualism</h3>
+<p>Learner Profiles</p>
+<ul>
+<li>Alberto (San Diego, Spanish/English): Considers himself fully bilingual; switches between languages freely, though lacks strong Spanish literacy.</li>
+
+
+<li>Walid (Dearborn, Arabic/English): Identifies as bilingual; schooled entirely in English but maintained Arabic at home and community classes.</li>
+
+
+<li>Mila (Bosnian immigrant): Hesitates to call herself bilingual because her English is heavily accented and she sometimes struggles for words.</li>
+</ul>
+<p>Definitions — A Spectrum</p>
+<div class="table-wrap"><table><tr><th><strong>Theorist</strong></th><th><strong>Definition</strong></th><th><strong>Implied Standard</strong></th></tr><tr><td>Bloomfield (1933)</td><td>Native-like control of two languages</td><td>Very high — excludes Mila</td></tr><tr><td>Malmberg (1977)</td><td>Early naturalistic acquisition; full membership in both communities</td><td>High — excludes Mila</td></tr><tr><td>Haugen (1953)</td><td>Ability to produce complete meaningful utterances in another language</td><td>Low — includes Mila</td></tr><tr><td>Mackey (1962; 1956)</td><td>Alternate use of two or more languages; a relative, not fixed, concept</td><td>Flexible — includes Mila</td></tr><tr><td>Weinreich (1953)</td><td>Practice of alternately using two languages</td><td>Inclusive</td></tr><tr><td>Li Wei (2007)</td><td>Possession of two languages</td><td>Inclusive</td></tr></table></div>
+<ul>
+<li>Key conclusion: Who counts as bilingual depends entirely on the definition used. Mackey (1962) proposes bilingualism should be assessed along four dimensions: degree, function, alternation, and interference.</li>
+</ul>
+<p>Types of Bilingualism (Table 9.1, adapted from Wei, 2007)</p>
+<p>Selected key types:</p>
+<div class="table-wrap"><table><tr><th><strong>Type</strong></th><th><strong>Description</strong></th></tr><tr><td>Early bilingual</td><td>Two languages acquired early in childhood</td></tr><tr><td>Late bilingual</td><td>Bilingualism acquired after childhood</td></tr><tr><td>Balanced / <span class="gap-wrap" data-chapter="9" data-gap="2" data-answer="ambilingual"><input type="text" class="gap-input" data-chapter="9" data-gap="2" aria-label="Chapter 9 gap 2" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(2)</span><span class="gap-feedback" aria-live="polite"></span></span></td><td>Roughly equivalent mastery of both languages</td></tr><tr><td>Dominant bilingual</td><td>Greater proficiency and use in one language</td></tr><tr><td>Compound bilingual</td><td>Both languages learned simultaneously, often in same context</td></tr><tr><td>Coordinate bilingual</td><td>Languages learned in distinctly separate contexts</td></tr><tr><td>Subordinate bilingual</td><td>L2 accessed via the L1</td></tr><tr><td>Additive bilingual</td><td>Both languages combine in complementary, enriching ways</td></tr><tr><td>Subtractive bilingual</td><td>L2 acquired at the expense of L1 competencies</td></tr><tr><td>Receptive bilingual</td><td>Understands but does not speak/write the L2</td></tr><tr><td>Dormant bilingual</td><td>L1 not actively maintained due to emigration</td></tr><tr><td>Semilingual</td><td>Insufficient knowledge of either language</td></tr><tr><td>Simultaneous bilingual</td><td>Both languages present from the onset of speech</td></tr><tr><td>Successive / consecutive bilingual</td><td>L2 added after L1 has begun to develop</td></tr></table></div>
+<ul>
+<li>Alberto and Walid = early bilinguals; Mila = late bilingual.</li>
+</ul>
+<h3>9.2 Bilingual Development</h3>
+<p>Contextual Variability</p>
+<ul>
+<li>Bilingual acquisition contexts vary enormously in: input quantity per language, functions of each language, who uses which language, community prestige, and stability of exposure.</li>
+
+
+<li>Mackey&#x27;s four dimensions — degree, function, alternation, interference — are all relevant to understanding a child&#x27;s bilingual development.</li>
+</ul>
+<p>Historical Debate: Is Bilingualism Harmful?</p>
+<ul>
+<li>Early 20th century view: bilingual acquisition is detrimental to linguistic and cognitive development.</li>
+
+
+<li>Saer (1923): Bilingual children (Wales, ages 7–14) scored 10 IQ points lower than monolingual English peers.</li>
+
+
+<li>Saer, Smith &amp; Hughes (1924): Suggested the mental ability difference persisted into university.</li>
+
+
+<li>Critical flaw: Bilingual and monolingual groups were not matched for socioeconomic <span class="gap-wrap" data-chapter="9" data-gap="3" data-answer="status"><input type="text" class="gap-input" data-chapter="9" data-gap="3" aria-label="Chapter 9 gap 3" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(3)</span><span class="gap-feedback" aria-live="polite"></span></span> (SES) — a key variable affecting IQ scores, making results uninterpretable.</li>
+
+
+<li>Landmark study — Peal &amp; Lambert (1962): Examined 10-year-old children attending French schools in Montreal; groups matched for SES. Result: bilinguals outperformed monolinguals on most IQ measures. Interpreted as evidence of greater mental flexibility in bilinguals. Limitation: single age group, single geographical/SES context — generalizability is limited. Still marked a turning point toward a positive view of bilingualism.</li>
+</ul>
+<h4>9.2.1 Early Bilingual Speech Perception and Production</h4>
+<p>Speech Perception</p>
+<ul>
+<li>Recall from Chapter 2: infants initially discriminate sounds from all languages (universal perceptual system), but by 10–12 months, this narrows to the sounds of languages they are regularly exposed to (Werker &amp; Tees, 1984).</li>
+
+
+<li>Bilingual infants: Initially have a &quot;unitary&quot; system, then undergo perceptual <span class="gap-wrap" data-chapter="9" data-gap="4" data-answer="reorganization"><input type="text" class="gap-input" data-chapter="9" data-gap="4" aria-label="Chapter 9 gap 4" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(4)</span><span class="gap-feedback" aria-live="polite"></span></span>.</li>
+
+
+<li>Bosch &amp; Sebastian-Galles (2003): Catalan-Spanish bilingual infants discriminated a Catalan vowel contrast (/e/ vs /ε/) at 4 months, lost it at 8 months, then regained it at 12 months. This pattern may reflect reorganization when similar phonological categories across two languages temporarily merge.</li>
+</ul>
+<p>Speech Production</p>
+<ul>
+<li>Bilingual children follow the same speech production stages as monolinguals (e.g., substituting fricatives with stops: &quot;tay&quot; for &quot;say&quot;).</li>
+
+
+<li>De Houwer (2009): Some bilingual children showed language-specific adult voicing patterns; others did not; individual variation is common.</li>
+
+
+<li>Caramazza et al. (1973): Adult bilinguals show subtle differences in voicing onset — only detectable with specialized acoustic measurement, not by the average ear. Same may apply to bilingual children.</li>
+
+
+<li>Abrahamsson &amp; Hyltenstam (2009): Even among early bilinguals judged as native-like in global speech evaluation, only 3 individuals performed within native-speaker range on all detailed linguistic tasks.</li>
+</ul>
+<h4>9.2.2 Bilingual Vocabulary and Grammatical Development</h4>
+<ul>
+<li>Common belief: bilingual children develop language more slowly than monolinguals. However, De Houwer (2009) notes the wide normal range of monolingual development — bilingual children&#x27;s development generally falls within this range.</li>
+</ul>
+<p>Vocabulary</p>
+<ul>
+<li>Input exposure has a strong effect on vocabulary size in both monolinguals and bilinguals (Hart &amp; Risley, 1995; Pearson et al., 1997; Hoff et al., 2012).</li>
+
+
+<li>Bilingual children rarely receive equal exposure to both languages → typically have a larger vocabulary in one.</li>
+
+
+<li>Bilingual children have smaller vocabularies in each individual language than monolingual <span class="gap-wrap" data-chapter="9" data-gap="5" data-answer="peers"><input type="text" class="gap-input" data-chapter="9" data-gap="5" aria-label="Chapter 9 gap 5" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(5)</span><span class="gap-feedback" aria-live="polite"></span></span> (Marchman, Fernald &amp; Hurtado, 2010).</li>
+
+
+<li>However, when total vocabulary (words from both languages combined) is measured, bilingual and monolingual children are comparable (Hoff et al., 2012; Pearson, Fernández &amp; Oller, 1993).</li>
+
+
+<li>Junker &amp; Stockman (2002): Bilingual toddlers&#x27; total vocabulary sometimes exceeded that of monolingual controls; up to 40% of bilinguals had a larger vocabulary in one language than the monolingual average.</li>
+</ul>
+<p>Grammar</p>
+<ul>
+<li>Vocabulary and grammar develop in a related fashion within each language but not necessarily across the bilingual&#x27;s two languages (Conboy &amp; Thal, 2006; Marchman et al., 2004; Parra, Hoff &amp; Core, 2011).</li>
+
+
+<li>Language-specific differences in development are driven by exposure differences.</li>
+</ul>
+<h4>9.2.3 Mixed Utterances</h4>
+<p>Key Term</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Mixed utterances</td><td>Use of words or morphemes from both of a bilingual child&#x27;s languages within a single utterance (e.g., &quot;Est-ce que we&#x27;re going home?&quot;; &quot;I&#x27;m flatting the cat&quot;)</td></tr></table></div>
+<p>Learner Profile: Alberto&#x27;s children</p>
+<ul>
+<li>Occasionally mixed English words into Spanish and vice versa — similar to Alberto&#x27;s own code-<span class="gap-wrap" data-chapter="9" data-gap="6" data-answer="switching"><input type="text" class="gap-input" data-chapter="9" data-gap="6" aria-label="Chapter 9 gap 6" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(6)</span><span class="gap-feedback" aria-live="polite"></span></span> behavior with fellow Latinos. Their overall skill in each language remained comparable to monolingual peers.</li>
+</ul>
+<p>Earlier View (Volterra &amp; Taeschner, 1978): Unitary System</p>
+<ul>
+<li>Mixed utterances and failure to treat translation equivalents as distinct were interpreted as evidence that bilingual children start with a single merged linguistic system, later differentiating into two.</li>
+</ul>
+<p>Current View: Early Differentiation</p>
+<ul>
+<li>Research (Genesee, 1989; Meisel, 1989) shows children differentiate their languages from very early on.</li>
+
+
+<li>Bilingual children as young as 1–2 years old generally produce words in the language of their interlocutor (Cantone, 2007; De Houwer, 2009).</li>
+
+
+<li>Genesee, Boivin &amp; Nicoladis (1996): Children as young as 2 years are sensitive to contextual cues about their interlocutor&#x27;s dominant language.</li>
+</ul>
+<p>Why Mixed Utterances Occur (Not Due to Confusion) Reasons include: adults in the environment code-switch frequently (Lanza, 1992; Quay, 2008); emphasis/highlighting (Goodz, 1989); a word or phrase is not readily available in one language; the concept does not exist in that language. Language switching is a productive strategy, not a sign of confusion.</p>
+<p>CHILDES Transcript: Olivier (2;5)</p>
+<ul>
+<li>Despite both parents using both languages freely during recording, Olivier produces virtually no mixed utterances — responding in the language of whoever addresses him. Demonstrates active, early language differentiation.</li>
+</ul>
+<p>&quot;One Person, One Language&quot; Principle</p>
+<ul>
+<li>Attributed to French linguist Maurice Grammont; advocated in Jules Ronjat&#x27;s famous account of raising his son Louis in two languages (Ronjat, 1913).</li>
+
+
+<li>Principle: each language should be represented by a different person, always consistently.</li>
+
+
+<li>Evidence: Patterson (1999) found no difference in mixed utterance rates between children raised with one-parent-one-language and those in bilingual-parent households.</li>
+
+
+<li>Goodz (1989): Even families claiming to follow the principle often do not strictly adhere to it.</li>
+
+
+<li>Conclusion: Little empirical support for the principle as necessary to prevent language mixing.</li>
+</ul>
+<h3>9.3 Bilingual Lexical Representation and Lexical Access</h3>
+<p>Key Terms</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Bilingual lexical representation</td><td>How words from two languages are mentally stored or organized</td></tr><tr><td>Lexical access</td><td>How words are accessed or recalled from the mental <span class="gap-wrap" data-chapter="9" data-gap="7" data-answer="lexicon"><input type="text" class="gap-input" data-chapter="9" data-gap="7" aria-label="Chapter 9 gap 7" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(7)</span><span class="gap-feedback" aria-live="polite"></span></span></td></tr><tr><td>Language presentation</td><td>The way in which languages are used with a child (e.g., one language per parent)</td></tr><tr><td>Semantic priming</td><td>Experimental task: deciding whether a letter string is a real word; faster responses when preceded by a semantically related word</td></tr><tr><td>Stroop experiment</td><td>Showing color words printed in mismatching ink colors; participant must name ink color while ignoring the word</td></tr></table></div>
+<p>Weinreich&#x27;s (1953) Three-Type Model of Bilingual Lexical Organization</p>
+<div class="table-wrap"><table><tr><th><strong>Type</strong></th><th><strong>Description</strong></th><th><strong>Example</strong></th></tr><tr><td>Coordinate</td><td>Separate concepts underlie each language&#x27;s word</td><td>&quot;book&quot; and &quot;kniga&quot; evoke distinct, language-specific associations</td></tr><tr><td>Compound</td><td>A single shared concept underlies both words</td><td>Both words evoke a general, undifferentiated concept of &quot;book&quot;</td></tr><tr><td>Subordinate</td><td>L2 words are accessed via L1 equivalents</td><td>&quot;kniga&quot; understood through the L1 word &quot;book&quot;</td></tr></table></div>
+<ul>
+<li>Associated with learning contexts: coordinate → separate contexts; compound → interchangeable use; subordinate → incomplete L2 learning.</li>
+</ul>
+<p>Models of Bilingual Lexical Organization (Figure 9.2)</p>
+<ul>
+<li>Single-store view (Kolers, 1968): Both languages share one unified mental lexicon.</li>
+
+
+<li>Two-store view: Each language has a separate lexical store, connected at the conceptual level.</li>
+</ul>
+<p>Revised Hierarchical Model (RHM) — Kroll &amp; Stewart (1994)</p>
+<ul>
+<li>Most widely discussed model; distinguishes the lexical level (word forms) from the conceptual level (meanings).</li>
+
+
+<li>Strong links from L2 → L1 and from L1 → concepts (dominant language advantage).</li>
+
+
+<li>Weaker links from L1 → L2 and from L2 → concepts.</li>
+
+
+<li>Predicts: semantic context affects L1→L2 translation more than L2→L1 translation.</li>
+
+
+<li>Counter-evidence (Heredia, 1997): both translation directions can be affected by semantic processing.</li>
+
+
+<li>Revised interpretation (De Groot, 2011): translation always involves concept activation; asymmetries are due to differences in practice and processing ease, not structural differences.</li>
+</ul>
+<p>Paradis&#x27;s Three-Store Model (1979)</p>
+<ul>
+<li>Proposes a single nonlinguistic conceptual level linked to two separate language-specific semantic/lexical stores.</li>
+
+
+<li>Accounts for the fact that languages lexicalize concepts differently — e.g., English &quot;ball&quot; (any round bouncy object) vs. French &quot;balle&quot; (small) and &quot;ballon&quot; (large). Translation equivalents are often not perfect equivalents.</li>
+
+
+<li>Captures the Italian saying: &quot;Traduttore, traditore&quot; — &quot;To translate is to betray.&quot;</li>
+</ul>
+<p>Modified Hierarchical Model (MHM) — Pavlenko (2009)</p>
+<ul>
+<li>Improves on RHM by allowing conceptual distinctions.</li>
+
+
+<li>Lexical concepts can be: shared (between languages), overlapping, or language-specific.</li>
+
+
+<li>Language-specific concepts: e.g., Portuguese &quot;saudade&quot; (longing for a lost loved one) — has no single equivalent in English.</li>
+
+
+<li>Lexical gaps can lead bilinguals to code-switch or borrow from the other language.</li>
+</ul>
+<p>Bilingual Lexical Access</p>
+<ul>
+<li>Key question: How does a bilingual instantly select the correct word from two full lexicons?</li>
+
+
+<li>Cross-language activation: Multiple studies show bilinguals cannot switch off one language during processing — both remain active.</li>
+
+
+<li>Semantic priming evidence: French-English bilinguals show faster responses to &quot;hospital&quot; when primed by the French word &quot;infirmière&quot; (nurse) than by an unrelated word (Perea, Dunabeitia &amp; Carreiras, 2008). Neurolinguistic experiments confirm ongoing cross-language activation (Martin et al., 2009).</li>
+
+
+<li>Note: Cross-language priming effects are generally weaker than within-language priming.</li>
+
+
+<li>Stroop task evidence (Altarriba &amp; Mathis, 1997): Bilinguals cannot ignore color words in one language when asked to name ink color in another — confirming both languages remain accessible simultaneously.</li>
+</ul>
+<h3>9.4 Bilingual Cognition</h3>
+<p>Key Term</p>
+<div class="table-wrap"><table><tr><th><strong>Term</strong></th><th><strong>Definition</strong></th></tr><tr><td>Executive control</td><td>Brain processes (localized in frontal lobe) associated with attentional control — focusing on a task in the context of competing or interfering information; the last part of the brain to mature; the first affected by aging</td></tr></table></div>
+<p>The Bilingual Cognitive Advantage</p>
+<ul>
+<li>Hypothesis: bilinguals&#x27; constant management of two active languages trains attentional <span class="gap-wrap" data-chapter="9" data-gap="8" data-answer="control"><input type="text" class="gap-input" data-chapter="9" data-gap="8" aria-label="Chapter 9 gap 8" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(8)</span><span class="gap-feedback" aria-live="polite"></span></span> — the executive control system.</li>
+
+
+<li>Studies finding bilingual advantages on attentional control tasks:</li>
+
+
+<li>Stroop tasks (Craik &amp; Bialystok, 2006)</li>
+
+
+<li>Switching tasks (Prior &amp; MacWhinney, 2010)</li>
+
+
+<li>Embedded figure tasks (Bialystok &amp; Shapero, 2005)</li>
+
+
+<li>Barac &amp; Bialystok (2012): 104 six-year-old bilinguals (Chinese-, French-, and Spanish-English) outperformed monolinguals on executive control tasks.</li>
+
+
+<li>Poulin-Dubois et al. (2011): Bilingual children as young as 2 years old outperformed monolinguals on a Stroop task.</li>
+
+
+<li>Long-term effect: Some studies suggest bilingualism may delay onset of dementia symptoms (Craik, Bialystok &amp; Freedman, 2010) — not slowing disease progression, but enhancing ability to compensate for cognitive decline.</li>
+
+
+<li>Caveat: Not all studies confirm a bilingual advantage (e.g., Kousaie &amp; Phillips, 2012).</li>
+</ul>
+<p>Areas Where Bilinguals Are NOT Advantaged</p>
+<ul>
+<li>Verbal fluency tasks: Bilinguals produce fewer words per category (e.g., naming animals) — possibly due to need to verify/manage two lexicons (Gollan, Montoya &amp; Werner, 2002; Ransdell &amp; Fischler, 1987).</li>
+
+
+<li>&quot;Tip of the tongue&quot; experiences: Bilinguals report more frequent temporary word retrieval failures, particularly for low-frequency words (Gollan &amp; Acenas, 2004).</li>
+</ul>
+<h3>9.5 Summing Up</h3>
+<ul>
+<li>Bilingual contexts vary enormously; generalization is difficult but research is clarifying common patterns.</li>
+
+
+<li>Bilingual children develop similarly to monolinguals when total vocabulary across both languages is counted; early stages follow similar stages as monolinguals.</li>
+
+
+<li>Bilinguals cannot &quot;turn off&quot; either language — cross-language activation is constant during lexical access.</li>
+
+
+<li>The bilingual&#x27;s two languages inevitably influence each other — monolingual norms may not be the most appropriate standard.</li>
+
+
+<li>Growing evidence of cognitive advantages from bilingualism, particularly in executive/attentional control — countering earlier assumptions of cognitive disadvantage.</li>
+
+
+<li>Cook&#x27;s (1995) concept of &quot;multi-<span class="gap-wrap" data-chapter="9" data-gap="9" data-answer="competence"><input type="text" class="gap-input" data-chapter="9" data-gap="9" aria-label="Chapter 9 gap 9" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(9)</span><span class="gap-feedback" aria-live="polite"></span></span>&quot; encourages viewing bilinguals as unique individuals with multiple abilities, not as deficient monolinguals.</li>
+</ul>
+</section>
+
+<section class="chapter" data-chapter="10">
+<div class="chapter-toolbar" data-chapter="10"><button class="btn btn-check-ch" type="button">Check Chapter 10</button><button class="btn btn-reveal-ch" type="button">Reveal Chapter 10</button><button class="btn ghost btn-reset-ch" type="button">Reset Chapter 10</button><span class="ch-stats" data-chapter="10">0 / 1 correct</span></div>
+<h2>Chapter 10</h2>
+<h2>Concluding Words</h2>
+<h3>Opening / Main Body</h3>
+<ul>
+<li>SLA is a worldwide phenomenon driven by immigration, employment, cultural exchange, and academic needs.</li>
+
+
+<li>L1 and L2 acquisition share some parallels, but a key difference is that L2 learners already have a fully functional first language system.</li>
+
+
+<li>SLA is complex, with many unanswered questions and diverse theoretical perspectives.</li>
+
+
+<li>Future research will likely shape both classroom and real-world applications, with internet technology playing a major role — including virtual <span class="gap-wrap" data-chapter="10" data-gap="1" data-answer="immersion"><input type="text" class="gap-input" data-chapter="10" data-gap="1" aria-label="Chapter 10 gap 1" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" /><span class="gap-num">(1)</span><span class="gap-feedback" aria-live="polite"></span></span> and global language exchange.</li>
+
+
+<li>The book acknowledges it can&#x27;t cover everything, and encourages readers to explore further resources.</li>
+
+
+<li>A practical takeaway: understanding why non-native accents exist can foster greater tolerance toward them.</li>
+</ul>
+<h3>Epilogue — Character Outcomes</h3>
+<p>Each fictional character&#x27;s story wraps up to illustrate real SLA themes:</p>
+<ul>
+<li>Mila — Found employment despite her accent; now raising bilingual grandchildren while preserving her native culture.</li>
+
+
+<li>Steve — His Mandarin fluency earned him abundant job offers and a career traveling across China.</li>
+
+
+<li>Linda — Moved to Italy, teaches English there, and is writing a memoir about her Tuscany experience.</li>
+
+
+<li>Alberto — Advocated for dual-language education so his children wouldn&#x27;t lose Spanish the way he did.</li>
+
+
+<li>Walid — Used his Arabic-English bilingualism to serve with Doctors Without Borders in the Middle East.</li>
+
+
+<li>Xia Mei — Became an English immersion teacher in Hong Kong and is now raising trilingual children (Cantonese, Mandarin, English) — and notably married Steve.</li>
+</ul>
+</section>
+</div>
+
+<script>
+  const ANSWERS = {"6": {"1": "development", "2": "interference", "3": "morphology", "4": "stops", "5": "transfer", "6": "load", "7": "interlanguage", "8": "clause", "9": "sieve", "10": "knowledge", "11": "saliency", "12": "Theory", "13": "stages", "14": "acts", "15": "processing", "16": "corpora", "17": "influence"}, "7": {"1": "proficiency", "2": "lateralization", "3": "child", "4": "attainment", "5": "aptitude", "6": "differences"}, "8": {"1": "reports", "2": "Intelligences", "3": "coding", "4": "orientation", "5": "introversion", "6": "Independence", "7": "talk", "8": "profiles"}, "9": {"1": "acquisition", "2": "ambilingual", "3": "status", "4": "reorganization", "5": "peers", "6": "switching", "7": "lexicon", "8": "control", "9": "competence"}, "10": {"1": "immersion"}};
+  const CHAPTER_META = [[6, 17], [7, 6], [8, 8], [9, 9], [10, 1]];
+  const TOTAL = 41;
+
+  function normalize(s) {
+    return (s || "").trim().toLowerCase().replace(/\s+/g, " ");
+  }
+
+  function inputs() {
+    return Array.from(document.querySelectorAll(".gap-input"));
+  }
+
+  function checkOne(input, opts = {}) {
+    const c = input.dataset.chapter;
+    const g = input.dataset.gap;
+    const correct = ANSWERS[c][g];
+    const fb = input.parentElement.querySelector(".gap-feedback");
+    input.classList.remove("correct", "wrong", "revealed");
+    fb.classList.remove("ok", "no", "show");
+
+    const val = input.value;
+    if (!val.trim() && !opts.silent) {
+      // empty: leave neutral unless we're in "check all" mode
+      if (opts.markEmptyAsWrong) {
+        input.classList.add("wrong");
+        fb.classList.add("no");
+      }
+      return { state: "empty", correct: false };
+    }
+    if (normalize(val) === normalize(correct)) {
+      input.classList.add("correct");
+      fb.classList.add("ok");
+      return { state: "correct", correct: true };
+    } else if (val.trim()) {
+      input.classList.add("wrong");
+      fb.classList.add("no");
+      return { state: "wrong", correct: false };
+    }
+    return { state: "empty", correct: false };
+  }
+
+  function revealOne(input) {
+    const c = input.dataset.chapter;
+    const g = input.dataset.gap;
+    input.value = ANSWERS[c][g];
+    input.classList.remove("correct", "wrong");
+    input.classList.add("revealed");
+    const fb = input.parentElement.querySelector(".gap-feedback");
+    fb.classList.remove("ok", "no");
+    fb.classList.add("show");
+  }
+
+  function resetOne(input) {
+    input.value = "";
+    input.classList.remove("correct", "wrong", "revealed");
+    const fb = input.parentElement.querySelector(".gap-feedback");
+    fb.classList.remove("ok", "no", "show");
+  }
+
+  function updateScore() {
+    const all = inputs();
+    let correct = 0, attempted = 0;
+    all.forEach(i => {
+      if (i.classList.contains("correct")) correct++;
+      if (i.value.trim()) attempted++;
+    });
+    document.getElementById("score-text").textContent = correct + " / " + TOTAL + " correct";
+    document.getElementById("score-bar").style.width = (correct / TOTAL * 100) + "%";
+
+    // Per-chapter stats
+    document.querySelectorAll(".ch-stats").forEach(el => {
+      const ch = el.dataset.chapter;
+      const chInputs = all.filter(i => i.dataset.chapter === ch);
+      const chCorrect = chInputs.filter(i => i.classList.contains("correct")).length;
+      el.textContent = chCorrect + " / " + chInputs.length + " correct";
+    });
+  }
+
+  function showSummary(correct, total, wrongCount, emptyCount) {
+    const el = document.getElementById("summary-top");
+    let msg = "<strong>" + correct + " / " + total + " correct.</strong> ";
+    if (wrongCount === 0 && emptyCount === 0) {
+      msg += "Perfect — every gap filled correctly.";
+    } else {
+      if (wrongCount > 0) msg += wrongCount + " incorrect. ";
+      if (emptyCount > 0) msg += emptyCount + " unanswered. ";
+      msg += "Try again, or use \"Reveal all\" to see every answer.";
+    }
+    el.innerHTML = msg;
+    el.classList.add("show");
+    el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Per-input live feedback on blur
+    inputs().forEach(input => {
+      input.addEventListener("input", () => {
+        // remove status classes when user resumes typing
+        if (input.classList.contains("revealed") || input.classList.contains("correct") || input.classList.contains("wrong")) {
+          input.classList.remove("revealed", "correct", "wrong");
+          const fb = input.parentElement.querySelector(".gap-feedback");
+          fb.classList.remove("ok", "no", "show");
+          updateScore();
+        }
+      });
+      input.addEventListener("blur", () => {
+        if (input.value.trim()) {
+          checkOne(input);
+          updateScore();
+        }
+      });
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          checkOne(input);
+          updateScore();
+          // jump to next input
+          const all = inputs();
+          const idx = all.indexOf(input);
+          if (idx >= 0 && idx + 1 < all.length) all[idx + 1].focus();
+        }
+      });
+    });
+
+    document.getElementById("btn-check-all").addEventListener("click", () => {
+      let correct = 0, wrong = 0, empty = 0;
+      inputs().forEach(i => {
+        const r = checkOne(i, { markEmptyAsWrong: false });
+        if (r.state === "correct") correct++;
+        else if (r.state === "wrong") wrong++;
+        else if (r.state === "empty") empty++;
+      });
+      updateScore();
+      showSummary(correct, TOTAL, wrong, empty);
+    });
+
+    document.getElementById("btn-reveal-all").addEventListener("click", () => {
+      inputs().forEach(revealOne);
+      updateScore();
+      const el = document.getElementById("summary-top");
+      el.innerHTML = "<strong>All answers revealed.</strong> Click Reset to start over.";
+      el.classList.add("show");
+    });
+
+    document.getElementById("btn-reset-all").addEventListener("click", () => {
+      inputs().forEach(resetOne);
+      document.getElementById("summary-top").classList.remove("show");
+      updateScore();
+    });
+
+    // Per-chapter buttons
+    document.querySelectorAll(".chapter-toolbar").forEach(tb => {
+      const ch = tb.dataset.chapter;
+      tb.querySelector(".btn-check-ch").addEventListener("click", () => {
+        const chInputs = inputs().filter(i => i.dataset.chapter === ch);
+        chInputs.forEach(i => checkOne(i));
+        updateScore();
+      });
+      tb.querySelector(".btn-reveal-ch").addEventListener("click", () => {
+        inputs().filter(i => i.dataset.chapter === ch).forEach(revealOne);
+        updateScore();
+      });
+      tb.querySelector(".btn-reset-ch").addEventListener("click", () => {
+        inputs().filter(i => i.dataset.chapter === ch).forEach(resetOne);
+        updateScore();
+      });
+    });
+
+    updateScore();
+  });
+</script>
+</body>
+</html>
